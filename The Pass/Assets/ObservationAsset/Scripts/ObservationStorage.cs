@@ -9,7 +9,7 @@ public class ObservationStorage : MonoBehaviour
     public void observationUpdate(int i, string s)
     {
         shoePrint[i-1] = true;
-        Debug.Log("Set: " + shoePrint[i]);
+        Debug.Log("Set: " + shoePrint[i-1]);
     }
     public bool observationDownload(int i)
     {
