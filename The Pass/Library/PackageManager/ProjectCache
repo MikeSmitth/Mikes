@@ -1,31 +1,171 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: C:/Users/Mike/The Pass/Packages/manifest.json
+    m_FilePath: C:/Users/User/GAME/GAME/The Pass/Packages/manifest.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637646556410196457
-    m_Hash: 842096561
+      ticks: 637650477465558890
+    m_Hash: 1224086067
   m_LockFileStatus:
-    m_FilePath: C:/Users/Mike/The Pass/Packages/packages-lock.json
+    m_FilePath: C:/Users/User/GAME/GAME/The Pass/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637646556410316136
-    m_Hash: 313048000
+      ticks: 637650477469438520
+    m_Hash: 1295227536
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
   m_Packages:
     m_ResolvedPackages:
+    - packageId: com.unity.cinemachine@2.8.0
+      testable: 0
+      isDirectDependency: 1
+      version: 2.8.0
+      source: 1
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.cinemachine@2.8.0
+      assetPath: Packages/com.unity.cinemachine
+      name: com.unity.cinemachine
+      displayName: Cinemachine
+      author:
+        name: 
+        email: 
+        url: 
+      category: cinematography
+      type: 
+      description: "Smart camera tools for passionate creators. \n\nNew starting
+        from 2.7.1: Are you looking for the Cinemachine menu? It has moved to the
+        GameObject menu.\n\nIMPORTANT NOTE: If you are upgrading from the legacy
+        Asset Store version of Cinemachine, delete the Cinemachine asset from your
+        project BEFORE installing this version from the Package Manager."
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 2.1.11-beta.1
+        - 2.1.12
+        - 2.1.13
+        - 2.2.0
+        - 2.2.7
+        - 2.2.8
+        - 2.2.9
+        - 2.2.10-preview.3
+        - 2.2.10-preview.4
+        - 2.3.1
+        - 2.3.3
+        - 2.3.4
+        - 2.3.5-preview.3
+        - 2.4.0-preview.3
+        - 2.4.0-preview.4
+        - 2.4.0-preview.6
+        - 2.4.0-preview.7
+        - 2.4.0-preview.8
+        - 2.4.0-preview.9
+        - 2.4.0-preview.10
+        - 2.4.0
+        - 2.5.0
+        - 2.6.0-preview.2
+        - 2.6.0-preview.3
+        - 2.6.0-preview.5
+        - 2.6.0-preview.8
+        - 2.6.0
+        - 2.6.1-preview.6
+        - 2.6.1
+        - 2.6.2-preview.1
+        - 2.6.2
+        - 2.6.3-preview.2
+        - 2.6.3
+        - 2.6.4
+        - 2.6.5
+        - 2.6.9
+        - 2.7.1
+        - 2.7.2
+        - 2.7.3
+        - 2.7.4
+        - 2.7.5
+        - 2.8.0-exp.1
+        - 2.8.0-exp.2
+        - 2.8.0-pre.1
+        - 2.8.0
+        compatible:
+        - 2.5.0
+        - 2.6.0-preview.2
+        - 2.6.0-preview.3
+        - 2.6.0-preview.5
+        - 2.6.0-preview.8
+        - 2.6.0
+        - 2.6.1-preview.6
+        - 2.6.1
+        - 2.6.2-preview.1
+        - 2.6.2
+        - 2.6.3-preview.2
+        - 2.6.3
+        - 2.6.4
+        - 2.6.5
+        - 2.6.9
+        - 2.7.1
+        - 2.7.2
+        - 2.7.3
+        - 2.7.4
+        - 2.7.5
+        - 2.8.0-exp.1
+        - 2.8.0-exp.2
+        - 2.8.0-pre.1
+        - 2.8.0
+        verified: 2.6.9
+      dependencies: []
+      resolvedDependencies: []
+      keywords:
+      - camera
+      - follow
+      - rig
+      - fps
+      - cinematography
+      - aim
+      - orbit
+      - cutscene
+      - cinematic
+      - collision
+      - freelook
+      - cinemachine
+      - compose
+      - composition
+      - dolly
+      - track
+      - clearshot
+      - noise
+      - framing
+      - handheld
+      - lens
+      - impulse
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637623123140000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: git+https://github.com/Unity-Technologies/com.unity.cinemachine.git
+        revision: 7b21dbadbb998b548e730ef5f6c084940a9d82c0
+        path: 
     - packageId: com.unity.collab-proxy@1.9.0
       testable: 0
       isDirectDependency: 1
       version: 1.9.0
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.collab-proxy@1.9.0
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.collab-proxy@1.9.0
       assetPath: Packages/com.unity.collab-proxy
       name: com.unity.collab-proxy
       displayName: Version Control
@@ -77,9 +217,10 @@ m_PackageAssets:
         - 2.1.0-preview.5
         - 2.1.0-preview.6
         compatible:
-        - 1.7.1
+        - 1.3.9
+        - 1.4.9
+        - 1.6.0
         - 1.8.0
-        - 1.9.0
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -90,7 +231,7 @@ m_PackageAssets:
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
-        verified: 1.7.1
+        verified: 1.3.9
       dependencies: []
       resolvedDependencies: []
       keywords:
@@ -132,7 +273,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 2.0.7
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.ide.rider@2.0.7
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.ide.rider@2.0.7
       assetPath: Packages/com.unity.ide.rider
       name: com.unity.ide.rider
       displayName: JetBrains Rider Editor
@@ -200,7 +341,7 @@ m_PackageAssets:
         - 3.0.5
         - 3.0.6
         - 3.0.7
-        verified: 2.0.7
+        verified: 1.2.1
       dependencies:
       - name: com.unity.test-framework
         version: 1.1.1
@@ -239,7 +380,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 2.0.11
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.ide.visualstudio@2.0.11
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.ide.visualstudio@2.0.11
       assetPath: Packages/com.unity.ide.visualstudio
       name: com.unity.ide.visualstudio
       displayName: Visual Studio Editor
@@ -326,7 +467,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.2.3
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.ide.vscode@1.2.3
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.ide.vscode@1.2.3
       assetPath: Packages/com.unity.ide.vscode
       name: com.unity.ide.vscode
       displayName: Visual Studio Code Editor
@@ -390,12 +531,152 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.vscode.git
         revision: b5ec9b38109e52b1b26597d521e4df75e042ebb9
         path: 
+    - packageId: com.unity.probuilder@4.4.0
+      testable: 0
+      isDirectDependency: 1
+      version: 4.4.0
+      source: 1
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.probuilder@4.4.0
+      assetPath: Packages/com.unity.probuilder
+      name: com.unity.probuilder
+      displayName: ProBuilder
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: 'Build, edit, and texture custom geometry in Unity. Use ProBuilder
+        for in-scene level design, prototyping, collision meshes, all with on-the-fly
+        play-testing.
+
+
+        Advanced features include UV editing, vertex colors,
+        parametric shapes, and texture blending. With ProBuilder''s model export
+        feature it''s easy to tweak your levels in any external 3D modelling suite.'
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 3.0.0
+        - 3.0.1
+        - 3.0.2
+        - 3.0.3
+        - 3.0.6
+        - 3.0.8
+        - 3.0.9
+        - 3.10.1
+        - 4.0.2
+        - 4.0.3
+        - 4.0.4
+        - 4.0.5
+        - 4.1.0
+        - 4.1.2
+        - 4.2.1
+        - 4.2.2-preview.1
+        - 4.2.2-preview.2
+        - 4.2.3
+        - 4.2.4-preview.0
+        - 4.3.0-preview.0
+        - 4.3.0-preview.1
+        - 4.3.0-preview.2
+        - 4.3.0-preview.4
+        - 4.3.0-preview.6
+        - 4.3.0-preview.7
+        - 4.3.0-preview.8
+        - 4.3.0-preview.9
+        - 4.3.1
+        - 4.4.0-preview.1
+        - 4.4.0
+        - 4.5.0
+        - 4.5.2
+        - 5.0.0-pre.7
+        - 5.0.0-pre.10
+        - 5.0.1
+        - 5.0.3
+        compatible:
+        - 4.0.2
+        - 4.0.3
+        - 4.0.4
+        - 4.0.5
+        - 4.1.0
+        - 4.1.2
+        - 4.2.1
+        - 4.2.2-preview.1
+        - 4.2.2-preview.2
+        - 4.2.3
+        - 4.2.4-preview.0
+        - 4.3.0-preview.0
+        - 4.3.0-preview.1
+        - 4.3.0-preview.2
+        - 4.3.0-preview.4
+        - 4.3.0-preview.6
+        - 4.3.0-preview.7
+        - 4.3.0-preview.8
+        - 4.3.0-preview.9
+        - 4.3.1
+        - 4.4.0-preview.1
+        - 4.4.0
+        - 4.5.0
+        - 4.5.2
+        - 5.0.0-pre.7
+        - 5.0.0-pre.10
+        - 5.0.1
+        - 5.0.3
+        verified: 4.4.0
+      dependencies:
+      - name: com.unity.settings-manager
+        version: 1.0.3
+      resolvedDependencies:
+      - name: com.unity.settings-manager
+        version: 1.0.3
+      keywords:
+      - 3d
+      - model
+      - mesh
+      - modeling
+      - geometry
+      - shape
+      - cube
+      - blender
+      - max
+      - maya
+      - fbx
+      - obj
+      - level
+      - design
+      - block
+      - greybox
+      - graybox
+      - whitebox
+      - prototype
+      - probuilder
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637334581170000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: git+https://github.com/Unity-Technologies/com.unity.probuilder.git
+        revision: 04b57a20391934bc7460d5fe1017d157545b2a5f
+        path: 
     - packageId: com.unity.test-framework@1.1.27
       testable: 0
       isDirectDependency: 1
       version: 1.1.27
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.test-framework@1.1.27
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.test-framework@1.1.27
       assetPath: Packages/com.unity.test-framework
       name: com.unity.test-framework
       displayName: Test Framework
@@ -440,9 +721,17 @@ m_PackageAssets:
         - 1.1.24
         - 1.1.26
         - 1.1.27
+        - 1.1.29
         compatible:
+        - 1.1.18
+        - 1.1.19
+        - 1.1.20
+        - 1.1.22
+        - 1.1.24
+        - 1.1.26
         - 1.1.27
-        verified: 1.1.27
+        - 1.1.29
+        verified: 1.1.29
       dependencies:
       - name: com.unity.ext.nunit
         version: 1.0.6
@@ -485,7 +774,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 3.0.6
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.textmeshpro@3.0.6
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.textmeshpro@3.0.6
       assetPath: Packages/com.unity.textmeshpro
       name: com.unity.textmeshpro
       displayName: TextMeshPro
@@ -600,8 +889,11 @@ m_PackageAssets:
         - 3.0.6
         - 3.2.0-pre.1
         compatible:
+        - 3.0.1
+        - 3.0.3
+        - 3.0.4
+        - 3.0.5
         - 3.0.6
-        - 3.2.0-pre.1
         verified: 3.0.6
       dependencies:
       - name: com.unity.ugui
@@ -639,12 +931,12 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.textmeshpro.git
         revision: 01e57e3b7de18af9dfe9baaa0a0ff5cc4765c899
         path: 
-    - packageId: com.unity.timeline@1.4.8
+    - packageId: com.unity.timeline@1.6.2
       testable: 0
       isDirectDependency: 1
-      version: 1.4.8
+      version: 1.6.2
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.timeline@1.4.8
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.timeline@1.6.2
       assetPath: Packages/com.unity.timeline
       name: com.unity.timeline
       displayName: Timeline
@@ -726,6 +1018,45 @@ m_PackageAssets:
         - 1.6.1
         - 1.6.2
         compatible:
+        - 1.2.6
+        - 1.2.7
+        - 1.2.9
+        - 1.2.10
+        - 1.2.11
+        - 1.2.12
+        - 1.2.13
+        - 1.2.14
+        - 1.2.15
+        - 1.2.16
+        - 1.2.17
+        - 1.2.18
+        - 1.3.0-preview.2
+        - 1.3.0-preview.3
+        - 1.3.0-preview.5
+        - 1.3.0-preview.6
+        - 1.3.0-preview.7
+        - 1.3.0
+        - 1.3.1
+        - 1.3.2
+        - 1.3.3
+        - 1.3.4
+        - 1.3.5
+        - 1.3.6
+        - 1.3.7
+        - 1.4.0-preview.1
+        - 1.4.0-preview.2
+        - 1.4.0-preview.3
+        - 1.4.0-preview.5
+        - 1.4.0-preview.6
+        - 1.4.0-preview.7
+        - 1.4.0
+        - 1.4.1
+        - 1.4.2
+        - 1.4.3
+        - 1.4.4
+        - 1.4.5
+        - 1.4.6
+        - 1.4.7
         - 1.4.8
         - 1.5.0-pre.2
         - 1.5.0-preview.1
@@ -746,7 +1077,7 @@ m_PackageAssets:
         - 1.6.0-pre.5
         - 1.6.1
         - 1.6.2
-        verified: 1.4.8
+        verified: 1.3.7
       dependencies:
       - name: com.unity.modules.director
         version: 1.0.0
@@ -783,20 +1114,20 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637557616100000000
+      datePublishedTicks: 637643657750000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
-        revision: 527e4364e28028f20f04fc51db671eb4bb910a26
+        revision: d0d66dff04e2ee077546a894ea0af2b750055b32
         path: 
     - packageId: com.unity.ugui@1.0.0
       testable: 0
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.ugui@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui
       assetPath: Packages/com.unity.ugui
       name: com.unity.ugui
       displayName: Unity UI
@@ -859,7 +1190,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.ai@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.ai
       assetPath: Packages/com.unity.modules.ai
       name: com.unity.modules.ai
       displayName: AI
@@ -907,7 +1238,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.androidjni@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.androidjni
       assetPath: Packages/com.unity.modules.androidjni
       name: com.unity.modules.androidjni
       displayName: Android JNI
@@ -955,7 +1286,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.animation@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.animation
       assetPath: Packages/com.unity.modules.animation
       name: com.unity.modules.animation
       displayName: Animation
@@ -1003,7 +1334,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.assetbundle@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.assetbundle
       assetPath: Packages/com.unity.modules.assetbundle
       name: com.unity.modules.assetbundle
       displayName: Asset Bundle
@@ -1051,7 +1382,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.audio@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.audio
       assetPath: Packages/com.unity.modules.audio
       name: com.unity.modules.audio
       displayName: Audio
@@ -1099,7 +1430,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.cloth@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.cloth
       assetPath: Packages/com.unity.modules.cloth
       name: com.unity.modules.cloth
       displayName: Cloth
@@ -1151,7 +1482,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.director@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.director
       assetPath: Packages/com.unity.modules.director
       name: com.unity.modules.director
       displayName: Director
@@ -1207,7 +1538,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.imageconversion@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.imageconversion
       assetPath: Packages/com.unity.modules.imageconversion
       name: com.unity.modules.imageconversion
       displayName: Image Conversion
@@ -1256,7 +1587,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.imgui@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.imgui
       assetPath: Packages/com.unity.modules.imgui
       name: com.unity.modules.imgui
       displayName: IMGUI
@@ -1304,7 +1635,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.jsonserialize@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.jsonserialize
       assetPath: Packages/com.unity.modules.jsonserialize
       name: com.unity.modules.jsonserialize
       displayName: JSONSerialize
@@ -1352,7 +1683,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.particlesystem@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.particlesystem
       assetPath: Packages/com.unity.modules.particlesystem
       name: com.unity.modules.particlesystem
       displayName: Particle System
@@ -1400,7 +1731,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.physics@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.physics
       assetPath: Packages/com.unity.modules.physics
       name: com.unity.modules.physics
       displayName: Physics
@@ -1448,7 +1779,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.physics2d@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.physics2d
       assetPath: Packages/com.unity.modules.physics2d
       name: com.unity.modules.physics2d
       displayName: Physics 2D
@@ -1496,7 +1827,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.screencapture@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.screencapture
       assetPath: Packages/com.unity.modules.screencapture
       name: com.unity.modules.screencapture
       displayName: Screen Capture
@@ -1548,7 +1879,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.terrain@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.terrain
       assetPath: Packages/com.unity.modules.terrain
       name: com.unity.modules.terrain
       displayName: Terrain
@@ -1596,7 +1927,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.terrainphysics@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.terrainphysics
       assetPath: Packages/com.unity.modules.terrainphysics
       name: com.unity.modules.terrainphysics
       displayName: Terrain Physics
@@ -1652,7 +1983,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.tilemap@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.tilemap
       assetPath: Packages/com.unity.modules.tilemap
       name: com.unity.modules.tilemap
       displayName: Tilemap
@@ -1704,7 +2035,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.ui@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.ui
       assetPath: Packages/com.unity.modules.ui
       name: com.unity.modules.ui
       displayName: UI
@@ -1752,7 +2083,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.uielements@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.uielements
       assetPath: Packages/com.unity.modules.uielements
       name: com.unity.modules.uielements
       displayName: UIElements
@@ -1816,7 +2147,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.umbra@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.umbra
       assetPath: Packages/com.unity.modules.umbra
       name: com.unity.modules.umbra
       displayName: Umbra
@@ -1864,7 +2195,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.unityanalytics@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unityanalytics
       assetPath: Packages/com.unity.modules.unityanalytics
       name: com.unity.modules.unityanalytics
       displayName: Unity Analytics
@@ -1920,7 +2251,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.unitywebrequest@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequest
       assetPath: Packages/com.unity.modules.unitywebrequest
       name: com.unity.modules.unitywebrequest
       displayName: Unity Web Request
@@ -1968,7 +2299,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequestassetbundle
       assetPath: Packages/com.unity.modules.unitywebrequestassetbundle
       name: com.unity.modules.unitywebrequestassetbundle
       displayName: Unity Web Request Asset Bundle
@@ -2024,7 +2355,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequestaudio
       assetPath: Packages/com.unity.modules.unitywebrequestaudio
       name: com.unity.modules.unitywebrequestaudio
       displayName: Unity Web Request Audio
@@ -2080,7 +2411,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.unitywebrequesttexture@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequesttexture
       assetPath: Packages/com.unity.modules.unitywebrequesttexture
       name: com.unity.modules.unitywebrequesttexture
       displayName: Unity Web Request Texture
@@ -2136,7 +2467,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.unitywebrequestwww
       assetPath: Packages/com.unity.modules.unitywebrequestwww
       name: com.unity.modules.unitywebrequestwww
       displayName: Unity Web Request WWW
@@ -2208,7 +2539,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.vehicles@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.vehicles
       assetPath: Packages/com.unity.modules.vehicles
       name: com.unity.modules.vehicles
       displayName: Vehicles
@@ -2260,7 +2591,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.video@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.video
       assetPath: Packages/com.unity.modules.video
       name: com.unity.modules.video
       displayName: Video
@@ -2320,7 +2651,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.vr@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.vr
       assetPath: Packages/com.unity.modules.vr
       name: com.unity.modules.vr
       displayName: VR
@@ -2382,7 +2713,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.wind@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.wind
       assetPath: Packages/com.unity.modules.wind
       name: com.unity.modules.wind
       displayName: Wind
@@ -2430,7 +2761,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.xr@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.xr
       assetPath: Packages/com.unity.modules.xr
       name: com.unity.modules.xr
       displayName: XR
@@ -2490,7 +2821,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.subsystems@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.subsystems
       assetPath: Packages/com.unity.modules.subsystems
       name: com.unity.modules.subsystems
       displayName: Subsystems
@@ -2542,7 +2873,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.0.0
       source: 2
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
+      resolvedPath: D:\Projekty\2020.1.13f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.modules.uielementsnative
       assetPath: Packages/com.unity.modules.uielementsnative
       name: com.unity.modules.uielementsnative
       displayName: UIElements Native
@@ -2601,7 +2932,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.0.6
       source: 1
-      resolvedPath: C:\Users\Mike\The Pass\Library\PackageCache\com.unity.ext.nunit@1.0.6
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.ext.nunit@1.0.6
       assetPath: Packages/com.unity.ext.nunit
       name: com.unity.ext.nunit
       displayName: Custom NUnit
@@ -2617,8 +2948,18 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+        - 0.1.5-preview
+        - 0.1.6-preview
+        - 0.1.9-preview
+        - 1.0.0
+        - 1.0.5
         - 1.0.6
         compatible:
+        - 0.1.5-preview
+        - 0.1.6-preview
+        - 0.1.9-preview
+        - 1.0.0
+        - 1.0.5
         - 1.0.6
         verified: 1.0.6
       dependencies: []
@@ -2639,7 +2980,7 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 0
+      datePublishedTicks: 637429759280000000
       documentationUrl: 
       hasRepository: 1
       repository:
@@ -2647,7 +2988,65 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ext.nunit.git
         revision: 29ea4d6504a5f58fb3a6934db839aa80ae6d9d88
         path: 
+    - packageId: com.unity.settings-manager@1.0.3
+      testable: 0
+      isDirectDependency: 0
+      version: 1.0.3
+      source: 1
+      resolvedPath: C:\Users\User\GAME\GAME\The Pass\Library\PackageCache\com.unity.settings-manager@1.0.3
+      assetPath: Packages/com.unity.settings-manager
+      name: com.unity.settings-manager
+      displayName: Settings Manager
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: A framework for making any serializable field a setting, complete
+        with a pre-built settings interface.
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.1.0-preview.4
+        - 0.1.0-preview.8
+        - 1.0.0
+        - 1.0.1
+        - 1.0.2
+        - 1.0.3
+        compatible:
+        - 0.1.0-preview.4
+        - 0.1.0-preview.8
+        - 1.0.0
+        - 1.0.1
+        - 1.0.2
+        - 1.0.3
+        verified: 1.0.3
+      dependencies: []
+      resolvedDependencies: []
+      keywords: []
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637300096300000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: git+https://github.com/Unity-Technologies/com.unity.settings-manager.git
+        revision: 473664ccba1496294b741cf169740a5d54b3d0b6
+        path: 
   m_LocalPackages:
     m_LocalFileStatus: []
-m_ProjectPath: C:/Users/Mike/The Pass/Packages
-m_EditorVersion: 2020.3.16f1 (049d6eca3c44)
+m_ProjectPath: C:/Users/User/GAME/GAME/The Pass/Packages
+m_EditorVersion: 2020.1.13f1 (5e24f28bfbc0)
