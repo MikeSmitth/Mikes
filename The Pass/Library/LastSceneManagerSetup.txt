@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Observation.unity
+- path: Assets/Scenes/Camera.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
