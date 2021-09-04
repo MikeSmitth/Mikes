@@ -9,7 +9,7 @@ public class Observation : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject panel;
-    public Animator scopesAnimator;
+    //public Animator scopesAnimator;
     int whatScope;
     ObservationStorage os;
 
@@ -20,15 +20,16 @@ public class Observation : MonoBehaviour
 
     void OnMouseDown()
     {
-        scopesAnimator.enabled = true;
+        //scopesAnimator.enabled = true;
         canvas.SetActive(true);
-        GameObject[] buttons = GameObject.FindGameObjectsWithTag("ObservationButton");
+
+        GameObject[] buttons = GameObject.FindGameObjectsWithTag("ObservationButton");       
         foreach (GameObject button in buttons)
         {
-            button.GetComponent<ObservationButton>().setButtonOff(); ;
+            button.GetComponent<ObservationButton>().setButtonOff(); 
         }
 
-        scopesAnimator.SetInteger("whatScope", 1);
+        //.SetInteger("whatScope", 1);
     }
 
     public void observationName(Button number)
@@ -39,14 +40,25 @@ public class Observation : MonoBehaviour
 
     public void buttonExit()
     {
-        scopesAnimator.enabled = false;
+        CameraController scopes = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        scopes.lookBack();
+        //StartCoroutine(waiterAnimator());
         canvas.SetActive(false);
-        scopesAnimator.SetInteger("whatScope", 0);
+        //scopesAnimator.SetInteger("whatScope", 0);
     }
     public void buttonPreview()
     {
         panel.SetActive(!panel.activeSelf);
     }
+
+    /*
+    IEnumerator waiterAnimator()
+    {
+        yield return new WaitForSeconds(2f);
+        scopesAnimator.enabled = false;
+        //tu zrób znikanie pojawania siê coliderów
+    }
+    */
 }
 
       
