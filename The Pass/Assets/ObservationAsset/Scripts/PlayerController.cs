@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool isMoving;
+    bool isMoving;
+    bool isRotating;
     private Vector3 origPos, targetPos;
     public float timeToMove = 0.6f;
     public float tileSize;
@@ -17,14 +18,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && !isMoving)
         {
            // Debug.Log("W");
-            StartCoroutine(MovePlayer(Vector3.forward));
+            StartCoroutine(MovePlayer(transform.forward));
         }
         if (Input.GetKeyDown(KeyCode.S) && !isMoving)
-            StartCoroutine(MovePlayer(Vector3.back));
+            StartCoroutine(MovePlayer(-transform.forward));
         if (Input.GetKeyDown(KeyCode.A) && !isMoving)
-            StartCoroutine(MovePlayer(Vector3.left));
+            StartCoroutine(MovePlayer(-transform.right));
         if (Input.GetKeyDown(KeyCode.D) && !isMoving)
-            StartCoroutine(MovePlayer(Vector3.right));
+            StartCoroutine(MovePlayer(transform.right));
         if (Input.GetKeyDown("e"))
         {
             StartCoroutine(RotateM(Vector3.up * 90, 0.8f));
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
-        if (!Physics.Raycast(transform.position, direction, tileSize))
+        if (!Physics.Raycast(transform.position, direction, tileSize)&&!isRotating&&!isMoving)
         {
             //Debug.Log("move");
             isMoving = true;
@@ -63,13 +64,18 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotateM(Vector3 byAngles, float inTime)
     {
-        var fromAngle = transform.rotation;
-        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
-        for (var t = 0f; t < 1; t += Time.deltaTime / inTime)
+        if (!isMoving&&!isRotating )
         {
-            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
-            yield return null;
+            isRotating = true;
+            var fromAngle = transform.rotation;
+            var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+            for (var t = 0f; t < 1; t += Time.deltaTime / inTime)
+            {
+                transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
+                yield return null;
+            }
+            transform.rotation = toAngle;
+            isRotating = false;
         }
-        transform.rotation = toAngle;
     }
 }
