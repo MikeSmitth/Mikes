@@ -15,22 +15,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isMoving)
+        //Debug.Log("transform: "+ transform.position);
+        if (Input.GetKey(KeyCode.W) && !isMoving)
         {
            // Debug.Log("W");
             StartCoroutine(MovePlayer(transform.forward));
         }
-        if (Input.GetKeyDown(KeyCode.S) && !isMoving)
+        if (Input.GetKey(KeyCode.S) && !isMoving)
             StartCoroutine(MovePlayer(-transform.forward));
-        if (Input.GetKeyDown(KeyCode.A) && !isMoving)
+        if (Input.GetKey(KeyCode.A) && !isMoving)
             StartCoroutine(MovePlayer(-transform.right));
-        if (Input.GetKeyDown(KeyCode.D) && !isMoving)
+        if (Input.GetKey(KeyCode.D) && !isMoving)
             StartCoroutine(MovePlayer(transform.right));
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKey("e"))
         {
             StartCoroutine(RotateM(Vector3.up * 90, 0.8f));
         }
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKey("q"))
         {
             StartCoroutine(RotateM(Vector3.up * -90, 0.8f));
         }
@@ -38,19 +39,40 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
-        if (!Physics.Raycast(transform.position, direction, tileSize)&&!isRotating&&!isMoving)
+        Vector3 fromDirection = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        RaycastHit hit;
+        bool hitObstacle = false;
+
+        if (Physics.Raycast(fromDirection, direction, out hit, tileSize) && hit.collider.tag == "Ramp")
+        {           
+            direction = (new Vector3(direction.x, direction.y + 0.5f, direction.z));
+        }
+        else if(Physics.Raycast(fromDirection, direction, out hit, tileSize) && hit.collider.tag == "RampDown")
         {
+            direction = (new Vector3(direction.x, direction.y - 0.5f, direction.z));
+        }
+        else if(hit.collider)
+        {
+            hitObstacle = true;
+        }
+
+        Debug.DrawRay(fromDirection, direction* tileSize, Color.red);
+
+        if (!hitObstacle&&!isRotating&&!isMoving)
+        {
+            
             //Debug.Log("move");
+            
             isMoving = true;
-
             float elapsedtime = 0;
-
-            origPos = transform.position;
-            targetPos = origPos + direction * tileSize;
+            var origPos = transform.position;
+            var targetPos = origPos + direction * tileSize;
 
             while (elapsedtime < timeToMove)
             {
-                Debug.Log("moveing origPos: " + origPos+ " targetPos: "+ targetPos);
+                //Debug.Log("moveing origPos: " + origPos+ " targetPos: "+ targetPos);
+                Debug.DrawRay(fromDirection, direction * tileSize, Color.green);
+
                 transform.position = Vector3.Lerp(origPos, targetPos, (elapsedtime / timeToMove));
                 elapsedtime += Time.deltaTime;
                 yield return null;

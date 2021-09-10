@@ -7,6 +7,8 @@ TagManager:
   - ObservationButton
   - Arrow
   - Interactive
+  - Ramp
+  - RampDown
   layers:
   - Default
   - TransparentFX
