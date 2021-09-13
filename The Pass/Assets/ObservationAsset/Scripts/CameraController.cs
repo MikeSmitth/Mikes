@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float interactiveDistance = 100;
     
     private Quaternion startPos = Quaternion.Euler(0, 0, 0);
+    float cameraStrokeYBoost;
+    float cameraStrokeXBoost;
 
-    float cameraStroke = 3;
+    public float cameraStroke = 3;
     public bool isLook;
+    public float interactiveDistance = 100;
 
     void Start()
     {
@@ -18,6 +20,9 @@ public class CameraController : MonoBehaviour
     }
     void Update()
     {
+        float cameraStrokeYBoost = 1;
+        float cameraStrokeXBoost = 1;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, interactiveDistance) && hit.collider.tag == "Interactive")
@@ -26,7 +31,7 @@ public class CameraController : MonoBehaviour
             //Debug.Log("startPos: " + transform.position);
             StartCoroutine(softLookAt(hit.transform.position, 1f));            
         }
-        //Debug.Log("Mause " + Input.mousePosition+ " Screen Width/Height : " + Screen.width+"/"+ Screen.height);
+        Debug.Log("Mause " + Input.mousePosition+ " Screen Width/Height : " + Screen.width+"/"+ Screen.height);
         //Debug.Log("% y " + (((Input.mousePosition.y - (Screen.height / 2)) / (Screen.height / 2) * 100f * -1) /*/ 100f * cameraStroke*/));
         //Debug.Log("% x " + (((Input.mousePosition.y - (Screen.width / 2)) / (Screen.width / 2) * 100f) /*/ 100f * cameraStroke*/));
         //Debug.Log("%of cameraStroke y " + (((Input.mousePosition.y - (Screen.height / 2)) / (Screen.height / 2) * 100f * -1) / 100f * cameraStroke));
@@ -35,7 +40,12 @@ public class CameraController : MonoBehaviour
 
         if (!isLook)
         {
-            var toAngle = Quaternion.Euler(transform.parent.eulerAngles + new Vector3((((Input.mousePosition.y - (Screen.height / 2)) / (Screen.height / 2) * 100f) / 100f * cameraStroke * -1), (((Input.mousePosition.x - (Screen.width / 2)) / (Screen.width / 2) * 100f) / 100f * cameraStroke), 0));
+            if (Input.mousePosition.y < Screen.height / 2)
+            {
+                cameraStrokeYBoost=8f;
+            }
+
+            var toAngle = Quaternion.Euler(transform.parent.eulerAngles + new Vector3(((Input.mousePosition.y - (Screen.height / 2)) / (Screen.height / 2)* cameraStroke * cameraStrokeYBoost * -1), ((Input.mousePosition.x - (Screen.width / 2)) / (Screen.width / 2)* cameraStroke* cameraStrokeXBoost), 0));
             transform.rotation = Quaternion.Slerp(transform.rotation, toAngle, Time.deltaTime * 50f);
         }
             //Debug.Log("currentEulerAngles " + currentEulerAngles);
