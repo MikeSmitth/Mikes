@@ -14,8 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
+    - .collabignore
+    - Assets/ObservationAsset/Scripts/ObservationList.cs
+    - Assets/ObservationAsset/Scripts/ObservationList.cs.meta
+    - Assets/ObservationAsset/Scripts/ObservationStorage.cs
+    - Assets/ObservationAsset/Scripts/ObservationStorage.cs.meta
+    - Packages/manifest.json
+    - Packages/packages-lock.json
+    - ProjectSettings/ProjectVersion.txt
     - 
-    m_Values: 01
+    m_Values: 000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

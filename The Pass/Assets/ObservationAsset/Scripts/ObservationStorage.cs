@@ -7,13 +7,26 @@ using System;
 
 public class ObservationStorage : MonoBehaviour
 {
-    bool[] shoePrint = new bool[20];
-    //private Camera cam;
 
+    //private Camera cam;
+    bool[] observationArray = new bool[20];
+    Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
 
     void Start()
     {
-       // cam = GetComponent<Camera>();
+        //List<ObservationList> observations = new List<ObservationList>();
+        //observations.Add(new ObservationList("shoePrint", observation));
+        //ObservationList result = observations.Find(x => x.name.Contains("shoePrint"));
+        //Debug.Log(observations);
+        //Debug.Log(observations.Exists(x => x.observationsArray[5] == false) +" result: "+ result+ " Find: "+ observations.Find(x => x.observationsArray[5] == false));
+        /*
+        Dictionary<string, bool[]> observations = new Dictionary<string, bool[]>();      
+        observations.Add("shoePrintt", new bool[20]);
+        Debug.Log(observations["shoePrintt", ]); //prints out 200
+        */
+        // cam = GetComponent<Camera>();       
+        observation.Add("shoePrint", observationArray);
+        //observationUpdate(3, "shoePrint");
     }
     void Update()
     {      
@@ -22,13 +35,40 @@ public class ObservationStorage : MonoBehaviour
     }
     public void observationUpdate(int i, string s)
     {
-        shoePrint[i-1] = true;
+        bool[] observationArrayBufor = observation[s];
+        observationArrayBufor[i-1] = true;       
+        observation[s] = observationArrayBufor;
         //Debug.Log("Set: " + shoePrint[i-1]);
+        
+        /*
+        foreach (bool observations in observation[s])
+        {
+            Debug.Log("observationUpdate: " + observations);
+        }
+        */
+        //showObservationArray(s);
     }
-    public bool observationDownload(int i)
+    public bool observationDownload(int i, string s)
     {
-        return shoePrint[i];
+        bool[] observationArrayBufor = new bool[20];
+        observationArrayBufor = observation[s];
+        /*
+        foreach(bool observations in observation[s])
+        {
+            Debug.Log("observationsDownlad: " + observations);
+        }
+        */
+        //if(observations.Exists(x => x.name == "s")
+        //return false;
+        return observationArrayBufor[i - 1];
     }
-    
-    
+    public void showObservationArray( string s)
+    {
+      foreach (bool observation in observation[s])
+      {
+          Debug.Log("observation: " + observation);
+      }
+      
+    }
+
 }

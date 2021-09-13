@@ -28,7 +28,7 @@ public class Observation : MonoBehaviour
         {
             button.GetComponent<ObservationButton>().setButtonOff(); 
         }
-
+       // os.showObservationArray(transform.root.name);
         //.SetInteger("whatScope", 1);
     }
 
@@ -45,6 +45,7 @@ public class Observation : MonoBehaviour
         //StartCoroutine(waiterAnimator());
         canvas.SetActive(false);
         //scopesAnimator.SetInteger("whatScope", 0);
+        //os.showObservationArray(transform.root.name);
     }
     public void buttonPreview()
     {

@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class ObservationButton : MonoBehaviour
 {
     public int time=1;
+    public GameObject observationName;
     ObservationStorage os;
     //GameObject[] arrows;
-    //public GameObject go;
+   
     void Start()
     {
         //arrows = GameObject.FindGameObjectsWithTag("Arrow");
@@ -20,13 +21,14 @@ public class ObservationButton : MonoBehaviour
     }
     public void setButtonOff()
     {
+        //Debug.Log(transform.root.name + " :name ");
         os = GameObject.Find("Main Camera").GetComponent<ObservationStorage>();
-        if ((os.observationDownload((Convert.ToInt32(name))-1)==false)&&(Convert.ToInt32(name)-1)!=0)
+        if ((os.observationDownload((Convert.ToInt32(name)), transform.root.name)== false)&&(Convert.ToInt32(name)-1)!=0)
         {
             gameObject.SetActive(false);
         } 
         
-        else if ((os.observationDownload((Convert.ToInt32(name)) - 1) == true))
+        else if ((os.observationDownload((Convert.ToInt32(name)), transform.root.name) == true))
         {
             //Debug.Log(name+" clicked ");
             GetComponent<Button>().onClick.Invoke();
@@ -34,13 +36,13 @@ public class ObservationButton : MonoBehaviour
             showArrows();
         }
         
-        if (os.observationDownload((Convert.ToInt32(name)) - 1) == false)
+        if (os.observationDownload((Convert.ToInt32(name)), transform.root.name) == false)
         {
             //Debug.Log(name + " hide ");
             hideArrows();
         }
-        
 
+        //os.showObservationArray(transform.root.name);
     }
     public void setButton()
     {

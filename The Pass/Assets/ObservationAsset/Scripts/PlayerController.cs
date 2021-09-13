@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     bool isMoving;
     bool isRotating;
     private Vector3 origPos, targetPos;
-    public float timeToMove = 0.6f;
+    public float timeToMove = 0.8f;
     public float tileSize;
 
 
@@ -18,15 +18,16 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("transform: "+ transform.position);
         if (Input.GetKey(KeyCode.W) && !isMoving)
         {
-           // Debug.Log("W");
-            StartCoroutine(MovePlayer(transform.forward));
+            // Debug.Log("W");
+            StartCoroutine(MovePlayer(transform.forward, timeToMove-0.2f));
+            //timeToMove += 0.1f;
         }
         if (Input.GetKey(KeyCode.S) && !isMoving)
-            StartCoroutine(MovePlayer(-transform.forward));
+            StartCoroutine(MovePlayer(-transform.forward, timeToMove));
         if (Input.GetKey(KeyCode.A) && !isMoving)
-            StartCoroutine(MovePlayer(-transform.right));
+            StartCoroutine(MovePlayer(-transform.right, timeToMove));
         if (Input.GetKey(KeyCode.D) && !isMoving)
-            StartCoroutine(MovePlayer(transform.right));
+            StartCoroutine(MovePlayer(transform.right, timeToMove));
         if (Input.GetKey("e"))
         {
             StartCoroutine(RotateM(Vector3.up * 90, 0.8f));
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator MovePlayer(Vector3 direction)
+    private IEnumerator MovePlayer(Vector3 direction, float moveSpeed)
     {
         Vector3 fromDirection = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         RaycastHit hit;
@@ -68,12 +69,12 @@ public class PlayerController : MonoBehaviour
             var origPos = transform.position;
             var targetPos = origPos + direction * tileSize;
 
-            while (elapsedtime < timeToMove)
+            while (elapsedtime < moveSpeed)
             {
                 //Debug.Log("moveing origPos: " + origPos+ " targetPos: "+ targetPos);
                 Debug.DrawRay(fromDirection, direction * tileSize, Color.green);
 
-                transform.position = Vector3.Lerp(origPos, targetPos, (elapsedtime / timeToMove));
+                transform.position = Vector3.Lerp(origPos, targetPos, (elapsedtime / moveSpeed));
                 elapsedtime += Time.deltaTime;
                 yield return null;
             }
