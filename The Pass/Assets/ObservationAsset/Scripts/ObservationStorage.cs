@@ -12,7 +12,7 @@ public class ObservationStorage : MonoBehaviour
 
     //ustalamy ile wyborów mo¿e mieæ dany dowód
     bool[] observationArray = new bool[20];
-    //Tworzymy s³ownik z dowodami byœmy mogli je na bierz¹co dodawaæ i zmieniaæ je za poœrednictwem ich nazw. S³ownik sk³ada siê z nazwy dowodu i przypisanej do nazwy tablicy bool, która mówi nam czy kafelek jest odkryty czy nie.
+    //Tworzymy s³ownik z dowodami/obserwacjami byœmy mogli je na bierz¹co dodawaæ i zmieniaæ je za poœrednictwem ich nazw. S³ownik sk³ada siê z nazwy dowodu i przypisanej do nazwy tablicy bool, która mówi nam czy kafelek jest odkryty czy nie.
     Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
 
     void Start()
@@ -29,7 +29,7 @@ public class ObservationStorage : MonoBehaviour
         */
         // cam = GetComponent<Camera>();
         
-        //dodajemy dowód
+        //dodajemy dowód/obserwacje
         observation.Add("shoePrint", observationArray);
 
         //observationUpdate(3, "shoePrint");
@@ -40,7 +40,7 @@ public class ObservationStorage : MonoBehaviour
        // Debug.Log("Up x:" + Input.mousePosition.x + " y: "+ Input.mousePosition.y);
     }
 
-    //zminiamy dane dowody, czyli czy dany kafelek zosta³ przez nas odkryty
+    //zminiamy dane dowody/obserwacje, czyli czy dany kafelek zosta³ przez nas odkryty
     public void observationUpdate(int i, string s)
     {
         //pobieramy tablice bool dowodu przed zmian¹ do buforu. 
@@ -80,7 +80,7 @@ public class ObservationStorage : MonoBehaviour
         return observationArrayBufor[i - 1];
     }
 
-    //wypisujemy tablice w kosoli unity
+    //wypisujemy uaktualnione dane w konsoli unity
     public void showObservationArray( string s)
     {
       foreach (bool observation in observation[s])

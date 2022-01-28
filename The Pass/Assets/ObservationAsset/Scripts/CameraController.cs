@@ -6,16 +6,24 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     
+    //zmiena do przechowywnia konta rotacji
     private Quaternion startPos = Quaternion.Euler(0, 0, 0);
+
+    //zmienne zachowuj¹ce boost wychy³u kamery przy rozgl¹daniu w góre i dó³
     float cameraStrokeYBoost;
     float cameraStrokeXBoost;
 
+    //zmienna maksymalnego wychy³u w ró¿nych kierunkach
     public float cameraStroke = 3;
+
+    //czy patrzymy na intarktywny obiekt 
     public bool isLook;
+    //jak daleko mo¿e byæ interaktywny obiekt
     public float interactiveDistance = 100;
 
     void Start()
     {
+        //pobieramy pocz¹tkowe dane o rotacji
         startPos = this.transform.rotation;
     }
     void Update()
@@ -23,12 +31,17 @@ public class CameraController : MonoBehaviour
         float cameraStrokeYBoost = 1;
         float cameraStrokeXBoost = 1;
 
+       //ustalamy kierunek pronmienia
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
+        //kastuje promieñ sprawdzaj¹cy czy pod kursorem jest obiekt interaktywny
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, interactiveDistance) && hit.collider.tag == "Interactive")
         {      
             startPos = this.transform.rotation;
             //Debug.Log("startPos: " + transform.position);
+
+            //aktywowanie animacji przygl¹dania siê
             StartCoroutine(softLookAt(hit.transform.position, 1f));            
         }
 
@@ -42,6 +55,8 @@ public class CameraController : MonoBehaviour
         //Debug.Log("%of cameraStroke x " + (((Input.mousePosition.x - (Screen.width / 2)) / (Screen.width / 2) * 100f) / 100f * cameraStroke));
         //Debug.Log("Parent rotation x y " + transform.rotation);
 
+
+        // jeœli nie przygl¹damy siê obiektowi isLook to wychylamy kamere kursorem
         if (!isLook)
         {
             if (Input.mousePosition.y < Screen.height / 2)
@@ -56,11 +71,14 @@ public class CameraController : MonoBehaviour
             //Debug.Log("transform.eulerAngles " + transform.eulerAngles);
     }
 
+
+    //wychodzimy z trybu przygl¹dania siê. Aktywuje sie przyciskiem Exit w unity
     public void lookBack()
     {
         StartCoroutine(softLookBack(0.5f));
     }
 
+    //animacja przygl¹dania siê
     IEnumerator softLookBack(float inTime)
     {
         isLook = false;
@@ -73,6 +91,8 @@ public class CameraController : MonoBehaviour
         transform.rotation = startPos;     
     }
 
+
+    //animacja powrotu
     IEnumerator softLookAt(Vector3 target, float inTime)
     {
         isLook = true;
