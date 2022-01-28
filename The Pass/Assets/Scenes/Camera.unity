@@ -1061,8 +1061,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2347638f4b85c47b02584771ebe49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactiveDistance: 100
+  cameraStroke: 3
   isLook: 0
+  interactiveDistance: 100
 --- !u!1 &233617031
 GameObject:
   m_ObjectHideFlags: 0
