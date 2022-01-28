@@ -6200,8 +6200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &1865453021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7912,8 +7910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761752070251980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8079,8 +8075,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761752179043362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8412,7 +8406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &9149761752341106592
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8433,8 +8427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
-  observationName: {fileID: 0}
 --- !u!1 &9149761752341106596
 GameObject:
   m_ObjectHideFlags: 0
@@ -8653,8 +8645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761752518027063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8759,8 +8749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761752667931113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9081,8 +9069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!224 &9149761753117885320
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9115,8 +9101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761753117885322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9433,8 +9417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761753473666239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9583,8 +9565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761753728123143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9717,8 +9697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761753786947277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9906,8 +9884,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761753813687359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10184,8 +10160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!1 &9149761753880224429
 GameObject:
   m_ObjectHideFlags: 0
@@ -10412,8 +10386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
 --- !u!114 &9149761754111462199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10616,5 +10588,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
-  observationName: {fileID: 0}
