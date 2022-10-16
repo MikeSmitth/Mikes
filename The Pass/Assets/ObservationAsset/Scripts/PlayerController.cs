@@ -15,37 +15,59 @@ public class PlayerController : MonoBehaviour
     public float timeToMove = 0.8f;
     //odległość kroku
     public float tileSize = 2f;
+    //czas odejmowany od czasu wykonania kroku, gdy wciskamy w (czyli tryb chodu do przodu) 
+    public float forwardSpeed = 0.2f;
+    //czas odejmowany od czasu wykonania kroku, gdy wciskamy shift (czyli tryb biegu) 
+    public float shiftSpeed = 0.2f;
 
+    CameraController cc;
 
+    void Start()
+    {
+        cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
+    }
     //Instrukcia wykonywana co kaltkę 
     void Update()
     {
+       
+
         //Debug.Log("transform: "+ transform.position);
 
         // Wykrywanie wciśnietych klawiszy (nie tylko pojedynczego klinięcia) klawiszy wraz z blokadą wciskania wielokrotnie 
-        if (Input.GetKey(KeyCode.W) && !isMoving)
-        {
-            // Debug.Log("W");
+        if (!cc.isLook)
+            {
+            if (Input.GetKey(KeyCode.W) && !isMoving)
+            {
 
-            //Za pomocą Coroutine inicjujemy pojedynczy krok(jeśli przycisk jest wcisnięty po zakończeniu kroku, zaczyna się następny)
-            StartCoroutine(MovePlayer(transform.forward, timeToMove-0.2f));
-            //timeToMove += 0.1f;
-        }
-        if (Input.GetKey(KeyCode.S) && !isMoving)
-            StartCoroutine(MovePlayer(-transform.forward, timeToMove));
-        if (Input.GetKey(KeyCode.A) && !isMoving)
-            StartCoroutine(MovePlayer(-transform.right, timeToMove));
-        if (Input.GetKey(KeyCode.D) && !isMoving)
-            StartCoroutine(MovePlayer(transform.right, timeToMove));
 
-        // to samo co wyżej lecz z obrotem
-        if (Input.GetKey("e"))
-        {
-            StartCoroutine(RotateM(Vector3.up * 90, 0.8f));
-        }
-        if (Input.GetKey("q"))
-        {
-            StartCoroutine(RotateM(Vector3.up * -90, 0.8f));
+                //sprawdzanie i ustawianie szybkosci do przodu ( sprawdzamy czy biegniemy)
+                float finalSpeed = forwardSpeed;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    finalSpeed = forwardSpeed + shiftSpeed;
+                    Debug.Log("Speed: " + finalSpeed);
+                }
+
+                //Za pomocą Coroutine inicjujemy pojedynczy krok(jeśli przycisk jest wcisnięty po zakończeniu kroku, zaczyna się następny)
+                StartCoroutine(MovePlayer(transform.forward, timeToMove - finalSpeed));
+                //timeToMove += 0.1f;
+            }
+            if (Input.GetKey(KeyCode.S) && !isMoving)
+                StartCoroutine(MovePlayer(-transform.forward, timeToMove));
+            if (Input.GetKey(KeyCode.A) && !isMoving)
+                StartCoroutine(MovePlayer(-transform.right, timeToMove));
+            if (Input.GetKey(KeyCode.D) && !isMoving)
+                StartCoroutine(MovePlayer(transform.right, timeToMove));
+
+            // to samo co wyżej lecz z obrotem
+            if (Input.GetKey("e"))
+            {
+                StartCoroutine(RotateM(Vector3.up * 90, 0.8f));
+            }
+            if (Input.GetKey("q"))
+            {
+                StartCoroutine(RotateM(Vector3.up * -90, 0.8f));
+            }
         }
     }
 
@@ -58,6 +80,10 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         //czy natrafiliśmy na przeszkodę
         bool hitObstacle = false;
+
+       
+
+
 
         //wykluczenie z preszkód różnych obiekótw (w tym przypadku obiektów o ragach "Ramp" i "RampDonw"
         if (Physics.Raycast(fromDirection, direction, out hit, tileSize) && hit.collider.tag == "Ramp")
@@ -75,8 +101,6 @@ public class PlayerController : MonoBehaviour
             hitObstacle = true;
         }
 
-        //zwyczajne rysowanie promienia na scenie nie w grze
-        Debug.DrawRay(fromDirection, direction* tileSize, Color.red);
 
         //jeśli możemy to się poruszamy
         if (!hitObstacle&&!isRotating&&!isMoving)
@@ -97,6 +121,7 @@ public class PlayerController : MonoBehaviour
             {
                 //Debug.Log("moveing origPos: " + origPos+ " targetPos: "+ targetPos);
                 Debug.DrawRay(fromDirection, direction * tileSize, Color.green);
+                Debug.DrawRay(fromDirection, Vector3.forward * tileSize, Color.red);
                 //zmieniamy pozycję w czasie. 
                 transform.position = Vector3.Lerp(origPos, targetPos, (elapsedtime / moveSpeed));
                 elapsedtime += Time.deltaTime;

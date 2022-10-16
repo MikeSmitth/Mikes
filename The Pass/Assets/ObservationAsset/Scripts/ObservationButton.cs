@@ -13,15 +13,16 @@ public class ObservationButton : MonoBehaviour
     //tworzymy zminn¹, która ma przechowywaæ s³ownik/dane z obserwacjami o nazwie ObservationStorage
     ObservationStorage os;
 
+    
+
+
     //GameObject[] arrows;
    
-    void Start()
+    void Awake()
     {
         //arrows = GameObject.FindGameObjectsWithTag("Arrow");
         // Debug.Log(name+" arrow: " + arrows.Length);
-        
-       
-        
+        os = GameObject.Find("Main Camera").GetComponent<ObservationStorage>();
     }
 
     //funkcja ukrywaj¹ca kafelki obserwacji. Jest uruchamiana klikniêcem na obserwacje w Unity
@@ -30,7 +31,6 @@ public class ObservationButton : MonoBehaviour
         //Debug.Log(transform.root.name + " :name ");
 
         //wyszukujemy skrypt, podpiêty do kamery, przechowywuj¹cy dane o obserwacjach
-        os = GameObject.Find("Main Camera").GetComponent<ObservationStorage>();
 
         //pobieramy obserwacje PATRZ!!! FUNKCJA observationDownload SKRYPT ObservationStorage !!! nazwa kafelka odpowiada indeksowi dlatego zmianiamy ja na wartoœæ INT 
         //ten if jest potrzebny gdy¿ po klikniêciu na obserwacje pierwszy kafelek jest domyœlnie pokazany na ekranie(ale jeszcze nie odkryty, nie ustawiony na TRUE), a reszta zakryta
@@ -64,6 +64,10 @@ public class ObservationButton : MonoBehaviour
     {
        // Debug.Log("11.5: " + arrows.Length);
         //hideArrows();
+
+
+        //mo¿emy pokazywaæ dalej dowody jeœli nie przegl¹damy dowodów z eq
+        if(!os.fromEQ)
         gameObject.SetActive(true);
     }
 
@@ -74,7 +78,9 @@ public class ObservationButton : MonoBehaviour
          //Debug.Log("Show "+ name);
         foreach (Transform child in transform)
         {
-            if (child.tag == "Arrow")
+
+            // Jeœli obiekt jest strza³k¹ i nie jest przegl¹dany dowód z EQ pokarz strza³ki 
+            if (child.tag == "Arrow" && !os.fromEQ)
                 //Debug.Log("arrow " + child.name);
             child.gameObject.SetActive(true);
         }

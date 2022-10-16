@@ -13,30 +13,38 @@ public class Observation : MonoBehaviour
     //public Animator scopesAnimator;
     int whatScope;
     ObservationStorage os;
+    CameraController cc;
+
+    
 
     void Start()
     {
         os = GameObject.Find("Main Camera").GetComponent<ObservationStorage>();
+        cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
+    }
+
+    void Update()
+    {
+        //wychodzimy z trybu sprawdzania dowodów, dodatkowo nie przyciskiem w grze
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKey(KeyCode.Mouse1))
+        {
+            buttonExit();
+        }
     }
 
     //funkcja uruchamiaj¹ca tryb badania obserwacji. 
     void OnMouseDown()
     {
-        //scopesAnimator.enabled = true;
- 
-        canvas.SetActive(true);
-
-        //wywo³ujemy funkcje setButtonOff() dla przycisków z tagami ObservationButton
-        GameObject[] buttons = GameObject.FindGameObjectsWithTag("ObservationButton");       
-        foreach (GameObject button in buttons)
+        //sprawdzamy pod if czy dowód jest w zasiêgu 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, cc.interactiveDistance) && hit.collider.tag == "Interactive")
         {
-            button.GetComponent<ObservationButton>().setButtonOff(); 
+            observationStudy();
         }
-       // os.showObservationArray(transform.root.name);
-        //.SetInteger("whatScope", 1);
     }
 
-
+    //Updatejtuje dane 
     public void observationName(Button number)
     {
         //Debug.Log("Up "+ Convert.ToInt32(number.name)+" "+ name);
@@ -51,6 +59,9 @@ public class Observation : MonoBehaviour
         scopes.lookBack();
         //StartCoroutine(waiterAnimator());
         canvas.SetActive(false);
+
+        //pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy z ekwipunku
+        os.fromEQ = false;
         //scopesAnimator.SetInteger("whatScope", 0);
         //os.showObservationArray(transform.root.name);
     }
@@ -60,7 +71,27 @@ public class Observation : MonoBehaviour
     {
         panel.SetActive(!panel.activeSelf);
     }
+    //badanie observacji
+    public void observationStudy()
+    {
+        //scopesAnimator.enabled = true;
 
+        canvas.SetActive(true);
+
+        //wywo³ujemy funkcje setButtonOff() dla przycisków z tagami ObservationButton
+        GameObject[] buttons = GameObject.FindGameObjectsWithTag("ObservationButton");
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<ObservationButton>().setButtonOff();
+        }
+        // os.showObservationArray(transform.root.name);
+        //.SetInteger("whatScope", 1);
+    }
+    public void setInteractive()
+    {
+        // nie pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy z ekwipunku
+        os.fromEQ=true;
+    }
     /*
     IEnumerator waiterAnimator()
     {
@@ -69,6 +100,8 @@ public class Observation : MonoBehaviour
         //tu zrób znikanie pojawania siê coliderów
     }
     */
+
+    //wy³¹czamy interaktywnioœæ/mo¿liwoœæ edycji obserwacji, np podczas podgl¹dania jej w ekwipunku
 }
 
       

@@ -19,10 +19,11 @@ public class CameraController : MonoBehaviour
     //czy patrzymy na intarktywny obiekt 
     public bool isLook;
     //jak daleko mo¿e byæ interaktywny obiekt
-    public float interactiveDistance = 100;
+    public float interactiveDistance = 100f;
 
     void Start()
     {
+
         //pobieramy pocz¹tkowe dane o rotacji
         startPos = this.transform.rotation;
     }
@@ -31,18 +32,26 @@ public class CameraController : MonoBehaviour
         float cameraStrokeYBoost = 1;
         float cameraStrokeXBoost = 1;
 
-       //ustalamy kierunek pronmienia
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        //ustalamy kierunek pronmienia
+
+
+        /*
+             Debug.Log("good 1");
+             Ray rayy = Camera.main.ScreenPointToRay(Input.mousePosition);
+             Debug.DrawRay(rayy.origin, rayy.direction * 1f, Color.green);
+         */
 
         //kastuje promieñ sprawdzaj¹cy czy pod kursorem jest obiekt interaktywny
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, interactiveDistance) && hit.collider.tag == "Interactive")
-        {      
+        {
+            
             startPos = this.transform.rotation;
             //Debug.Log("startPos: " + transform.position);
 
             //aktywowanie animacji przygl¹dania siê
-            StartCoroutine(softLookAt(hit.transform.position, 1f));            
+            StartCoroutine(softLookAt(hit.transform.position, 0.3f));            
         }
 
         //Dzia³aj¹cy debug log
@@ -75,10 +84,10 @@ public class CameraController : MonoBehaviour
     //wychodzimy z trybu przygl¹dania siê. Aktywuje sie przyciskiem Exit w unity
     public void lookBack()
     {
-        StartCoroutine(softLookBack(0.5f));
+        StartCoroutine(softLookBack(0.15f));
     }
 
-    //animacja przygl¹dania siê
+    //animacja powrotu
     IEnumerator softLookBack(float inTime)
     {
         isLook = false;
@@ -92,7 +101,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    //animacja powrotu
+    //animacja przygl¹dania siê
     IEnumerator softLookAt(Vector3 target, float inTime)
     {
         isLook = true;

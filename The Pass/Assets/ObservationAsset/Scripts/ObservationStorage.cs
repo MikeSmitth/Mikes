@@ -10,10 +10,12 @@ public class ObservationStorage : MonoBehaviour
 
     //private Camera cam;
 
-    //ustalamy ile wyborów mo¿e mieæ dany dowód
-    bool[] observationArray = new bool[20];
+
+    //Wa¿ne!!! Zmiena sprawdzaj¹ca czy badamy dowód z ekwipunku, jeœli tak to z regu³y nie mo¿emy edytowaæ. Jest ona sprawdzana w skrypcie ObservationButtons i edytowana w Observation.
+    public bool fromEQ = false;
+
     //Tworzymy s³ownik z dowodami/obserwacjami byœmy mogli je na bierz¹co dodawaæ i zmieniaæ je za poœrednictwem ich nazw. S³ownik sk³ada siê z nazwy dowodu i przypisanej do nazwy tablicy bool, która mówi nam czy kafelek jest odkryty czy nie.
-    Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
+    public Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
 
     void Start()
     {
@@ -28,9 +30,14 @@ public class ObservationStorage : MonoBehaviour
         Debug.Log(observations["shoePrintt", ]); //prints out 200
         */
         // cam = GetComponent<Camera>();
-        
+
+
+        //ustalamy ile wyborów mo¿e mieæ dany dowód. 20 u nas
         //dodajemy dowód/obserwacje
-        observation.Add("shoePrint", observationArray);
+        observation.Add("shoePrint", new bool[20]);
+        observation.Add("V1Print", new bool[20]);
+        observation.Add("V2Print", new bool[20]);
+        //observation.Add("V3Print", new bool[20]);
 
         //observationUpdate(3, "shoePrint");
     }
@@ -61,7 +68,37 @@ public class ObservationStorage : MonoBehaviour
         */
 
         //wypisujemy tablice w kosoli unity(funkcja poni¿ej)
-        showObservationArray(s);
+        //showObservationArray(s);
+        //Debug.Log(s + ": " + observationArrayBufor[i - 1]);
+
+
+        /*
+        int a = 0;
+        foreach (bool observation in observation["shoePrint"])
+        {
+            a++;
+            Debug.Log("shoePrint" + ": " + a + " " + observation);
+        }
+
+        //observationArrayBufor[3] = true;
+        // observation["V1Print"] = observationArrayBufor;
+        int b = 0;
+        foreach (bool observation in observation["V1Print"])
+        {
+            b++;
+            Debug.Log("V1Print" + ": " + b + " " + observation);
+        }
+        observationArrayBufor = observation["V1Print"];
+        Debug.Log("V1Print" + " 4 Kurwa  : " + observationArrayBufor[3]);
+        Debug.Log("V2Print" + " 4 Kurwa  : " + observationArrayBufor[3]);
+
+        int c = 0;
+        foreach (bool observation in observation["V2Print"])
+        {
+            c++;
+            Debug.Log("V2Print" + ": " + c + " " + observation);
+        }
+        */
     }
 
     //analogicznie dzia³anie co powyrzej, tylko zwracamy wartoœc a nie nadpisujemy
@@ -81,13 +118,16 @@ public class ObservationStorage : MonoBehaviour
     }
 
     //wypisujemy uaktualnione dane w konsoli unity
-    public void showObservationArray( string s)
+    public void showObservationArray(string s)
     {
-      foreach (bool observation in observation[s])
-      {
-          Debug.Log("observation: " + observation);
-      }
-      
+        int i = 0;
+        foreach (bool observation in observation[s])
+        {
+            i++;
+            Debug.Log(s+": "+i + " " + observation);
+        }
+
     }
+
 
 }
