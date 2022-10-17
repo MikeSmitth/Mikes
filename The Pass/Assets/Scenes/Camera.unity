@@ -3195,7 +3195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273fe36ccd16a314ba004b6b20fd5405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromEQ: 0
 --- !u!95 &196195502
 Animator:
   serializedVersion: 3
@@ -18473,6 +18472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 22723077}
   panel: {fileID: 950307946}
+  fromEQ: 0
+  tooMuch: 1
 --- !u!65 &1805601951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18544,7 +18545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805601949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 498.03, y: 0.605, z: 492}
+  m_LocalPosition: {x: 508.03, y: 1.67, z: 503.9}
   m_LocalScale: {x: 1.0238, y: 0.6984145, z: 1.1531}
   m_Children:
   - {fileID: 22723078}
@@ -19452,6 +19453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1873959387}
   panel: {fileID: 2041802235}
+  fromEQ: 0
+  tooMuch: 1
 --- !u!65 &1871163578
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24147,7 +24150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9149761753258075374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 508.06, y: 1.2, z: 503.95}
+  m_LocalPosition: {x: 498, y: 0.2, z: 492}
   m_LocalScale: {x: 1, y: 0.28488, z: 1}
   m_Children:
   - {fileID: 9149761752302234104}
@@ -24168,6 +24171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 9149761752302234111}
   panel: {fileID: 9149761752221355553}
+  fromEQ: 0
+  tooMuch: 0
 --- !u!1 &9149761753258075374
 GameObject:
   m_ObjectHideFlags: 0

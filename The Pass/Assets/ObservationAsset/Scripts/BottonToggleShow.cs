@@ -7,11 +7,13 @@ public class BottonToggleShow : MonoBehaviour
 {
 
     ObservationStorage os;
+ 
     
     // Start is called before the first frame update
     void Start()
     {
         os = GameObject.Find("Main Camera").GetComponent<ObservationStorage>();
+       
         var dropdown = transform.GetComponent<Dropdown>();
         dropdown.options.Clear();
 
@@ -65,14 +67,16 @@ public class BottonToggleShow : MonoBehaviour
     public void consoleShowEvidenceNoEdit()
     {
         var dropdown = transform.GetComponent<Dropdown>();
+
         //Debug.Log(dropdown.options[dropdown.value].text);
-        os.showObservationArray(dropdown.options[dropdown.value].text);
+        //os.showObservationArray(dropdown.options[dropdown.value].text);
 
         //aktywujemy skrypt ob.observationStudy(); dla danego dowodu, wiemy którego poniewa¿ znamy jego nazwe dropdown.options[dropdown.value].text
         Observation ob;
         ob = GameObject.Find(dropdown.options[dropdown.value].text).GetComponent<Observation>();
 
         ob.observationStudy();
+
         //jest to funkcja wy³¹czaj¹ca edycje dowodu z eq
         ob.setInteractive();
     }

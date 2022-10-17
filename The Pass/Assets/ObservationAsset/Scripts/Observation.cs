@@ -15,7 +15,10 @@ public class Observation : MonoBehaviour
     ObservationStorage os;
     CameraController cc;
 
-    
+    //Wa¿ne!!! Zmiena sprawdzaj¹ca czy badamy dowód z ekwipunku, jeœli tak to z regu³y nie mo¿emy edytowaæ. Jest ona sprawdzana w skrypcie ObservationButtons i edytowana w Observation.
+    public bool fromEQ = false;
+    //zmienna wyko¿ystywana tylko po to by nie mo¿na by³o odkryæ wiêce ga³êzi w obserwacji z qe, ni¿ jedn¹. Zwu¹zaba jest z powy¿sz¹ zmienn¹ w skrypcie ObservationButton
+    public bool tooMuch = false;
 
     void Start()
     {
@@ -40,6 +43,8 @@ public class Observation : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, cc.interactiveDistance) && hit.collider.tag == "Interactive")
         {
+            //pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy ze sceny/ miejsca
+            fromEQ = false;
             observationStudy();
         }
     }
@@ -60,8 +65,8 @@ public class Observation : MonoBehaviour
         //StartCoroutine(waiterAnimator());
         canvas.SetActive(false);
 
-        //pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy z ekwipunku
-        os.fromEQ = false;
+        //Zmiena sprawdzaj¹ca czy przygl¹dasz siê obiektowi. Blokuje np poruszanie siê postaci
+        cc.isLook = false;
         //scopesAnimator.SetInteger("whatScope", 0);
         //os.showObservationArray(transform.root.name);
     }
@@ -86,12 +91,18 @@ public class Observation : MonoBehaviour
         }
         // os.showObservationArray(transform.root.name);
         //.SetInteger("whatScope", 1);
+
+        //Zmiena sprawdzaj¹ca czy przygl¹dasz siê obiektowi. Blokuje np poruszanie siê postaci
+        cc.isLook = true;
     }
+
+
     public void setInteractive()
     {
         // nie pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy z ekwipunku
-        os.fromEQ=true;
+        fromEQ=true;
     }
+    
     /*
     IEnumerator waiterAnimator()
     {

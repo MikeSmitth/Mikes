@@ -15,9 +15,8 @@ public class ObservationButton : MonoBehaviour
 
     
 
-
     //GameObject[] arrows;
-   
+
     void Awake()
     {
         //arrows = GameObject.FindGameObjectsWithTag("Arrow");
@@ -25,7 +24,7 @@ public class ObservationButton : MonoBehaviour
         os = GameObject.Find("Main Camera").GetComponent<ObservationStorage>();
     }
 
-    //funkcja ukrywaj¹ca kafelki obserwacji. Jest uruchamiana klikniêcem na obserwacje w Unity
+    //funkcja ukrywaj¹ca kafelki obserwacji. Jest uruchamiana klikniêcem na obserwacje w Unity, lub na obserwacje z eq
     public void setButtonOff()
     {
         //Debug.Log(transform.root.name + " :name ");
@@ -56,6 +55,24 @@ public class ObservationButton : MonoBehaviour
             hideArrows();
         }
 
+        
+        //funkcja wyko¿ystywana tylko po to by nie mo¿na by³o odkryæ wiêce ga³êzi w obserwacji z qe, ni¿ jedn¹ 
+        /*
+        if (tooMuch() && fromEQ())
+        {
+            tooMuchSet(false);
+            Debug.Log("Kurwa ");
+        }
+        else if (!tooMuch())
+        {
+            Debug.Log("Maæ");
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+            tooMuchSet(true);
+        }
+        */
         //os.showObservationArray(transform.root.name);
     }
 
@@ -67,7 +84,7 @@ public class ObservationButton : MonoBehaviour
 
 
         //mo¿emy pokazywaæ dalej dowody jeœli nie przegl¹damy dowodów z eq
-        if(!os.fromEQ)
+        if(!fromEQ())
         gameObject.SetActive(true);
     }
 
@@ -80,7 +97,7 @@ public class ObservationButton : MonoBehaviour
         {
 
             // Jeœli obiekt jest strza³k¹ i nie jest przegl¹dany dowód z EQ pokarz strza³ki 
-            if (child.tag == "Arrow" && !os.fromEQ)
+            if (child.tag == "Arrow" && !fromEQ())
                 //Debug.Log("arrow " + child.name);
             child.gameObject.SetActive(true);
         }
@@ -93,6 +110,29 @@ public class ObservationButton : MonoBehaviour
             if (child.tag == "Arrow")
                 child.gameObject.SetActive(false);
         }
+    }
+
+    //zwraca wartoœæ zmeinnej niepozwalaj¹cej na edycje obserwacji z ekwipnku
+    bool fromEQ()
+    {
+        Observation myParent = transform.root.GetComponent<Observation>();
+        return myParent.fromEQ;
+       // Debug.Log("fromEQ: " + bufor);    
+    }
+
+    //zwraca wartoœæ zmeinnej wspó³pracuj¹cej z t¹ powyzej, pozwala ona na tylko jednokrotn¹ edycje obeswacji z poziomu ekwipunku
+    bool tooMuch()
+    {
+        Observation myParent = transform.root.GetComponent<Observation>();
+        return myParent.tooMuch;
+        // Debug.Log("fromEQ: " + bufor);    
+    }
+    //zwraca wartoœæ zmeinnej wspó³pracuj¹cej z t¹ powyzej
+    void tooMuchSet(bool tooMuchSet)
+    {
+        Observation myParent = transform.root.GetComponent<Observation>();
+        myParent.tooMuch = tooMuchSet;
+         Debug.Log("toomuch: " + tooMuch());    
     }
     // Update is called once per frame
 }
