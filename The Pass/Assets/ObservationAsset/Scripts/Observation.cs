@@ -17,8 +17,8 @@ public class Observation : MonoBehaviour
 
     //Wa¿ne!!! Zmiena sprawdzaj¹ca czy badamy dowód z ekwipunku, jeœli tak to z regu³y nie mo¿emy edytowaæ. Jest ona sprawdzana w skrypcie ObservationButtons i edytowana w Observation.
     public bool fromEQ = false;
-    //zmienna wyko¿ystywana tylko po to by nie mo¿na by³o odkryæ wiêce ga³êzi w obserwacji z qe, ni¿ jedn¹. Zwu¹zaba jest z powy¿sz¹ zmienn¹ w skrypcie ObservationButton
-    public bool tooMuch = false;
+
+    public bool pickAble = false;
 
     void Start()
     {
@@ -33,11 +33,13 @@ public class Observation : MonoBehaviour
         {
             buttonExit();
         }
+
     }
 
     //funkcja uruchamiaj¹ca tryb badania obserwacji. 
     void OnMouseDown()
     {
+
         //sprawdzamy pod if czy dowód jest w zasiêgu 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -47,6 +49,7 @@ public class Observation : MonoBehaviour
             fromEQ = false;
             observationStudy();
         }
+      
     }
 
     //Updatejtuje dane 
@@ -69,6 +72,8 @@ public class Observation : MonoBehaviour
         cc.isLook = false;
         //scopesAnimator.SetInteger("whatScope", 0);
         //os.showObservationArray(transform.root.name);
+
+
     }
 
     //Funkcja przycisku wchodz¹cego w tryp przygl¹dania sie. Znika UI z kafelkami. Uruchamiana przyciskiem
@@ -79,10 +84,11 @@ public class Observation : MonoBehaviour
     //badanie observacji
     public void observationStudy()
     {
+
+       
         //scopesAnimator.enabled = true;
 
         canvas.SetActive(true);
-
         //wywo³ujemy funkcje setButtonOff() dla przycisków z tagami ObservationButton
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("ObservationButton");
         foreach (GameObject button in buttons)
@@ -91,9 +97,10 @@ public class Observation : MonoBehaviour
         }
         // os.showObservationArray(transform.root.name);
         //.SetInteger("whatScope", 1);
-
         //Zmiena sprawdzaj¹ca czy przygl¹dasz siê obiektowi. Blokuje np poruszanie siê postaci
+
         cc.isLook = true;
+
     }
 
 
@@ -102,7 +109,7 @@ public class Observation : MonoBehaviour
         // nie pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy z ekwipunku
         fromEQ=true;
     }
-    
+
     /*
     IEnumerator waiterAnimator()
     {

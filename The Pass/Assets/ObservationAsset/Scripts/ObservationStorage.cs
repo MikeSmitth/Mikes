@@ -116,6 +116,21 @@ public class ObservationStorage : MonoBehaviour
         return observationArrayBufor[i - 1];
     }
 
+    public bool[] observationArrayDownload(string s)
+    {
+        bool[] observationArrayBufor = new bool[20];
+        observationArrayBufor = observation[s];
+        /*
+        foreach(bool observations in observation[s])
+        {
+            Debug.Log("observationsDownlad: " + observations);
+        }
+        */
+        //if(observations.Exists(x => x.name == "s")
+        //return false;
+        return observationArrayBufor;
+    }
+
     //wypisujemy uaktualnione dane w konsoli unity
     public void showObservationArray(string s)
     {
@@ -127,6 +142,5 @@ public class ObservationStorage : MonoBehaviour
         }
 
     }
-
 
 }

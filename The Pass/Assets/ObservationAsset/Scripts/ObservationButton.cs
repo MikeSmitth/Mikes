@@ -12,16 +12,34 @@ public class ObservationButton : MonoBehaviour
 
     //tworzymy zminn¹, która ma przechowywaæ s³ownik/dane z obserwacjami o nazwie ObservationStorage
     ObservationStorage os;
-
-    
+    Observation ob;
 
     //GameObject[] arrows;
+
+
+
+
 
     void Awake()
     {
         //arrows = GameObject.FindGameObjectsWithTag("Arrow");
         // Debug.Log(name+" arrow: " + arrows.Length);
         os = GameObject.Find("Main Camera").GetComponent<ObservationStorage>();
+      
+    }
+
+    bool fromEQ()
+    {
+        Observation ob = transform.root.GetComponent<Observation>();
+        return ob.fromEQ;
+        // Debug.Log("fromEQ: " + bufor);    
+    }
+
+    // BÊDZIE to funkcja zmieniaj¹ca z jakiej tablicy s¹ pobierane dane/ narazie nie jest urzywana, ale oszczêca liniki kodu 
+    bool observationFromWhat()
+    {
+              
+            return os.observationDownload((Convert.ToInt32(name)), transform.root.name);       
     }
 
     //funkcja ukrywaj¹ca kafelki obserwacji. Jest uruchamiana klikniêcem na obserwacje w Unity, lub na obserwacje z eq
@@ -29,51 +47,34 @@ public class ObservationButton : MonoBehaviour
     {
         //Debug.Log(transform.root.name + " :name ");
 
-        //wyszukujemy skrypt, podpiêty do kamery, przechowywuj¹cy dane o obserwacjach
-
-        //pobieramy obserwacje PATRZ!!! FUNKCJA observationDownload SKRYPT ObservationStorage !!! nazwa kafelka odpowiada indeksowi dlatego zmianiamy ja na wartoœæ INT 
+        //pobieramy obserwacje PATRZ!!! FUNKCJA observationDownload SKRYPT ObservationStorage z funkcji boolowskiej powyrzej !!! nazwa kafelka odpowiada indeksowi dlatego zmianiamy ja na wartoœæ INT 
         //ten if jest potrzebny gdy¿ po klikniêciu na obserwacje pierwszy kafelek jest domyœlnie pokazany na ekranie(ale jeszcze nie odkryty, nie ustawiony na TRUE), a reszta zakryta
-        if ((os.observationDownload((Convert.ToInt32(name)), transform.root.name)== false)&&(Convert.ToInt32(name)-1)!=0)
+        if ((observationFromWhat() == false)&&(Convert.ToInt32(name)-1)!=0)
         {
-            gameObject.SetActive(false);
+                //nie wy³¹czamy dowodów jeœli jest przegl¹dane z EQ 
+                if (!fromEQ())
+                gameObject.SetActive(false);
         } 
         
-        else if ((os.observationDownload((Convert.ToInt32(name)), transform.root.name) == true))
+        else if (observationFromWhat() == true)
         {
             //Debug.Log(name+" clicked ");
             GetComponent<Button>().onClick.Invoke();
             GetComponent<Image>().color = new Color32(212, 212, 212, 255);
 
             //Funkcja pokazuj¹ca przypisane strza³ki. Poni¿ej 
+
             showArrows();
         }
         
-        if (os.observationDownload((Convert.ToInt32(name)), transform.root.name) == false)
+        if (observationFromWhat() == false)
         {
             //Debug.Log(name + " hide ");
             //Funkcja ukrywaj¹ca przypisane strza³ki. Poni¿ej 
-            hideArrows();
+            
+             hideArrows();
         }
 
-        
-        //funkcja wyko¿ystywana tylko po to by nie mo¿na by³o odkryæ wiêce ga³êzi w obserwacji z qe, ni¿ jedn¹ 
-        /*
-        if (tooMuch() && fromEQ())
-        {
-            tooMuchSet(false);
-            Debug.Log("Kurwa ");
-        }
-        else if (!tooMuch())
-        {
-            Debug.Log("Maæ");
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(true);
-            }
-            tooMuchSet(true);
-        }
-        */
-        //os.showObservationArray(transform.root.name);
     }
 
     //funkcja pokazuj¹ca odkryte wczeœniej kafelki obserwacji. Jest uruchamina przyciskiem w Unity 
@@ -97,7 +98,7 @@ public class ObservationButton : MonoBehaviour
         {
 
             // Jeœli obiekt jest strza³k¹ i nie jest przegl¹dany dowód z EQ pokarz strza³ki 
-            if (child.tag == "Arrow" && !fromEQ())
+            if (child.tag == "Arrow" )
                 //Debug.Log("arrow " + child.name);
             child.gameObject.SetActive(true);
         }
@@ -112,27 +113,6 @@ public class ObservationButton : MonoBehaviour
         }
     }
 
-    //zwraca wartoœæ zmeinnej niepozwalaj¹cej na edycje obserwacji z ekwipnku
-    bool fromEQ()
-    {
-        Observation myParent = transform.root.GetComponent<Observation>();
-        return myParent.fromEQ;
-       // Debug.Log("fromEQ: " + bufor);    
-    }
 
-    //zwraca wartoœæ zmeinnej wspó³pracuj¹cej z t¹ powyzej, pozwala ona na tylko jednokrotn¹ edycje obeswacji z poziomu ekwipunku
-    bool tooMuch()
-    {
-        Observation myParent = transform.root.GetComponent<Observation>();
-        return myParent.tooMuch;
-        // Debug.Log("fromEQ: " + bufor);    
-    }
-    //zwraca wartoœæ zmeinnej wspó³pracuj¹cej z t¹ powyzej
-    void tooMuchSet(bool tooMuchSet)
-    {
-        Observation myParent = transform.root.GetComponent<Observation>();
-        myParent.tooMuch = tooMuchSet;
-         Debug.Log("toomuch: " + tooMuch());    
-    }
-    // Update is called once per frame
+
 }
