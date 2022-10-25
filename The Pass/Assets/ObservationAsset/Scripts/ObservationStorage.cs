@@ -57,6 +57,8 @@ public class ObservationStorage : MonoBehaviour
         observation[s] = observationArrayBufor;
 
 
+
+
         //Debug.Log("Set: " + shoePrint[i-1]);
 
         /*

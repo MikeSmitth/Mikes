@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     {
 
         //pobieramy pocz¹tkowe dane o rotacji
-        startPos = this.transform.rotation;
+        //startPos = this.transform.rotation;
     }
     void Update()
     {
@@ -46,12 +46,13 @@ public class CameraController : MonoBehaviour
         RaycastHit hit;
         if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, interactiveDistance) && hit.collider.tag == "Interactive")
         {
-            
-            startPos = this.transform.rotation;
-            //Debug.Log("startPos: " + transform.position);
 
+            //startPos = this.transform.rotation;
+            //Debug.Log("startPos: " + transform.position);
             //aktywowanie animacji przygl¹dania siê
-            StartCoroutine(softLookAt(hit.transform.position, 0.3f));            
+            //StartCoroutine(softLookAt(hit.transform.position, 0.3f));
+
+            lookAt(hit.transform.position);
         }
 
         //Dzia³aj¹cy debug log
@@ -85,6 +86,13 @@ public class CameraController : MonoBehaviour
     public void lookBack()
     {
         StartCoroutine(softLookBack(0.15f));
+    }
+
+    //Spogl¹damy na obserwacje
+    public void lookAt(Vector3 hit)
+    {
+        startPos = this.transform.rotation;
+        StartCoroutine(softLookAt(hit, 0.3f));
     }
 
     //animacja powrotu
