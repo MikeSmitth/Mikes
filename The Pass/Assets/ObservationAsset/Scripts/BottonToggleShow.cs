@@ -83,7 +83,7 @@ public class BottonToggleShow : MonoBehaviour
 
 
 
-        //PRACUJE Observations/V2Print.prefab
+       
         //Debug.Log(dropdown.options[dropdown.value].text +" to "+ Resources.Load("Observations/V2Print.prefab"));
 
 
@@ -110,7 +110,7 @@ public class BottonToggleShow : MonoBehaviour
 
 
         //spogl¹danie na obserwacje
-        //if, bo nie obracamy sie w kierunku dowody którego nie podnieœliœmy. W else, patrzymy przed siebie
+        //if, bo nie obracamy sie w kierunku dowody którego nie podnieœliœmy, bo nie jest "podnaszalny" to w else, patrzymy przed siebie
         if (ob.pickable)
         {
             cc.lookAt(GameObject.Find(dropdown.options[dropdown.value].text).transform.position);

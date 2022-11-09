@@ -36,6 +36,7 @@ public class ObservationStorage : MonoBehaviour
         observation.Add("shoePrint", new bool[20]);
         observation.Add("V1Print", new bool[20]);
         observation.Add("V2Print", new bool[20]);
+        observation.Add("V3Print", new bool[20]);
         //observation.Add("V3Print", new bool[20]);
 
         //observationUpdate(3, "shoePrint");

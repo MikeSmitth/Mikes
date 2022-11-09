@@ -32,28 +32,14 @@ public class CameraController : MonoBehaviour
         float cameraStrokeYBoost = 1;
         float cameraStrokeXBoost = 1;
 
+
         //ustalamy kierunek pronmienia
-
-
         /*
              Debug.Log("good 1");
              Ray rayy = Camera.main.ScreenPointToRay(Input.mousePosition);
              Debug.DrawRay(rayy.origin, rayy.direction * 1f, Color.green);
          */
 
-        //kastuje promieñ sprawdzaj¹cy czy pod kursorem jest obiekt interaktywny
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, interactiveDistance) && hit.collider.tag == "Interactive")
-        {
-
-            //startPos = this.transform.rotation;
-            //Debug.Log("startPos: " + transform.position);
-            //aktywowanie animacji przygl¹dania siê
-            //StartCoroutine(softLookAt(hit.transform.position, 0.3f));
-
-            lookAt(hit.transform.position);
-        }
 
         //Dzia³aj¹cy debug log
         //Debug.Log("Mause " + Input.mousePosition+ " Screen Width/Height : " + Screen.width+"/"+ Screen.height);
@@ -98,8 +84,9 @@ public class CameraController : MonoBehaviour
     //animacja powrotu
     IEnumerator softLookBack(float inTime)
     {
-        isLook = false;
+        isLook = false;      
         var fromAngle = transform.rotation;
+
         for (var t = 0f; t <= 1; t += Time.deltaTime / inTime)
         {
             transform.rotation = Quaternion.Slerp(fromAngle, startPos, t);
@@ -112,6 +99,8 @@ public class CameraController : MonoBehaviour
     //animacja przygl¹dania siê
     IEnumerator softLookAt(Vector3 target, float inTime)
     {
+
+       
         isLook = true;
         var fromAngle = transform.rotation;
         var toAngle = Quaternion.LookRotation(target - transform.position);
@@ -121,6 +110,13 @@ public class CameraController : MonoBehaviour
              yield return null;
           }
           transform.rotation = toAngle;
+    }
+
+
+    //funkcja sterujaca Collliderem który blokuje interaktywnoœæ t³a, np gdy przegl¹damy dowód
+    public void boxCollider(bool set)
+    {
+        GetComponent<BoxCollider>().enabled = set;
     }
     
 }

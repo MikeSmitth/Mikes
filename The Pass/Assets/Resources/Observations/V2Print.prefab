@@ -247,7 +247,6 @@ MonoBehaviour:
   panel: {fileID: 4212640678222136782}
   fromEQ: 0
   pickable: 1
-  pickableObservation: {fileID: 4212640677856434317}
   Item: {fileID: 1413890337493350795}
 --- !u!1 &4212640677866009740
 GameObject:
