@@ -6386,6 +6386,7 @@ MonoBehaviour:
   canvas: {fileID: 5600784972745068667}
   panel: {fileID: 5600784972918224805}
   fromEQ: 0
+  obracable: 0
   pickable: 0
   Item: {fileID: 6328977752172282862}
 --- !u!1 &5600784974034958859
