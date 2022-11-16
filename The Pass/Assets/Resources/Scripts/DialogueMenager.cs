@@ -11,7 +11,9 @@ public class DialogueMenager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI dialogueText;
-
+    [SerializeField] TextMeshProUGUI displayNameText;
+    [SerializeField] Animator portraitAnimator;
+    private Animator layoutAnimator;
     Story currentStory;
 
     [Header("Choices UI")]
@@ -21,6 +23,11 @@ public class DialogueMenager : MonoBehaviour
     public bool dialoguePlaying { get; private set; }
 
     static DialogueMenager instance;
+
+    const string SPEAKER_Tag = "speaker";
+    const string PORTRAIT_Tag = "portrait";
+    const string LAYOUT_Tag = "layout";
+
     private void Awake()
     {
         if(instance != null)
@@ -33,6 +40,8 @@ public class DialogueMenager : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        layoutAnimator = dialoguePanel.GetComponent<Animator>();
+
         dialoguePlaying = false;
         dialoguePanel.SetActive(false);
 
@@ -65,6 +74,11 @@ public class DialogueMenager : MonoBehaviour
         dialoguePlaying = true;
         dialoguePanel.SetActive(true);
 
+        displayNameText.text = "???";
+        portraitAnimator.Play("default");
+        layoutAnimator.Play("right");
+
+
         ContinueStory();
     }
 
@@ -75,17 +89,54 @@ public class DialogueMenager : MonoBehaviour
         dialogueText.text = "";
     }
 
+
+
     public void ContinueStory()
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
-
+            dialogueText.text = currentStory.Continue();           
             DisplayChoices();
+
+            HandleTags(currentStory.currentTags);
         }
         else
         {
             ExitDilogueMode();
+        }
+    }
+
+
+    void HandleTags(List<string> currentTags)
+    {
+
+        foreach (string tag in currentTags)
+        {
+
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch (tagKey)
+            {
+                case SPEAKER_Tag:
+                    displayNameText.text = tagValue;
+                    break;
+                case PORTRAIT_Tag:
+                    portraitAnimator.Play(tagValue);
+                    break;
+                case LAYOUT_Tag:
+                    layoutAnimator.Play(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but not currently being Handled" + tag);
+                    break;
+            }
         }
     }
 
@@ -101,7 +152,7 @@ public class DialogueMenager : MonoBehaviour
             index++;
         }
 
-
+        //ukrywanko nieurzywanych wyborów 
         for (int i= index; i < choices.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
@@ -120,5 +171,6 @@ public class DialogueMenager : MonoBehaviour
     {
         Debug.Log(choiceIndex);
         currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
     }
 }
