@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ink.Runtime;
+using UnityEngine.EventSystems;
+using Ink.UnityIntegration;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -26,15 +29,16 @@ public class DialogueTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if ((Physics.Raycast(ray, out hit, cc.interactiveDistance) && hit.collider.tag == "NPC") && !dm.dialoguePlaying)
+       
+        if ((cc.hitTag().name == this.gameObject.name) && !dm.dialoguePlaying)
         {
+            
             dialogueMark.SetActive(true);
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                dm.EnterDialogueMode(inkJSON);
+                //w name ustalamy imiê rozmówcy i wchodzimy w tryb dialogu
+                dm.EnterDialogueMode(inkJSON, cc.hitTag().name);
             }
         }
         else
@@ -42,4 +46,7 @@ public class DialogueTrigger : MonoBehaviour
             dialogueMark.SetActive(false);
         }
     }
+
+    
+    
 }

@@ -5,6 +5,9 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 
+// dzia³a tylko w edutorze unity itak œrednio jest tego urzywaæ w kodzie https://youtu.be/HP1EYVwAhRg?t=222
+//using Ink.UnityIntegration;
+
 
 public class DialogueMenager : MonoBehaviour
 {
@@ -20,6 +23,8 @@ public class DialogueMenager : MonoBehaviour
     [SerializeField] GameObject[] choices;
     TextMeshProUGUI[] choicesText;
 
+    [Header("Load Globals JSON")]
+    [SerializeField] TextAsset loadGloabalJSON;
     public bool dialoguePlaying { get; private set; }
 
     static DialogueMenager instance;
@@ -27,15 +32,66 @@ public class DialogueMenager : MonoBehaviour
     const string SPEAKER_Tag = "speaker";
     const string PORTRAIT_Tag = "portrait";
     const string LAYOUT_Tag = "layout";
+    const string TIME_Tag = "time";
+    const string OBSERVATION_Tag = "observation";
+
+    GlobalManager gm;
+    ObservationStorage os;
+    BottonToggleShow bts;
+
+    public Dictionary<string, bool[]> npcDialogueLine { get; private set; }
+    //zmiena przechwywuj¹ca informacje czy zauktualizowaæ mo¿na npcDialogueLine
+    public bool changeDialogueLine { get; private set; } = false;
 
     private void Awake()
     {
-        if(instance != null)
+ 
+            npcDialogueLine = new Dictionary<string, bool[]>();
+            npcDialogueLine.Add("bob", new bool[40]);
+            npcDialogueLine.Add("mike", new bool[40]);
+
+
+
+
+        if (instance != null)
         {
             Debug.LogWarning("More than one Dialogue Menager");
         }
         instance = this;
+
+        //gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
+        gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
+        os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
+        bts = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();
+        gm.GlobalManagerLoadGlobalJson(loadGloabalJSON);
     }
+
+    public void DialogueLineUpdate(int i, string s)
+    {
+        if (i <= 0)
+        {
+            Debug.LogError("Poda³eœ za ma³y index, minimum 1");
+            return;
+        }
+        //pobieramy tablice bool dowodu przed zmian¹ do buforu. 
+        bool[] observationArrayBufor = npcDialogueLine[s];
+        //zminiamy odpowiedni indeks w buforze
+        observationArrayBufor[i - 1] = true;
+        //zastêpujemy poprzedni¹ tablice dowodu zmienionym buforem
+        npcDialogueLine[s] = observationArrayBufor;
+
+    }
+
+    //analogicznie dzia³anie co powyrzej, tylko zwracamy wartoœc a nie nadpisujemy
+    public bool DialogueLineDownload(int i, string s)
+    {
+        bool[] observationArrayBufor = new bool[20];
+        observationArrayBufor = npcDialogueLine[s];
+
+        return observationArrayBufor[i - 1];
+    }
+
+
 
     //Start is called before the first frame update
     void Start()
@@ -62,28 +118,38 @@ public class DialogueMenager : MonoBehaviour
             return;
         }
 
+        //ENTER kontynu³uje historyjkê 
         if(Input.GetKeyDown(KeyCode.Return))
         {
             ContinueStory();
         }
+
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON)
+    public void EnterDialogueMode(TextAsset inkJSON, string speaker)
     {
+        
+
+
         currentStory = new Story(inkJSON.text);
         dialoguePlaying = true;
         dialoguePanel.SetActive(true);
 
+        //ustawaimy imiê rozmowcy przez speaker
+        gm.StartListening(currentStory, speaker);
+
         displayNameText.text = "???";
-        portraitAnimator.Play("default");
+        portraitAnimator.Play("Default");
         layoutAnimator.Play("right");
 
-
+  
         ContinueStory();
     }
 
     void ExitDilogueMode()
     {
+        gm.StopListening(currentStory);
+
         dialoguePlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
@@ -93,26 +159,43 @@ public class DialogueMenager : MonoBehaviour
 
     public void ContinueStory()
     {
+
+        // pêtla skipuj¹ca puste dialogi!!!
+        /*
+        while (dialogueText.text =="")
+        {
+             Debug.Log("dzia³a |"+ dialogueText.text + "|");           
+            dialogueText.text = currentStory.Continue();
+            DisplayChoices();
+            HandleTags(currentStory.currentTags);
+        }
+        */
+
         if (currentStory.canContinue)
         {
+            
+
             dialogueText.text = currentStory.Continue();           
             DisplayChoices();
-
             HandleTags(currentStory.currentTags);
         }
         else
         {
             ExitDilogueMode();
         }
+
+        
     }
 
 
     void HandleTags(List<string> currentTags)
     {
 
+
+
         foreach (string tag in currentTags)
         {
-
+            //Debug.Log("tag " + tag);
             string[] splitTag = tag.Split(':');
             if (splitTag.Length != 2)
             {
@@ -120,7 +203,7 @@ public class DialogueMenager : MonoBehaviour
             }
 
             string tagKey = splitTag[0].Trim();
-            string tagValue = splitTag[1].Trim();
+            string tagValue = splitTag[1].Trim();            
 
             switch (tagKey)
             {
@@ -133,10 +216,28 @@ public class DialogueMenager : MonoBehaviour
                 case LAYOUT_Tag:
                     layoutAnimator.Play(tagValue);
                     break;
+                case TIME_Tag:
+                    gm.SetTime(float.Parse(tagValue));
+                    break;
+            //Badamy kafelki/dowody i updejtujemy przycisk, gdy zdobendziemy 
+                case OBSERVATION_Tag:
+                    string[] splitValue = tagValue.Split('-');
+                    string name = splitValue[0].Trim();
+                    string index = splitValue[1].Trim();
+                    os.observationUpdate(int.Parse(index), name);
+                    bts.ObservationButtonUpdate();
+                    break;
                 default:
-                    Debug.LogWarning("Tag came in but not currently being Handled" + tag);
+                    Debug.LogWarning("Tag came in but not currently being Handled: " + tag);
                     break;
             }
+        }
+
+        //Wykrywanko czy s¹ tagi, jeœli nie to ContinueStory();, S³uzy do skipowania pustych linijek dialogowych
+        if (currentTags.Count == 0)
+        {
+           //Debug.Log("dzia³a |" + dialogueText.text + "|");
+            ContinueStory();
         }
     }
 
@@ -169,8 +270,18 @@ public class DialogueMenager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        Debug.Log(choiceIndex);
+        //Debug.Log(choiceIndex);
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
+    }
+    public Ink.Runtime.Object GetVariableState(string variableName)
+    {
+        Ink.Runtime.Object variableValue = null;
+        gm.variables.TryGetValue(variableName, out variableValue);
+        if(variableValue == null)
+        {
+            Debug.LogWarning("Ink Variable was found to be null: " + variableName);
+        }
+        return variableValue;
     }
 }

@@ -12,15 +12,19 @@ public class ObservationButton : MonoBehaviour
 
     //tworzymy zminn¹, która ma przechowywaæ s³ownik/dane z obserwacjami o nazwie ObservationStorage
     ObservationStorage os;
-    Observation ob;
-
-    //GameObject[] arrows;
 
 
+    //czas potrzebny do zbadania
+    [Header("Time Needed")]
+    [SerializeField] public float timeNeeded = 2;
+
+//GameObject[] arrows;
 
 
 
-    void Awake()
+
+
+void Awake()
     {
         //arrows = GameObject.FindGameObjectsWithTag("Arrow");
         // Debug.Log(name+" arrow: " + arrows.Length);

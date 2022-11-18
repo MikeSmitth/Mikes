@@ -16,6 +16,16 @@ public class ObservationStorage : MonoBehaviour
     //Tworzymy s³ownik z dowodami/obserwacjami byœmy mogli je na bierz¹co dodawaæ i zmieniaæ je za poœrednictwem ich nazw. S³ownik sk³ada siê z nazwy dowodu i przypisanej do nazwy tablicy bool, która mówi nam czy kafelek jest odkryty czy nie.
     public Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
 
+
+    private void Awake()
+    {
+        //ustalamy ile wyborów mo¿e mieæ dany dowód. 20 u nas
+        //dodajemy dowód/obserwacje
+        observation.Add("shoePrint", new bool[20]);
+        observation.Add("V1Print", new bool[20]);
+        observation.Add("V2Print", new bool[20]);
+        observation.Add("V3Print", new bool[20]);
+    }
     void Start()
     {
         //List<ObservationList> observations = new List<ObservationList>();
@@ -31,12 +41,7 @@ public class ObservationStorage : MonoBehaviour
         // cam = GetComponent<Camera>();
 
 
-        //ustalamy ile wyborów mo¿e mieæ dany dowód. 20 u nas
-        //dodajemy dowód/obserwacje
-        observation.Add("shoePrint", new bool[20]);
-        observation.Add("V1Print", new bool[20]);
-        observation.Add("V2Print", new bool[20]);
-        observation.Add("V3Print", new bool[20]);
+        
         //observation.Add("V3Print", new bool[20]);
 
         //observationUpdate(3, "shoePrint");
@@ -50,6 +55,11 @@ public class ObservationStorage : MonoBehaviour
     //zminiamy dane dowody/obserwacje, czyli czy dany kafelek zosta³ przez nas odkryty
     public void observationUpdate(int i, string s)
     {
+        if(i<=0)
+        {
+            Debug.LogError("Poda³eœ za ma³y index, minimum 1");
+            return;
+        }
         //pobieramy tablice bool dowodu przed zmian¹ do buforu. 
         bool[] observationArrayBufor = observation[s];
         //zminiamy odpowiedni indeks w buforze

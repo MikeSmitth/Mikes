@@ -8,8 +8,8 @@ public class BottonToggleShow : MonoBehaviour
 
     ObservationStorage os;
     CameraController cc;
- 
-    
+
+
     // Start is called before the first frame update
     void Start()
     {

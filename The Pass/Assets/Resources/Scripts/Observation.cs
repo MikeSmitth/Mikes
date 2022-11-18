@@ -16,6 +16,7 @@ public class Observation : MonoBehaviour
     ObservationStorage os;
     CameraController cc;
     BottonToggleShow bt;
+    GlobalManager gm;
 
     //Wa¿ne!!! Zmiena sprawdzaj¹ca czy badamy dowód z ekwipunku, jeœli tak to z regu³y nie mo¿emy edytowaæ. Jest ona sprawdzana w skrypcie ObservationButtons i edytowana w Observation.
     public bool fromEQ = false;
@@ -52,7 +53,8 @@ public class Observation : MonoBehaviour
         GameUI = GameObject.FindGameObjectWithTag("GameUI");
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();       
-        bt = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();       
+        bt = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();
+        gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
     }
 
 
@@ -74,10 +76,8 @@ public class Observation : MonoBehaviour
 
         float rotateForce = 40;
         //sprawdzamy pod if czy dowód jest w zasiêgu i mo¿emy go pbracaæ podczas przegl¹dania 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (canvas.active && Input.GetKey(KeyCode.Mouse0) && (Physics.Raycast(ray, out hit, cc.interactiveDistance) && hit.collider.tag == "Interactive") && obracable)
+        if (canvas.active && Input.GetKey(KeyCode.Mouse0) && (cc.hitTag().tag == "Interactive") && obracable)
         {
             //tutaj dajemy mo¿liwosæ obracania obiekty gdy go przegl¹damy 
             var toAngle = Quaternion.Euler(Item.transform.eulerAngles + new Vector3(0/*mousePosition.y / (Screen.width / 2) * rotateForce * Input.GetAxis("Mouse Y") * -1*/, mousePosition.x / (Screen.width / 2) * rotateForce * Input.GetAxis("Mouse X") *-1, 0));
@@ -143,6 +143,14 @@ public class Observation : MonoBehaviour
     public void observationName(Button number)
     {
         //Debug.Log("Up "+ Convert.ToInt32(number.name)+" "+ name);
+
+        //DODAJEMY CZAS PRZY ZBADANEJ OBSERVACJI!!!wraz z zabezpieczeniem, przed wielokrotym nabijaniem czasu przy klikaniu w odkryty przycisk
+        if (!os.observationDownload(Convert.ToInt32(number.name), name))
+        {
+            gm.SetTime(number.GetComponent<ObservationButton>().timeNeeded);
+        }
+
+
         os.observationUpdate(Convert.ToInt32(number.name), name);
 
         //Updatetujemy dane w przycisku EQ, jeœli odkryliœmy pierwszy kafelek dowodu, zostanie on dodany do EQ

@@ -118,5 +118,24 @@ public class CameraController : MonoBehaviour
     {
         GetComponent<BoxCollider>().enabled = set;
     }
-    
+
+    //Funkcja badaj¹ca na jaki obiekt patrzymy, wywo³ywana w innych clasach 
+    public Collider hitTag()
+    {
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit, interactiveDistance);
+       
+        if (hit.collider)
+        {
+            return hit.collider;
+        }
+        else
+        {
+            //W przypadku nei natrafienia na ¿aden obiekt zwracam collider kamery 
+            return this.gameObject.GetComponent<Collider>();
+        }
+        
+    }
 }
