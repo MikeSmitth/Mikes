@@ -38,6 +38,7 @@ public class DialogueMenager : MonoBehaviour
     GlobalManager gm;
     ObservationStorage os;
     BottonToggleShow bts;
+    CameraController cc;
 
     public Dictionary<string, bool[]> npcDialogueLine { get; private set; }
     //zmiena przechwywuj¹ca informacje czy zauktualizowaæ mo¿na npcDialogueLine
@@ -49,6 +50,7 @@ public class DialogueMenager : MonoBehaviour
             npcDialogueLine = new Dictionary<string, bool[]>();
             npcDialogueLine.Add("bob", new bool[40]);
             npcDialogueLine.Add("mike", new bool[40]);
+            npcDialogueLine.Add("john", new bool[40]);
 
 
 
@@ -63,6 +65,7 @@ public class DialogueMenager : MonoBehaviour
         gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         bts = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();
+        cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
         gm.GlobalManagerLoadGlobalJson(loadGloabalJSON);
     }
 
@@ -128,8 +131,10 @@ public class DialogueMenager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON, string speaker)
     {
-        
-
+ 
+        //blokujemy i nie, rozgl¹danei siê i aktywujemy box collider który plokuje interakcje z oroczeniem
+        cc.isLook = true;
+        cc.boxCollider(true);
 
         currentStory = new Story(inkJSON.text);
         dialoguePlaying = true;
@@ -148,6 +153,10 @@ public class DialogueMenager : MonoBehaviour
 
     void ExitDilogueMode()
     {
+        //blokujemy i nie, rozgl¹danei siê 
+        cc.isLook = false;
+        cc.boxCollider(false);
+
         gm.StopListening(currentStory);
 
         dialoguePlaying = false;

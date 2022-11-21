@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     //czy patrzymy na intarktywny obiekt 
     public bool isLook;
     //jak daleko mo¿e byæ interaktywny obiekt
-    public float interactiveDistance = 100f;
+    public float interactiveDistance = 5.5f;
 
     void Start()
     {

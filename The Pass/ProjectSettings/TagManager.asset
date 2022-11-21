@@ -11,6 +11,8 @@ TagManager:
   - RampDown
   - GameUI
   - NPC
+  - Door
+  - DoorTrigger
   layers:
   - Default
   - TransparentFX

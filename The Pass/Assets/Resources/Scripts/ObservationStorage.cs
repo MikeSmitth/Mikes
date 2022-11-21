@@ -25,6 +25,7 @@ public class ObservationStorage : MonoBehaviour
         observation.Add("V1Print", new bool[20]);
         observation.Add("V2Print", new bool[20]);
         observation.Add("V3Print", new bool[20]);
+        observation.Add("V4Print", new bool[20]);
     }
     void Start()
     {

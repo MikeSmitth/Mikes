@@ -12,7 +12,7 @@ public class GlobalManager : MonoBehaviour
     // Start is called before the first frame update
 
     DialogueMenager dm;
-    CameraController cc;
+
     Story currentstory;
 
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
@@ -48,7 +48,7 @@ public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
         instance = this;
 
         dm = GameObject.Find("Managers").GetComponent<DialogueMenager>();
-        cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
+    
     }
 
     public void SetTime(float time)
@@ -59,9 +59,7 @@ public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
 
     public void StartListening(Story story, string speaker)
     {
-        //blokujemy i nie, rozgl¹danei siê i aktywujemy box collider który plokuje interakcje z oroczeniem
-        cc.isLook = true;
-        cc.boxCollider(true);
+
 
 
         //Debug.Log("Przed: " + story.variablesState["speaker"]);
@@ -88,11 +86,7 @@ public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
 
     public void StopListening(Story story)
     {
-        //blokujemy i nie, rozgl¹danei siê 
-        cc.isLook = false;
-        cc.boxCollider(false);
-
-
+        
         currentstory = story;
         story.variablesState.variableChangedEvent -= DialogueVariablesSet;
     }
