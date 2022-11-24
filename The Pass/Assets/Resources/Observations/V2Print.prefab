@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc811eee78600741bd6a8b7c40ef4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToDestroy: 0
   canvas: {fileID: 4212640677853114862}
   panel: {fileID: 4212640678222136782}
   fromEQ: 0
@@ -1006,6 +1007,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &4212640678203151333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,6 +2316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &4212640679298177020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,6 +2503,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &4212640679310814927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &4212640679375261696
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,6 +2863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &4212640679412545025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,6 +3050,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames:
+  - bob
+  observationOrDialogueIndexes: 02000000
 --- !u!1 &4212640679515479535
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,6 +3374,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &4212640679606581908
 GameObject:
   m_ObjectHideFlags: 0
@@ -3902,3 +3918,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 5
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPresistence
 {
     //czy gracz jest w trakcie ruchu
     bool isMoving;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     //Instrukcia wykonywana co kaltkę 
     void Update()
     {
-       
+        //Debug.Log(transform.rotation);
 
         //Debug.Log("transform: "+ transform.position);
 
@@ -71,7 +71,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+        data.rotationX=transform.eulerAngles.x ;
+        data.rotationY=transform.eulerAngles.y ;
+        data.rotationZ=transform.eulerAngles.z ;
+        //data.playerRotation = this.transform.rotation;
+        //Debug.Log("Seved in global manager = " + data.inGameTimeToSave);
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+        transform.rotation = Quaternion.Euler(data.rotationX, data.rotationY, data.rotationZ);
+        //this.transform.rotation = data.playerRotation;
+        //Debug.Log("Loaded in global position = " + data.playerPosition);
+    }
     private IEnumerator MovePlayer(Vector3 direction, float moveSpeed)
     {
         //ustalamy skąd będziemy rysowali promień sprawdzający przeszkody (w tym przypadku jest on z pozycji obiektu, lecz obniżony o 0.5f)

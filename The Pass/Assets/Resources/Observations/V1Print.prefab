@@ -266,6 +266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423826905511544
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +602,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423827095774413
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,6 +925,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423827279195581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1498,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423827360793622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1647,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423827406360474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2817,6 +2832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423827729187477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,6 +2981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423827862933661
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,6 +3528,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423828136995244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3653,6 +3677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames:
+  - bob
+  observationOrDialogueIndexes: 02000000
 --- !u!1 &8786423828142848957
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,6 +4170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423828305089084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,6 +4833,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8188d8cb6ee54faed00b9f85965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &8786423828733382509
 GameObject:
   m_ObjectHideFlags: 0
@@ -4861,6 +4895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc811eee78600741bd6a8b7c40ef4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToDestroy: 0
   canvas: {fileID: 8786423827286178293}
   panel: {fileID: 8786423827406360474}
   fromEQ: 0

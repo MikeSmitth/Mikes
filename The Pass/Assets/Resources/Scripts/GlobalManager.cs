@@ -5,21 +5,38 @@ using Ink.Runtime;
 using System.IO;
 
 //nie ma MonoBehaviour!!!
-public class GlobalManager : MonoBehaviour
+public class GlobalManager : MonoBehaviour, IDataPresistence
 {
-    [Header("In Game Time")]
+    [Header("In Game Time(144 = day, 1 = 10min)")]
     public float inGameTime = 0;
-    // Start is called before the first frame update
+
+    [Header("Tiredness (No More Than 100)")]
+    public float tiredness = 0;
+ 
 
     DialogueMenager dm;
 
     Story currentstory;
 
+
+    //w global menad¿erze obs³ugujemy globalny plik z zmeinnymi od dialogów
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
     
+    public void SaveData(ref GameData data)
+    {
+        data.inGameTimeToSave = this.inGameTime;     
+        data.tirednessToSave = this.tiredness;     
+        //Debug.Log("Seved in global manager = " + data.inGameTimeToSave);
+    }
 
+    public void LoadData(GameData data)
+    {
+        this.inGameTime = data.inGameTimeToSave;
+        this.tiredness = data.tirednessToSave;
+        //Debug.Log("Loaded in global manager = " + this.inGameTime);
+    }
 
-public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
+    public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
     {
         Story globalVariablesStory = new Story(loadgloabalJSON.text); 
         
@@ -54,7 +71,28 @@ public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
     public void SetTime(float time)
     {
        inGameTime += time;
-       Debug.Log("InGameTime: " + inGameTime);
+
+        if (tiredness < 100)
+        {
+            tiredness += time;
+        }
+       Debug.Log("InGameTime: " + inGameTime + " tiredness: " + tiredness);
+    }
+
+    public void SetTimeFlat(float timeSet)
+    {
+        inGameTime = timeSet;
+        Debug.Log("InGameTime: " + inGameTime);
+    }
+
+    public void SettirednessFlat(float tirednessSet)
+    {
+        if(tirednessSet>100)
+        {
+            tirednessSet = 100;
+        }
+        tiredness = tirednessSet;       
+        Debug.Log("Tiredness: " + tiredness);
     }
 
     public void StartListening(Story story, string speaker)
@@ -107,8 +145,13 @@ public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
             if (dm.npcDialogueLine.ContainsKey(name) && variables["changeDialogueLine"].ToString() == "true")
             {
                 //Debug.Log("Przed zmian¹: " + name + " = " + dm.DialogueLineDownload(int.Parse(value.ToString()), name));
+
+
                 dm.DialogueLineUpdate(int.Parse(value.ToString()), name);
-                Debug.Log(name + " indx: " + int.Parse(value.ToString()) + "-"+ dm.DialogueLineDownload(int.Parse(value.ToString()), name) + ": Zosta³a teraz odkryta i zmieniona");
+                //Debug.Log(name + " indx: " + int.Parse(value.ToString()) + "-"+ dm.DialogueLineDownload(int.Parse(value.ToString()), name) + ": Zosta³a teraz odkryta i zmieniona");
+
+
+
                 //Debug.Log("Po Zmianie: " + name + " = " + dm.DialogueLineDownload(int.Parse(value.ToString()), name));
                 //Debug.Log("Po ZmianieJedenpo: " + name + " = " + dm.DialogueLineDownload(int.Parse(value.ToString())+1, name));
 
@@ -117,14 +160,14 @@ public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
                 currentstory.variablesState["changeDialogueLine"] = "false";
             }
 
-            //Mamy tu dodatkowy warunek w psotaci && int.Parse(value.ToString())!=0 poniewa¿ po wyzerowaniu "currentstory.variablesState[name] = 0;" funkcja wywo³ywa³a by siê w nieskoñczonoœæ, gdy¿ wywo³uje siê po zmianie dowolnej zmiennej
-            else if ( (dm.npcDialogueLine.ContainsKey(name) && int.Parse(value.ToString())!=0) && variables["changeDialogueLine"].ToString() == "false")
+            //Mamy tu dodatkowy warunek w psotaci && int.Parse(value.ToString())!=0 poniewa¿ po wyzerowaniu "currentstory.variablesState[name] = 0;" funkcja wywo³ywa³a by siê w nieskoñczonoœæ, gdy¿ wywo³uje siê po zmianie dowolnej zmiennej,
+            //dm.DialogueLineDownload(int.Parse(value.ToString()), name)==false, a to moniewa¿ nei chcemy zerowaæ wartoœci jeœli ju¿ wczeœniej odpolowaliœmy ten dialogueline
+            else if ( (dm.npcDialogueLine.ContainsKey(name) && int.Parse(value.ToString())!=0) && variables["changeDialogueLine"].ToString() == "false"&& dm.DialogueLineDownload(int.Parse(value.ToString()), name)==false)
             {            
-
-                Debug.Log(name + " indx: " + int.Parse(value.ToString()) + "-" + dm.DialogueLineDownload(int.Parse(value.ToString()), name) + ": Nie zosta³a odkrta, bo: "+  variables["changeDialogueLine"].ToString());
+                //Debug.Log(name + " indx: " + int.Parse(value.ToString()) + "-" + dm.DialogueLineDownload(int.Parse(value.ToString()), name) + ": Nie zosta³a odkrta, bo: "+  variables["changeDialogueLine"].ToString());
                 currentstory.variablesState[name] = 0;
-                Debug.Log(name + ": "+ currentstory.variablesState[name]);
-                Debug.Log("1");
+                //Debug.Log(name + ": "+ currentstory.variablesState[name]);
+                //Debug.Log("1");
             }
 
             else if(!dm.npcDialogueLine.ContainsKey(name) || name == "changeDialogueLine")
@@ -132,7 +175,7 @@ public void GlobalManagerLoadGlobalJson(TextAsset loadgloabalJSON)
 
                 variables.Remove(name);
                 variables.Add(name, value);
-                Debug.Log(name + " " + value + " Zosta³a teraz zmieniona");
+                //Debug.Log(name + " " + value + " Zosta³a teraz zmieniona");
 
             }
             //Debug.Log(currentstory.variablesState["pokemon_name"] + " TUTAJ PACZ");

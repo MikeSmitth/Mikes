@@ -5,7 +5,7 @@ using System;
 
 public class EventManager : MonoBehaviour
 {
-
+    
     public static EventManager current;
     // Start is called before the first frame update
     void Awake()
