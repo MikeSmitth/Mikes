@@ -15,7 +15,15 @@ public class NpcNotes : MonoBehaviour
 
 
     [Header("Ink JSON NPCNotes")]
-    [SerializeField] Story currentNPCNotes;
+    [SerializeField] TextAsset currentNPCNotesJSON;
+    Story currentStory;
+
+    [Header("NPC Notes")]
+    [SerializeField] TextMeshProUGUI notesText;
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] GameObject notesPanel;
+    [SerializeField] Animator portraitAnimator;
+
 
     DialogueMenager dm;
 
@@ -24,9 +32,13 @@ public class NpcNotes : MonoBehaviour
     {
         //ButtonUpdate();
         dm = GameObject.Find("Managers").GetComponent<DialogueMenager>();
+       
         //dropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(dropdown); });
     }
-
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
     public void ButtonUpdate()
     {
         var dropdown = transform.GetComponent<Dropdown>();
@@ -40,17 +52,18 @@ public class NpcNotes : MonoBehaviour
             dialogueLineBoolArray = dm.DialogueLineArrayDownload(dialogue.Key);
             foreach (bool dialogueLineBool in dialogueLineBoolArray)
             {
-               
+
                 //Debug.Log("dialogueLineBool: " + dialogueLineBool);
                 if (dialogueLineBool == true)
                 {
-                   //Debug.Log("dodano: " + dialogue.Key);
+                    //Debug.Log("dodano: " + dialogue.Key);
                     items.Add(dialogue.Key);
                     break;
                 }
 
-            }               //IF poniewa¿ nie chcemy pokazywaæ w QE dowodów których nie zaczeliœmy badaæ 
-                
+            }       
+            //IF poniewa¿ nie chcemy pokazywaæ w QE dowodów których nie zaczeliœmy badaæ 
+
         }
 
         foreach (var item in items)
@@ -61,13 +74,9 @@ public class NpcNotes : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void toggleBottonShow()
     {
-        if (gameObject.active)
+        if (gameObject.activeSelf)
         {
             gameObject.SetActive(false);
         }
@@ -79,64 +88,110 @@ public class NpcNotes : MonoBehaviour
 
     }
 
-
-
-    //pokazuje dowód z pamiêci ekwipunku, nie masz mo¿liwoœci edyzji 
-    public void consoleShowEvidenceNoEdit()
+    public void togglePanelShow()
     {
-
-
-        /*
-        var dropdown = transform.GetComponent<Dropdown>();
-
-        //Debug.Log(dropdown.options[dropdown.value].text);
-        //os.showObservationArray(dropdown.options[dropdown.value].text);
-
-
-
-
-        //Debug.Log(dropdown.options[dropdown.value].text +" to "+ Resources.Load("Observations/V2Print.prefab"));
-
-
-        //Jesli obiekt jest ju¿ na scenie, to nie tworzymy nowego 
-
-        if (!GameObject.Find(dropdown.options[dropdown.value].text))
+       
+        if (notesPanel.activeSelf)
         {
-            //tworzymy obiekt z folderu resources 
-            GameObject.Instantiate((UnityEngine.Object)Resources.Load("Observations/" + dropdown.options[dropdown.value].text));
-            //GameObject.Find(dropdown.options[dropdown.value].text).transform.SetPositionAndRotation = new Vector3();
-            // GameObject.Find(dropdown.options[dropdown.value].text).transform.SetPositionAndRotation(cc.transform.position + cc.transform.forward * 2f, cc.transform.rotation);
-
-            //ostawiamy obiekt blisko kamery
-            GameObject.Find(dropdown.options[dropdown.value].text).transform.position = (cc.transform.position + cc.transform.forward * 1.5f);
-            //obracamy sam model obiektu w kierunku kamery 
-            GameObject.Find(dropdown.options[dropdown.value].text + "/Item").transform.rotation = (cc.transform.rotation);
-        }
-        //Instantiate(Resources.Load("Observations/V2Print.prefab"), transform.position + transform.forward * 2f, transform.rotation);
-
-
-        //aktywujemy skrypt ob.observationStudy(); dla danego dowodu, wiemy którego poniewa¿ znamy jego nazwe dropdown.options[dropdown.value].text
-        Observation ob;
-        ob = GameObject.Find(dropdown.options[dropdown.value].text).GetComponent<Observation>();
-
-        //studiowanie obserwacji
-        ob.observationStudy();
-
-        //spogl¹danie na obserwacje
-        //if, bo nie obracamy sie w kierunku dowody którego nie podnieœliœmy, bo nie jest "podnaszalny" to w else, patrzymy przed siebie
-        if (ob.pickable)
-        {
-            cc.lookAt(GameObject.Find(dropdown.options[dropdown.value].text).transform.position);
+            //Debug.Log("siemafalse");
+            notesPanel.SetActive(false);
         }
         else
         {
-
-            cc.lookAt(cc.transform.position + cc.transform.forward * 1.5f);
+            //Debug.Log("siemafalse");
+            notesPanel.SetActive(true);
         }
+        //consoleShowEvidence();
 
-        //jest to funkcja wy³¹czaj¹ca edycje dowodu z eq
-        ob.setInteractive();
+    }
+
+    //pokazuje dowód z pamiêci ekwipunku, nie masz mo¿liwoœci edyzji 
+    public void showNPCNotes()
+    {       
+        var dropdownName = transform.GetComponent<Dropdown>();
+        //var dropdownNotes = GameObject.Find("DropdownNPCNotes").transform.GetComponent<TMP_Dropdown>();
+        bool[] dialogueLineBoolArray;
+        List<string> items = new List<string>();
+        currentStory = new Story(currentNPCNotesJSON.text);
+
+        string tagKey = "";
+        string tagValue = "";
+
+ 
+
+        nameText.text = "???";
+        portraitAnimator.Play("Default");
+        notesText.text = "";
+        togglePanelShow();
+        //dropdownNotes.options.Clear();
+
+
+        int i= 1;
+            //Debug.Log(dialogue.Key);
+        dialogueLineBoolArray = dm.DialogueLineArrayDownload(dropdownName.options[dropdownName.value].text);
+       // Debug.Log("D³ugoœæ dialogueLineBoolArray: " + dialogueLineBoolArray.Length);
+        foreach (bool dialogueLineBool in dialogueLineBoolArray)
+            {
+
+
+            //Debug.Log("dialogueLineBool: " + dialogueLineBool + " o indexie "+ i);
+            //Debug.Log("dialogueLineBool: " + dialogueLineBool);
+            //Debug.Log(dropdownName.options[dropdownName.value].text + " dialogueLineBool true: " + dialogueLineBool);
+            if (dialogueLineBool == true)
+                {
+                nameText.text = dropdownName.options[dropdownName.value].text;
+                portraitAnimator.Play(dropdownName.options[dropdownName.value].text);
+
+                currentStory.ResetState();
+
+
+                while (currentStory.canContinue)
+                {
+                    currentStory.Continue();
+                    
+                    List<string> currentTags = currentStory.currentTags;
+
+
+                    foreach (string tag in currentTags)
+                    {
+                       string[] splitTag = tag.Split(':');
+                       //Debug.Log("tag " + tag);
+
+                       if (splitTag.Length != 2)
+                       {
+                             Debug.LogError("Tag could not be appropriately parsed: " + tag);
+                       }
+
+                       tagKey = splitTag[0].Trim();
+                       tagValue = splitTag[1].Trim();
+                        Debug.Log("Tag: " + tagKey + " Value: " + tagValue + " Story: " + currentStory.currentText);
+                        if (tagKey == dropdownName.options[dropdownName.value].text && tagValue == i.ToString())
+                        {
+                            notesText.text += i + "-true: " + currentStory.currentText;
+                            //items.Add(i + "-true: " + currentStory.currentText);
+                        }
+                    }
+
+                // tagKey != takenName || tagValue != takenValue
+                
+                    
+                }
+
+                //Wykrywanko czy s¹ tagi, jeœli nie to ContinueStory();, S³uzy do skipowania pustych linijek dialogowych
+ 
+
+                //Debug.Log("dodano: " + i + ": true");
+
+
+            }
+            i++;
+            }
+        /*
+        foreach (var item in items)
+        {
+            dropdownNotes.options.Add(new TMP_Dropdown.OptionData() { text = item });
+        }
+        dropdownNotes.RefreshShownValue();//IF poniewa¿ nie chcemy pokazywaæ w QE dowodów których nie zaczeliœmy badaæ  
         */
     }
-        
 }

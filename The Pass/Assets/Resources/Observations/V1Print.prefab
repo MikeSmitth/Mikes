@@ -4896,9 +4896,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 0
+  ObservationImagePanel: {fileID: 0}
   canvas: {fileID: 8786423827286178293}
   panel: {fileID: 8786423827406360474}
-  fromEQ: 0
+  fromEQ: 1
   obracable: 1
   pickable: 0
   Item: {fileID: 5311604874533229804}

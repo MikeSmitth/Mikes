@@ -15,10 +15,12 @@ public class BottonToggleShow : MonoBehaviour
     {
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
-
         ObservationButtonUpdate();
+        gameObject.SetActive(false);
         //dropdown.onValueChanged.AddListener(delegate { DropdownItemSelected(dropdown); });
     }
+
+    
 
     public void ObservationButtonUpdate()
     {
@@ -30,12 +32,14 @@ public class BottonToggleShow : MonoBehaviour
         foreach (var ob in os.observation)
         {
             //IF poniewa¿ nie chcemy pokazywaæ w QE dowodów których nie zaczeliœmy badaæ 
-            if(os.observationDownload(1, ob.Key) == true)
+            //Debug.Log(" Index: 1 "+os.observationDownload(1, ob.Key) + " <--- Bool  Ob.Key ---> "+ ob.Key);
+            if (os.observationDownload(1, ob.Key) == true)
             items.Add(ob.Key);
         }
 
         foreach (var item in items)
         {
+            //Debug.Log(item);
             dropdown.options.Add(new Dropdown.OptionData() { text = item });
         }
         dropdown.RefreshShownValue();
@@ -48,7 +52,7 @@ public class BottonToggleShow : MonoBehaviour
     }
     public void toggleBottonShow()
     {
-        if (gameObject.active)
+        if (gameObject.activeSelf)
         {
             gameObject.SetActive(false);
         }
@@ -108,8 +112,13 @@ public class BottonToggleShow : MonoBehaviour
         Observation ob;
         ob = GameObject.Find(dropdown.options[dropdown.value].text).GetComponent<Observation>();
 
+        //jest to funkcja wy³¹czaj¹ca edycje dowodu z eq
+        ob.setInteractive();
+
         //studiowanie obserwacji
         ob.observationStudy();
+
+        
 
         //spogl¹danie na obserwacje
         //if, bo nie obracamy sie w kierunku dowody którego nie podnieœliœmy, bo nie jest "podnaszalny" to w else, patrzymy przed siebie
@@ -123,8 +132,9 @@ public class BottonToggleShow : MonoBehaviour
             cc.lookAt(cc.transform.position + cc.transform.forward * 1.5f);
         }
 
-        //jest to funkcja wy³¹czaj¹ca edycje dowodu z eq
-        ob.setInteractive();
+       
+
+
     }
 
 }

@@ -21,14 +21,22 @@ public class CameraController : MonoBehaviour
     //jak daleko mo¿e byæ interaktywny obiekt
     public float interactiveDistance = 5.5f;
 
+
+     Vector3 mousePosition;
+
+
+
     void Start()
     {
-
         //pobieramy pocz¹tkowe dane o rotacji
         //startPos = this.transform.rotation;
     }
     void Update()
     {
+        //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Debug.DrawLine(transform.position, mouseWorldPosition, Color.blue, interactiveDistance);
+
+
         float cameraStrokeYBoost = 1;
         float cameraStrokeXBoost = 1;
 
@@ -51,22 +59,29 @@ public class CameraController : MonoBehaviour
         //Debug.Log("%of cameraStroke x " + (((Input.mousePosition.x - (Screen.width / 2)) / (Screen.width / 2) * 100f) / 100f * cameraStroke));
         //Debug.Log("Parent rotation x y " + transform.rotation);
 
-
         // jeœli nie przygl¹damy siê obiektowi isLook to wychylamy kamere kursorem
-        if (!isLook)
+        
+        if (!isLook && mousePosition != Input.mousePosition)
         {
+            mousePosition = Input.mousePosition;
+            //Debug.Log(Input.mousePosition);
             if (Input.mousePosition.y < Screen.height / 2)
             {
                 cameraStrokeYBoost=8f;
             }
 
             var toAngle = Quaternion.Euler(transform.parent.eulerAngles + new Vector3(((Input.mousePosition.y - (Screen.height / 2)) / (Screen.height / 2)* cameraStroke * cameraStrokeYBoost * -1), ((Input.mousePosition.x - (Screen.width / 2)) / (Screen.width / 2)* cameraStroke* cameraStrokeXBoost), 0));
-            transform.rotation = Quaternion.Slerp(transform.rotation, toAngle, Time.deltaTime * 50f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toAngle, Time.deltaTime * 10f);
         }
+        
             //Debug.Log("currentEulerAngles " + currentEulerAngles);
             //Debug.Log("transform.eulerAngles " + transform.eulerAngles);
     }
 
+    public void Scope(float m_FieldOfView)
+    {
+        Camera.main.fieldOfView += m_FieldOfView;
+    }
 
     //wychodzimy z trybu przygl¹dania siê. Aktywuje sie przyciskiem Exit w unity
     public void lookBack()
@@ -126,6 +141,7 @@ public class CameraController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Physics.Raycast(ray, out hit, interactiveDistance);
+
        
         if (hit.collider)
         {
@@ -138,4 +154,5 @@ public class CameraController : MonoBehaviour
         }
         
     }
+
 }

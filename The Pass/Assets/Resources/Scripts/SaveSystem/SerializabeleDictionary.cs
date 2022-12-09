@@ -21,7 +21,6 @@ public class SerializabeleDictionary<TKey, TValue> : Dictionary<TKey,TValue>, IS
             //Debug.Log(" pair.Key: " + pair.Key + " pair.Value: " + pair.Value);
         }
     }
-
     public void OnAfterDeserialize()
     {
         

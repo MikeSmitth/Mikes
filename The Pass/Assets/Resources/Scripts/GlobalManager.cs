@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 //nie ma MonoBehaviour!!!
 public class GlobalManager : MonoBehaviour, IDataPresistence
@@ -12,18 +13,20 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
 
     [Header("Tiredness (No More Than 100)")]
     public float tiredness = 0;
- 
+
+   
+
 
     DialogueMenager dm;
 
     Story currentstory;
 
-
     //w global menad¿erze obs³ugujemy globalny plik z zmeinnymi od dialogów
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
     
+    
     public void SaveData(ref GameData data)
-    {
+    {   
         data.inGameTimeToSave = this.inGameTime;     
         data.tirednessToSave = this.tiredness;     
         //Debug.Log("Seved in global manager = " + data.inGameTimeToSave);
@@ -53,8 +56,9 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
 
     static GlobalManager instance;
     private void Awake()
-    {
-        if(inGameTime != 0)
+    {   
+
+        if (inGameTime != 0)
         {
             Debug.LogWarning("Czas nie jest wyzerowany");
         }
@@ -75,6 +79,10 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
         if (tiredness < 100)
         {
             tiredness += time;
+        }
+        else
+        {
+            tiredness = 100;
         }
        Debug.Log("InGameTime: " + inGameTime + " tiredness: " + tiredness);
     }

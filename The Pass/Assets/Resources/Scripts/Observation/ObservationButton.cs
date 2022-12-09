@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class ObservationButton : MonoBehaviour
 {
@@ -16,20 +17,28 @@ public class ObservationButton : MonoBehaviour
 
     DialogueMenager dm;
 
+    Observation ob;
 
     //czas potrzebny do zbadania
     [Header("Time Needed")]
     [SerializeField] public float timeNeeded = 2;
 
+    //Wyœwietla czas potrzebny
+    [Header("Time Text")]
+    [SerializeField] TextMeshProUGUI timeText ;
+
     [Header("Observation or DialogueLine Needed To Show")]
     [SerializeField] string[] observationOrDialogueNames;
-    [SerializeField] int[] observationOrDialogueIndexes;
+    [SerializeField] int[] observationOrDialogueIndexes;   
+
+
     //[SerializeField] string[] dialogueLineNames;
     //[SerializeField] int[] dialogueLineIndexes;
 
     //GameObject[] arrows;
 
-
+    
+    //Dictionary timeNeeded = 2;
 
 
 
@@ -39,18 +48,23 @@ public class ObservationButton : MonoBehaviour
         //arrows = GameObject.FindGameObjectsWithTag("Arrow");
         // Debug.Log(name+" arrow: " + arrows.Length);
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
-
-
+        ob = transform.root.GetComponent<Observation>();  
         dm = GameObject.Find("Managers").GetComponent<DialogueMenager>();
-      
+
+        //Zabezpiecznie przed wyœwietlaniem w nieistniej¹cym kafelku
+        if(timeText)
+        {
+            timeText.text = timeNeeded.ToString();
+        }
     }
+
 
     bool fromEQ()
     {
-        Observation ob = transform.root.GetComponent<Observation>();
         return ob.fromEQ;
         // Debug.Log("fromEQ: " + bufor);    
     }
+
 
     // BÊDZIE to funkcja zmieniaj¹ca z jakiej tablicy s¹ pobierane dane/ narazie nie jest urzywana, ale oszczêca liniki kodu 
     bool observationFromWhat()
@@ -76,18 +90,21 @@ public class ObservationButton : MonoBehaviour
         {
             //Debug.Log(" Ale zadzia³a³o dla: " +(Convert.ToInt32(name)) + " <- dowód z obserwacji ->(wy³¹czony) " + transform.root.name + " Poniewa¿ false==" + observationFromWhat() );
             //nie wy³¹czamy dowodów(za drugim wejœciu w badanie obserwacji, bo w innym przypadku znikaj¹) jeœli jest przegl¹dane z EQ 
-            if (!fromEQ())
-            { 
+            //if (fromEQ())
+           // { 
             //Debug.Log((Convert.ToInt32(name)) + " <- dowód z obserwacji ->(wy³¹czony) " + transform.root.name +" Poniewa¿ false=="+ observationFromWhat());
             gameObject.SetActive(false);
-            }
+            //}
         } 
         
-        else if (observationFromWhat() == true)
+        if (observationFromWhat() == true)
         {
             //Debug.Log((Convert.ToInt32(name)) + " <- dowód z obserwacji ->(w³¹czony ON CLICK) " + transform.root.name  );
             //Debug.Log(name+" clicked ");
+            //ob.fromScript = true;
+            //Debug.Log(ob.fromScript + " <-- From script ");
             GetComponent<Button>().onClick.Invoke();
+            //ob.fromScript = false;
             GetComponent<Image>().color = new Color32(212, 212, 212, 255);
 
             //Funkcja pokazuj¹ca przypisane strza³ki. Poni¿ej 
@@ -111,9 +128,14 @@ public class ObservationButton : MonoBehaviour
     }
 
     //funkcja pokazuj¹ca odkryte wczeœniej kafelki obserwacji. Jest uruchamina przyciskiem w Unity 
+    //wywo³ywana tutaj i GetComponent<Button>().onClick.Invoke();
     public void setButton()
     {
 
+        if (!fromEQ())
+        {
+            os.observationEQShowUpdate((Convert.ToInt32(name)), transform.root.name);
+        }
 
         //Pêtla sprawdzajaca czy i jeœli mamy inn¹ observacje lub dialogue line potrzerbne do pokazania tego dowodu
         int i = 0;
@@ -162,10 +184,10 @@ public class ObservationButton : MonoBehaviour
 
 
         //mo¿emy pokazywaæ dalej dowody jeœli nie przegl¹damy dowodów z eq
-        //Debug.Log(allowToShow + " <- allow to show | " + this.name + " | fromEQ()->" + fromEQ());
-        if (!fromEQ()&&allowToShow==true)
+        //Debug.Log(allowToShow + " <- allow to show | " + this.name + " | fromEQ()->" + fromEQ()/*+ " From Script-> "+ ob.fromScript*/);
+        if (allowToShow==true && os.observationEQShowDownload((Convert.ToInt32(name)), transform.root.name) == true )
         {
-            Debug.Log("Przycisk: " + name + " W³¹czony z obserwacji  " + transform.root.name);
+            //Debug.Log("Przycisk: " + name + " W³¹czony z obserwacji  " + transform.root.name);
             gameObject.SetActive(true);
         }
     }

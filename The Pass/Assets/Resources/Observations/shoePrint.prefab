@@ -2350,6 +2350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &3693945190606193185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3998,6 +4000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784972505200746
 GameObject:
   m_ObjectHideFlags: 0
@@ -4145,6 +4149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784972629941936
 GameObject:
   m_ObjectHideFlags: 0
@@ -4330,6 +4336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784972697941536
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,6 +4485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784972745068667
 GameObject:
   m_ObjectHideFlags: 0
@@ -4765,6 +4775,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784972918224805
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,6 +5082,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973164081945
 GameObject:
   m_ObjectHideFlags: 0
@@ -5217,6 +5231,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973217542832
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,6 +5380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973372843448
 GameObject:
   m_ObjectHideFlags: 0
@@ -5550,6 +5568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973407973190
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,6 +5717,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973448780585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5884,6 +5906,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973471198884
 GameObject:
   m_ObjectHideFlags: 0
@@ -6191,6 +6215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973855339832
 GameObject:
   m_ObjectHideFlags: 0
@@ -6338,6 +6364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &5600784973903289706
 GameObject:
   m_ObjectHideFlags: 0
@@ -6397,9 +6425,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc811eee78600741bd6a8b7c40ef4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToDestroy: 0
+  ObservationImagePanel: {fileID: 0}
   canvas: {fileID: 5600784972745068667}
   panel: {fileID: 5600784972918224805}
-  fromEQ: 0
+  fromEQ: 1
   obracable: 0
   pickable: 0
   Item: {fileID: 6328977752172282862}
@@ -6550,6 +6580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeNeeded: 2
+  observationOrDialogueNames: []
+  observationOrDialogueIndexes: 
 --- !u!1 &6328977752172282862
 GameObject:
   m_ObjectHideFlags: 0

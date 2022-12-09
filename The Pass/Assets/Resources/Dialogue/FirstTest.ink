@@ -24,14 +24,9 @@ INCLUDE Globals.ink
 === BobStart ===
 { pokemon_name != "": ->chosen(pokemon_name)}
 
-~changeDialogueLine = "false"
-~bob = 2
-sBufor
-Which pokemon do you choose? {bob == 2: Yep  | Nop  }#time:1 #speaker:Bob #portrait:neutral #layout:right
 
 
-
-~changeDialogueLine = "false"
+~changeDialogueLine = "true"
 ~bob = 2
 Dialog/ ta linika i tak będzie pominięta, jest po to by w następnej można było już wyświetlić zmieniony wynik bob 2 który będzie wynosił 0
 
@@ -66,7 +61,7 @@ You chose {pokemon_name}!  #speaker:Bob #portrait:neutral
 -else:
 You chose {pokemon_name}!  #speaker:Bob #portrait:smile
 }
-WOW! #time:1 #observation:V1Print-1 #portrait:smile #speaker:Mike #layout:left
+WOW! #time:1 #observation:OswaldEdwinFirstMeeting-1 #portrait:smile #speaker:Mike #layout:left
 
 ~changeDialogueLine = "false"
 ~bob = 2

@@ -10,19 +10,25 @@ public class Observation : MonoBehaviour
     [Header("Time To Destroy")]
     [SerializeField] float timeToDestroy = 0;
 
+    //Jeœli observacja jest 
+    [Header("Observation Image Panel")]
+    [SerializeField] GameObject ObservationImagePanel;
+
+
     public GameObject canvas;
     public GameObject panel;
     GameObject GameUI;
     //public Animator scopesAnimator;
     int whatScope;
+
     ObservationStorage os;
     CameraController cc;
     BottonToggleShow bt;
     GlobalManager gm;
 
+
     //Wa¿ne!!! Zmiena sprawdzaj¹ca czy badamy dowód z ekwipunku, jeœli tak to z regu³y nie mo¿emy edytowaæ. Jest ona sprawdzana w skrypcie ObservationButtons i edytowana w Observation.
     public bool fromEQ = false;
-
     //Zmiena plikuj¹ca przyblizanie siê dowodu do kamery, by nie by³a sytuacji w której szybko klikamy interakcje i z niej wychodzimy, a animacja siê blokuje 
     bool brakeSoftRotateAt = false;
     //czy przedmiot mo¿emy przygl¹daj¹c sie obracaæ 
@@ -30,9 +36,11 @@ public class Observation : MonoBehaviour
     //obiekt jest "podnaszalny"
     public bool pickable = false;
 
+
     //urzywane do obrotu obiektu do pierwotnej pozycji, gdy go nie podnosimy
     private Quaternion startRot = Quaternion.Euler(0, 0, 0);
     private Vector3 startPos;
+
 
     // chyba nei potrzebne
     //public GameObject pickableObservation;
@@ -41,15 +49,22 @@ public class Observation : MonoBehaviour
 
 
 
+
     private void Awake()
     {
+        // jeœli mamy obrazek obserwacji to automatycznie ustawiamy dowód jako nie do podniesienia czy obracania
+        if(ObservationImagePanel)
+        {
+            pickable = false;
+            obracable = false;
+        }
+
 
         //Item  = GameObject.Find("Item");
         //po Instantiate w bottonTohhleShow np, wycinamy s³owo Clone z nowego obiektu
         transform.name = transform.name.Replace("(Clone)", "").Trim();
         startRot = this.transform.rotation;
-        startPos = this.transform.position;
-        
+        startPos = this.transform.position;      
 
 
         GameUI = GameObject.FindGameObjectWithTag("GameUI");
@@ -87,16 +102,18 @@ public class Observation : MonoBehaviour
         float rotateForce = 40;
         //sprawdzamy pod if czy dowód jest w zasiêgu i mo¿emy go pbracaæ podczas przegl¹dania 
 
-        if (canvas.active && Input.GetKey(KeyCode.Mouse0) && (cc.hitTag().tag == "Interactive") && obracable)
+        if (canvas.activeSelf && Input.GetKey(KeyCode.Mouse0) && (cc.hitTag().tag == "Interactive") && obracable)
         {
-            //tutaj dajemy mo¿liwosæ obracania obiekty gdy go przegl¹damy 
+           //tutaj dajemy mo¿liwosæ obracania obiekty gdy go przegl¹damy 
             var toAngle = Quaternion.Euler(Item.transform.eulerAngles + new Vector3(0/*mousePosition.y / (Screen.width / 2) * rotateForce * Input.GetAxis("Mouse Y") * -1*/, mousePosition.x / (Screen.width / 2) * rotateForce * Input.GetAxis("Mouse X") *-1, 0));
             Item.transform.rotation = Quaternion.Slerp(Item.transform.rotation, toAngle, Time.deltaTime * 50f);
 
         }
         //jest zawsze false poniwa¿ gdy podnosimy objekt to nie musimy siê do niego wracaæ by zobaczyæ go w pe³nej krasie 
         if (pickable)
+        {
             fromEQ = false;
+        }
 
 
 
@@ -104,7 +121,7 @@ public class Observation : MonoBehaviour
 
 
         //wychodzimy z trybu sprawdzania dowodów, dodatkowo nie przyciskiem w grze. A canvas po to by nie uruchamiaæ funkcji Exit, niepotrzebnie we wszsytkich dodowach 
-        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKey(KeyCode.Mouse1)) && canvas.active)
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKey(KeyCode.Mouse1)) && canvas.activeSelf)
         {
             buttonExit();
         }
@@ -124,14 +141,13 @@ public class Observation : MonoBehaviour
         {
 
             //obracamy sam model obiektu w kierunku kamery i przybli¿amy, to samo co gdy wyjmujemy obiekt z ekwipunl w BottomToggleShow funkcja consoleShowEvidenceNoEdit(). NIe robimy tego gdy canvasy s¹ w³¹czone, bo z ekwipynku obiekt jest ju¿ obrócony. kolejnoœæ wywo³ywania funkcji w OnMouseDown() jest wa¿na by zmienna lookat siê zgadza³a
-            if (obracable && !canvas.active)
+            if (obracable && !canvas.activeSelf)
             {
                 StartCoroutine(softRotateAt(cc.transform.position, 0.7f));
             }
 
             //pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy ze sceny/ miejsca
             fromEQ = false;
-
             observationStudy();
 
             //odpalamy animacje przygl¹dania sie dowodowi, kolejnoœæ wywo³ywania funkcji w OnMouseDown() jest wa¿na by zmienna lookat siê zgadza³a
@@ -175,7 +191,7 @@ public class Observation : MonoBehaviour
         scopes.lookBack();
 
         //niszczymy obiekt po wyœciu z obserwacji gdy jest do podniesienia. Canvas i sprawdzanie  pierwszego kafelka który w  ifie, poniewa¿  w podoszonych dowodach jest w³aœnie podniesieniem. Nie chcemy nisczyæ dowodu, na który nie patrzymy i niezbadaliœmy 
-        if (pickable && canvas.active && os.observationDownload(1, transform.root.name) == true)
+        if (pickable && canvas.activeSelf && os.observationDownload(1, transform.root.name) == true)
         {
             Destroy(this.gameObject);
         }
@@ -210,6 +226,8 @@ public class Observation : MonoBehaviour
         cc.boxCollider(panel.activeSelf);
 
     }
+
+
     //badanie observacji
     public void observationStudy()
     {

@@ -40,6 +40,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     const string LAYOUT_Tag = "layout";
     const string TIME_Tag = "time";
     const string OBSERVATION_Tag = "observation";
+    const string SKIP_Tag = "skip";
 
     GlobalManager gm;
     ObservationStorage os;
@@ -172,7 +173,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
             Debug.LogError("Nie ma takiego klucza w npcDialogueLine: "+ s);
         }
         //pobieramy tablice bool dowodu przed zmian¹ do buforu. 
-        Debug.Log(s+" <-NAZWA ZamananpcDialogueLine na true INDEX-> "+ i);
+        //Debug.Log(s+" <-NAZWA ZamananpcDialogueLine na true INDEX-> "+ i);
         bool[] observationArrayBufor = npcDialogueLine[s];
         //zminiamy odpowiedni indeks w buforze
         observationArrayBufor[i - 1] = true;
@@ -363,6 +364,11 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
                     os.observationUpdate(int.Parse(index), name);
                     bts.ObservationButtonUpdate();
                     break;
+                case SKIP_Tag:
+                    //if(currentStory.canContinue)
+                     Debug.Log("dzia³a |" + dialogueText.text + "|");
+                    ContinueStory();
+                    break;
                 default:
                     Debug.LogWarning("Tag came in but not currently being Handled: " + tag);
                     break;
@@ -370,11 +376,13 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
         }
 
         //Wykrywanko czy s¹ tagi, jeœli nie to ContinueStory();, S³uzy do skipowania pustych linijek dialogowych
+        /*
         if (currentTags.Count == 0)
         {
-           //Debug.Log("dzia³a |" + dialogueText.text + "|");
+           Debug.Log("dzia³a |" + dialogueText.text + "|");
             ContinueStory();
         }
+        */
     }
 
     void DisplayChoices()

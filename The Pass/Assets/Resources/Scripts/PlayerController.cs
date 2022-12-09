@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IDataPresistence
 {
@@ -20,8 +21,14 @@ public class PlayerController : MonoBehaviour, IDataPresistence
     //czas odejmowany od czasu wykonania kroku, gdy wciskamy shift (czyli tryb biegu) 
     public float shiftSpeed = 0.2f;
 
+
     CameraController cc;
 
+
+
+    void Awake()
+    {
+    }
     void Start()
     {
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
@@ -73,18 +80,50 @@ public class PlayerController : MonoBehaviour, IDataPresistence
 
     public void SaveData(ref GameData data)
     {
-        data.playerPosition = this.transform.position;
-        data.rotationX=transform.eulerAngles.x ;
-        data.rotationY=transform.eulerAngles.y ;
-        data.rotationZ=transform.eulerAngles.z ;
+ 
+        //zapisujemy pozycje na danej scenie
+        //Debug.Log("Ile?: " data.observationToSave.ContainsKey(i.ToString() + ":" + observationName) +" : "+ data.observationToSave.ContainsValue(observationDownload(i, observationName);
+        if (data.scenesPositionLoadedToSave.ContainsKey(SceneManager.GetActiveScene().name))
+        {
+            data.scenesPositionLoadedToSave.Remove(SceneManager.GetActiveScene().name);
+            data.scenesRotationLoadedToSave.Remove(SceneManager.GetActiveScene().name);
+        }
+        //Debug.Log("Ile?: " + i.ToString() + ":" + observationName);
+            data.scenesPositionLoadedToSave.Add(SceneManager.GetActiveScene().name, transform.root.position);
+            data.scenesRotationLoadedToSave.Add(SceneManager.GetActiveScene().name, transform.root.rotation);
+        
+
+
+        //data.playerPosition = this.transform.position;
         //data.playerRotation = this.transform.rotation;
         //Debug.Log("Seved in global manager = " + data.inGameTimeToSave);
     }
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.playerPosition;
-        transform.rotation = Quaternion.Euler(data.rotationX, data.rotationY, data.rotationZ);
+
+
+        //Debug.Log("Ile?: " data.observationToSave.ContainsKey(i.ToString() + ":" + observationName) +" : "+ data.observationToSave.ContainsValue(observationDownload(i, observationName);
+
+
+
+        //ładujemy zapsiana już wcześniej pozycje lub/else pozycje domyślną 
+        if (data.scenesPositionLoadedToSave.ContainsKey(SceneManager.GetActiveScene().name))
+        {
+            this.transform.position = data.scenesPositionLoadedToSave[SceneManager.GetActiveScene().name];
+            this.transform.rotation = data.scenesRotationLoadedToSave[SceneManager.GetActiveScene().name];
+        }
+        //Debug.Log("Ile?: " + i.ToString() + ":" + observationName);
+        else
+        {
+            this.transform.position = data.playerPosition;
+            this.transform.rotation = Quaternion.Euler(data.rotationX, data.rotationY, data.rotationZ);
+        }
+
+      
+
+
+       
         //this.transform.rotation = data.playerRotation;
         //Debug.Log("Loaded in global position = " + data.playerPosition);
     }

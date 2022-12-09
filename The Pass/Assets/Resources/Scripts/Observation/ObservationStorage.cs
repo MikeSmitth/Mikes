@@ -18,6 +18,9 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
     //Tworzymy s³ownik z dowodami/obserwacjami byœmy mogli je na bierz¹co dodawaæ i zmieniaæ je za poœrednictwem ich nazw. S³ownik sk³ada siê z nazwy dowodu i przypisanej do nazwy tablicy bool, która mówi nam czy kafelek jest odkryty czy nie.
     public Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
 
+    //S³ownik przechowywuj¹cy informacje kótre dowody w obserwacji mo¿emy pokazaæ graficznie, przydajue siê w momencie odpalania observacji z eq 
+    public Dictionary<string, bool[]> observationEQShow = new Dictionary<string, bool[]>();
+
 
     //public SerializabeleDictionary<string, bool> observationChangedToSave;
 
@@ -29,6 +32,7 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
         foreach (string observationName in observationList)
         {
             observation.Add(observationName, new bool[observationsSize]);
+            observationEQShow.Add(observationName, new bool[observationsSize]);
         }
     }
 
@@ -46,9 +50,11 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
                 if (data.observationToSave.ContainsKey(i.ToString() + ":" + observationName))
                 {
                     data.observationToSave.Remove(i.ToString() + ":" + observationName);
+                    data.observationEQShowToSave.Remove(i.ToString() + ":" + observationName);
                 }
                     //Debug.Log("Ile?: " + i.ToString() + ":" + observationName);
                     data.observationToSave.Add(i.ToString() + ":" + observationName, observationDownload(i, observationName));
+                    data.observationEQShowToSave.Add(i.ToString() + ":" + observationName, observationEQShowDownload(i, observationName));
                 }
         }
 
@@ -69,13 +75,20 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
                 //Debug.Log("observationToSave Kay: " + i.ToString() + ":" + observationName + " observation in Data: "+data.observationToSave[i.ToString() + ":" + observationName]);
                 if (data.observationToSave[i.ToString() + ":" + observationName]==true)
                 {
+                    //Debug.Log("Update: " + observationName + " Index: " + i);
                     observationUpdate(i, observationName);
+                    
 
                     //niszczonko podnaszalnych obiektów
-                    if(i==1 && obserationToDestroy.GetComponent<Observation>().pickable)
+                    if(i==1 && obserationToDestroy && obserationToDestroy.GetComponent<Observation>().pickable)
                     {
                         Destroy(obserationToDestroy);
                     }
+                }
+
+                if(data.observationEQShowToSave[i.ToString() + ":" + observationName] == true)
+                {
+                    observationEQShowUpdate(i, observationName);
                 }
             }
 
@@ -223,14 +236,74 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
         return observationArrayBufor;
     }
 
+
+
+    public void observationEQShowUpdate(int i, string s)
+    {
+        if (i <= 0)
+        {
+            Debug.LogError("Poda³eœ za ma³y index, minimum 1");
+            return;
+        }
+        else if (!observationEQShow.ContainsKey(s))
+        {
+            Debug.LogError("Nie ma takiego klucza w observationEQShow: " + s);
+            return;
+        }
+
+
+
+        
+        bool[] observationArrayBufor = observationEQShow[s];
+  
+        observationArrayBufor[i - 1] = true;
+
+        observationEQShow[s] = observationArrayBufor;
+
+
+
+        dm.DialogueLineUpdateFromObservation();
+
+
+    }
+
+ 
+    public bool observationEQShowDownload(int i, string s)
+    {
+
+        if (i == 0)
+        {
+            Debug.LogError("Poda³eœ za ma³y index, minimum 1");
+            return false;
+        }
+        else if (!observationEQShow.ContainsKey(s))
+        {
+            Debug.LogError("Nie ma takiego klucza w observationEQShow: " + s);
+            return false;
+        }
+
+        bool[] observationArrayBufor = new bool[20];
+        observationArrayBufor = observationEQShow[s];
+   
+        return observationArrayBufor[i - 1];
+    }
+
+    public bool[] observationEQShowArrayDownload(string s)
+    {
+        bool[] observationArrayBufor = new bool[20];
+        observationArrayBufor = observationEQShow[s];
+      
+        return observationArrayBufor;
+    }
+
     //wypisujemy uaktualnione dane w konsoli unity
     public void showObservationArray(string s)
     {
         int i = 0;
-        foreach (bool observation in observation[s])
+        foreach (bool observationEQShow in observationEQShow[s])
         {
             i++;
-            Debug.Log(s+": "+i + " " + observation);
+            Debug.Log(s+": "+i + " " + observationEQShow);
         }
 
     }
