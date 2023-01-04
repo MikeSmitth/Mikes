@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using Ink.Runtime;
-using UnityEngine.EventSystems;
-using Ink.UnityIntegration;
 
 public class DialogueTrigger : MonoBehaviour
 {

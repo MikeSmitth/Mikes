@@ -22,7 +22,6 @@ public class DoorConroller : MonoBehaviour
 
     void OnDoorwayOpen(int id)
     {
-        float speed = 10f * Time.deltaTime;
 
         //Debug.Log("OPEN door:" + tag + " id: " + id);
         if (id == this.doorId)
@@ -32,7 +31,6 @@ public class DoorConroller : MonoBehaviour
     }
     void OnDoorwayClose(int id)
     {
-        float speed = 10f * Time.deltaTime;
 
         //Debug.Log("OPEN door:" + tag + " id: " + id);
         if (id == this.doorId)

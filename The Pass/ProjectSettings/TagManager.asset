@@ -13,6 +13,7 @@ TagManager:
   - NPC
   - Door
   - DoorTrigger
+  - MonologueTrigger
   layers:
   - Default
   - TransparentFX

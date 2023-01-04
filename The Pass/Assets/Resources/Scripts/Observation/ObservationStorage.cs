@@ -69,6 +69,7 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
     {
         foreach (string observationName in observationList)
         {
+            
             GameObject obserationToDestroy = GameObject.Find(observationName);
             for (int i = 1; i <= observationsSize; i++)
             {

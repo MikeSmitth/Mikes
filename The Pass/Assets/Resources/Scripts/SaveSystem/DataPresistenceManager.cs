@@ -29,6 +29,7 @@ public class DataPresistenceManager : MonoBehaviour
     }
     private void Start()
     {
+        EventManager.current.onSaveGame += SaveGame;
         //Application.persistentDataPath oddaje standardowe miejsce na magazywnowanie danych w unity
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPresistenceObjects = FindAllDataPersistenceObjects();
@@ -69,6 +70,7 @@ public class DataPresistenceManager : MonoBehaviour
         //Debug.Log("Saved death count = " + gameData.inGameTimeToSave);
         dataHandler.Save(gameData);
     }
+
     private void OnApplicationQuit()
     {
        // SaveGame();
@@ -80,5 +82,10 @@ public class DataPresistenceManager : MonoBehaviour
         IEnumerable<IDataPresistence> dataPresistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPresistence>();
 
         return new List<IDataPresistence>(dataPresistenceObjects);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.onSaveGame -= SaveGame;
     }
 }

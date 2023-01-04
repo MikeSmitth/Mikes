@@ -165,12 +165,13 @@ public class Observation : MonoBehaviour
         //GameObject.Find("Item").transform.position = Vector3.MoveTowards(transform.position, cc.transform.position + cc.transform.forward * 2f, Time.deltaTime * 2);
     }
 
-    //Updatejtuje dane 
+    //Updatejtuje dane wywo³ywane naciœniêciem 
     public void observationName(Button number)
     {
         //Debug.Log("Up "+ Convert.ToInt32(number.name)+" "+ name);
 
-        //DODAJEMY CZAS PRZY ZBADANEJ OBSERVACJI!!!wraz z zabezpieczeniem, przed wielokrotym nabijaniem czasu przy klikaniu w odkryty przycisk
+        //DODAJEMY CZAS PRZY ZBADANEJ OBSERVACJI!!!wraz z zabezpieczeniem, przed wielokrotym nabijaniem czasu przy klikaniu w odkryty przycisk i nie mo¿na dodaæ czasu,
+        //jeœli obserwacja zosta³a zaktualizowana inn¹ drog¹, by nie naliczaæ niepotrzebnie czasu
         if (!os.observationDownload(Convert.ToInt32(number.name), name))
         {
             gm.SetTime(number.GetComponent<ObservationButton>().timeNeeded);

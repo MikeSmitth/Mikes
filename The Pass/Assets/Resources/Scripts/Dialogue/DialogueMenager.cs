@@ -41,6 +41,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     const string TIME_Tag = "time";
     const string OBSERVATION_Tag = "observation";
     const string SKIP_Tag = "skip";
+    string PREVIOUS_TEXT = "";
 
     GlobalManager gm;
     ObservationStorage os;
@@ -310,9 +311,16 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
         if (currentStory.canContinue)
         {
-            
-
-            dialogueText.text = currentStory.Continue();           
+            //PREVIOUS_TEXT = currentStory.currentText;
+            dialogueText.text = currentStory.Continue();
+            Debug.Log("dialogueText: " + dialogueText.text);
+            /*
+            if (PREVIOUS_TEXT == "")
+            {
+                PREVIOUS_TEXT = currentStory.currentText;
+            }
+            */
+            //Debug.Log("ContinueStory() PREVIOUS_TEXT|" + PREVIOUS_TEXT + "|");
             DisplayChoices();
             HandleTags(currentStory.currentTags);
         }
@@ -365,9 +373,22 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
                     bts.ObservationButtonUpdate();
                     break;
                 case SKIP_Tag:
-                    //if(currentStory.canContinue)
-                     Debug.Log("dzia³a |" + dialogueText.text + "|");
+
+                    //if (currentStory.canContinue)
+                    //{
+                    Debug.LogWarning("SKIPED TEXT: " + currentStory.currentText + " dla tagu: " + tagValue);
                     ContinueStory();
+
+                    //}
+                    /*
+                    if (currentStory.canContinue)
+                    {
+                        dialogueText.text = PREVIOUS_TEXT;
+                        currentStory.Continue();
+                        HandleTags(currentStory.currentTags);
+                        DisplayChoices();
+                    }
+                    */
                     break;
                 default:
                     Debug.LogWarning("Tag came in but not currently being Handled: " + tag);
