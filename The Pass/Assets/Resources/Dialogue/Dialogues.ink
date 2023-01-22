@@ -52,15 +52,17 @@ VAR indx=0
 
 ===  FirstMeetingBobMike ===
 #speaker:Bob #portrait:neutral #layout:right
-{CheckDialogueLine(bob,2,1)}
-{CheckDialogueLine(bob,9,2)}
+{CheckBobDialogueLine(2,1)}
+{CheckBobDialogueLine(9,2)}
 //{CheckDialogueLine(bob,11,3)} zmieniony jest w dialogu
-{CheckDialogueLine(bob,10,4)}
+{CheckBobDialogueLine(10,4)}
 
 {
 -dialogueline1==0: 
-{ChangeBobDialogueLine(2)}
 {ChangeMikeDialogueLine(2)}
+{ChangeBobDialogueLine(2)}
+//~changeDialogueLine = "false"
+
 #observation:OswaldEdwinFirstMeeting-1 #observation:OswaldEdwinFirstMeeting-2 #observation:OswaldEdwinFirstMeeting-3 #observation:OswaldEdwinFirstMeeting-4 
 #observation:OswaldEdwinCamp-1 #observation:OswaldEdwinCamp-2 #observation:OswaldEdwinCamp-3 #observation:OswaldEdwinCamp-4 #observation:OswaldEdwinCamp-5 #observation:OswaldEdwinCamp-9
 

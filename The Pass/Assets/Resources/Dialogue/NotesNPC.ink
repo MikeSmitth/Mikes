@@ -1,9 +1,9 @@
-2textB #bob:2 
-4textB #bob:4 
-4textM #mike:3 
+bob:2  #bob:2 
+bob:4  #bob:4 
+mike:2  #mike:2 
 
-2textB #bob:5 
-3textB #bob:6 
-3textB #bob:3 
-4textB #bob:7 
-4textM #mike:8
+bob:5  #bob:5 
+bob:6 #bob:6 
+bob:3 #bob:3 
+bob:7 #bob:7 
+mike:8 #mike:8

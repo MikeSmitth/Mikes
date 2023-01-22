@@ -43,7 +43,6 @@ public class ScopeTriggerStopOnTimeWithLoadScene : MonoBehaviour
         
         if (other.tag == "Player")
         {
-            //cc.Scope(scope);
             cc.interactiveDistance += interactiveDistanceBust;
             blocker.transform.position += new Vector3(0, 1f, 0);
             timeToStop += gm.inGameTime;
@@ -70,7 +69,7 @@ public class ScopeTriggerStopOnTimeWithLoadScene : MonoBehaviour
             Vector3 targetDirection = scopedObject.transform.position - other.transform.position;
 
             // The step size is equal to speed times frame time.
-            float singleStep = 1f * Time.deltaTime;
+            float singleStep = 1.5f * Time.deltaTime;
 
             // Rotate the forward vector towards the target direction by one step
             Vector3 newDirection = Vector3.RotateTowards(other.transform.forward, targetDirection, singleStep, 0.0f);
@@ -85,7 +84,7 @@ public class ScopeTriggerStopOnTimeWithLoadScene : MonoBehaviour
             if(directionDone == newDirection && allowToLookAt)
             {
                 //Debug.Log(" Lookat ");
-
+                cc.Scope(scope);
                 cc.lookAt(scopedObject.transform.position);
                 allowToLookAt = false;
                 cc.isLook = false;

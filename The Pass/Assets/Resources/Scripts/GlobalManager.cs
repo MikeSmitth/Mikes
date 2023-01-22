@@ -165,8 +165,10 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
 
 
                 //odkryliœmy i zauktoalizowaliœmy dialog line wiêc resetujemy zmienn¹              
-                currentstory.variablesState["changeDialogueLine"] = "false";
-                //Debug.Log("Po ZmianieJedenpo: " + name + " = " + dm.DialogueLineDownload(int.Parse(value.ToString()) + 1, name));
+                //currentstory.variablesState["changeDialogueLine"] = "false";
+
+
+                Debug.Log("Po ZmianieJedenpo: " + name + " = " + dm.DialogueLineDownload(int.Parse(value.ToString()) + 1, name));
             }
 
             //Mamy tu dodatkowy warunek w psotaci && int.Parse(value.ToString())!=0 poniewa¿ po wyzerowaniu "currentstory.variablesState[name] = 0;" funkcja wywo³ywa³a by siê w nieskoñczonoœæ, gdy¿ wywo³uje siê po zmianie dowolnej zmiennej,
@@ -175,7 +177,7 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
             {            
                 Debug.Log(name + " indx: " + int.Parse(value.ToString()) + "-" + dm.DialogueLineDownload(int.Parse(value.ToString()), name) + ": Nie zosta³a odkrta, bo: "+  variables["changeDialogueLine"].ToString());
                 currentstory.variablesState[name] = 0;
-                Debug.Log(name + ": "+ currentstory.variablesState[name] + " w currentstory : "+ currentstory.currentText);
+                //Debug.Log(name + ": "+ currentstory.variablesState[name] + " w currentstory : "+ currentstory.currentText);
                 //Debug.Log("1");
             }
 

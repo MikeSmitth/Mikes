@@ -41,7 +41,6 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     const string TIME_Tag = "time";
     const string OBSERVATION_Tag = "observation";
     const string SKIP_Tag = "skip";
-    string PREVIOUS_TEXT = "";
 
     GlobalManager gm;
     ObservationStorage os;
@@ -120,7 +119,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
             for (int i = 1; i <= dialogueLineSize; i++)
             {
                 //Debug.Log("observationToSave Kay: " + i.ToString() + ":" + observationName + " observation in Data: "+data.observationToSave[i.ToString() + ":" + observationName]);
-                if (data.dialogueLineToSave[i.ToString() + ":" + name] == true)
+                if (data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + name) && data.dialogueLineToSave[i.ToString() + ":" + name] == true)
                 {
                     DialogueLineUpdate(i, name);
                 }
@@ -313,7 +312,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
         {
             //PREVIOUS_TEXT = currentStory.currentText;
             dialogueText.text = currentStory.Continue();
-            Debug.Log("dialogueText: " + dialogueText.text);
+            //Debug.Log("dialogueText: " + dialogueText.text);
             /*
             if (PREVIOUS_TEXT == "")
             {

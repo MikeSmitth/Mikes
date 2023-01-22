@@ -74,7 +74,7 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
             for (int i = 1; i <= observationsSize; i++)
             {
                 //Debug.Log("observationToSave Kay: " + i.ToString() + ":" + observationName + " observation in Data: "+data.observationToSave[i.ToString() + ":" + observationName]);
-                if (data.observationToSave[i.ToString() + ":" + observationName]==true)
+                if (data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + observationName) && data.observationToSave[i.ToString() + ":" + observationName]==true)
                 {
                     //Debug.Log("Update: " + observationName + " Index: " + i);
                     observationUpdate(i, observationName);
@@ -87,7 +87,7 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
                     }
                 }
 
-                if(data.observationEQShowToSave[i.ToString() + ":" + observationName] == true)
+                if( data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + observationName) && data.observationEQShowToSave[i.ToString() + ":" + observationName] == true)
                 {
                     observationEQShowUpdate(i, observationName);
                 }

@@ -27,9 +27,71 @@ VAR dialogueline1 = 0
 VAR dialogueline2 = 0
 VAR dialogueline3 = 0
 VAR dialogueline4 = 0
+VAR indexBufor = 0
+
+=== function CheckMikeDialogueLine(index,line) ===
+
+~changeDialogueLine = "false"
+
+~mike = index 
+
+#skip:BUFOR1
+BUFOR1 
+#skip:BUFOR2
+BUFOR2 
+
+{dialogueLineEdit(mike,line)}
+
+
+
+//Bufor by INK mógł zareagować na zmiane zminnej gdy "changeDialogueLine" jest "false", a sama amienna nie  została odkryta
+
+=== function CheckBobDialogueLine(index,line) ===
+
+~changeDialogueLine = "false"
+
+~bob = index 
+
+#skip:BUFOR1
+BUFOR1 
+#skip:BUFOR2
+BUFOR2 
+
+{dialogueLineEdit(bob,line)}
+
+
+
+//Bufor by INK mógł zareagować na zmiane zminnej gdy "changeDialogueLine" jest "false", a sama amienna nie  została odkryta
+=== function dialogueLineEdit(index,line) ===
+
+{line:
+
+-1: 
+~dialogueline1 = index
+
+-2: 
+~dialogueline2 = index
+
+-3:
+~dialogueline3 = index
+
+-4: 
+~dialogueline4 = index
+
+-else:
+NIC SIĘ NIE STAŁO, ZŁY NR ZNIENNEJ dialogueline #skip:bufor
+}
+
+
+
+
+
+
+
 
 
 === function CheckDialogueLine(name,index,line) ===
+
 ~changeDialogueLine = "false"
 
 {name:
@@ -52,19 +114,39 @@ BUFOR1
 #skip:BUFOR2
 BUFOR2 
 
+
+
+
+{name:
+-bob: 
+~indexBufor = bob 
+
+-mike: 
+~indexBufor = mike
+
+-john:
+~indexBufor = john 
+
+-else:
+NIC SIĘ NIE STAŁO, ZŁY NR ZNIENNEJ name #skip:bufor
+}
+
+
+
+
 {line:
 
 -1: 
-~dialogueline1 = bob
+~dialogueline1 = indexBufor
 
 -2: 
-~dialogueline2 = bob
+~dialogueline2 = indexBufor
 
 -3:
-~dialogueline3 = bob
+~dialogueline3 = indexBufor
 
 -4: 
-~dialogueline4 = bob
+~dialogueline4 = indexBufor
 
 -else:
 NIC SIĘ NIE STAŁO, ZŁY NR ZNIENNEJ dialogueline #skip:bufor
@@ -73,6 +155,14 @@ NIC SIĘ NIE STAŁO, ZŁY NR ZNIENNEJ dialogueline #skip:bufor
 
 
 //Bufor by INK mógł zareagować na zmiane zminnej gdy "changeDialogueLine" jest "false", a sama amienna nie  została odkryta
+
+
+
+
+
+
+
+
 
 === function ChangeBobDialogueLine(index) ===
 

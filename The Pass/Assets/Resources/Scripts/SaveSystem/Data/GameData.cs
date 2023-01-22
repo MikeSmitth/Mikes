@@ -43,12 +43,12 @@ public class GameData
         //obseravationButtonActive = new SerializabeleDictionary<string, bool>();
 
         scenesPositionLoadedToSave = new SerializabeleDictionary<string, Vector3>();
-        scenesPositionLoadedToSave.Add("Scene1", new Vector3(502, 5, 478));
-        scenesPositionLoadedToSave.Add("Scene2", new Vector3(500, 3, 496));
+        scenesPositionLoadedToSave.Add("Scene1", new Vector3(248, 13, 234));
+        scenesPositionLoadedToSave.Add("Scene2", new Vector3(242, 3, 240));
         scenesPositionLoadedToSave.Add("Scene3", new Vector3(500, 1, 490));
 
         scenesRotationLoadedToSave = new SerializabeleDictionary<string, Quaternion>();
-        scenesRotationLoadedToSave.Add("Scene1", new Quaternion(0, 0, 0, 0));
+        scenesRotationLoadedToSave.Add("Scene1", new Quaternion(0, -0.7f, 0, 0.7f));     
         scenesRotationLoadedToSave.Add("Scene2", new Quaternion(0, 0, 0, 0));
         scenesRotationLoadedToSave.Add("Scene3", new Quaternion(0, 0, 0, 0));
         //scenesRotationLoadedToSave.Add("", new Quaternion());

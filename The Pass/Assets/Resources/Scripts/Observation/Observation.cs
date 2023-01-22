@@ -11,7 +11,7 @@ public class Observation : MonoBehaviour
     [SerializeField] float timeToDestroy = 0;
 
     //Jeœli observacja jest 
-    [Header("Observation Image Panel")]
+    [Header("Observation Panel")]
     [SerializeField] GameObject ObservationImagePanel;
 
 

@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637951307511157807
-    m_Hash: 3196762883
+      ticks: 638092432829457956
+    m_Hash: 3913674691
   m_LockFileStatus:
     m_FilePath: C:/Users/Mike/Documents/GitHub/Mikes/The Pass/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637951339568665154
-    m_Hash: 865794177
+      ticks: 638092432829537740
+    m_Hash: 4057609928
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -36,7 +36,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Editor
-  type: 
+  type: asset
   description: The Version Control package gives you the ability to use either Collaborate
     or Plastic SCM for Unity (beta) in the Unity editor. To use Plastic SCM for Unity
     (beta), a Plastic SCM subscription is required. Learn more about how you can
@@ -95,6 +95,8 @@ m_ResolvedPackages:
     - 1.17.0
     - 1.17.1
     - 1.17.2
+    - 1.17.6
+    - 1.17.7
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -136,6 +138,8 @@ m_ResolvedPackages:
     - 1.17.0
     - 1.17.1
     - 1.17.2
+    - 1.17.6
+    - 1.17.7
     - 2.0.0-preview.6
     - 2.0.0-preview.8
     - 2.0.0-preview.15
@@ -177,7 +181,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
@@ -192,12 +196,121 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.7.1
     nextVersion: 
-- packageId: com.unity.ide.rider@3.0.15
+- packageId: com.unity.formats.fbx@4.0.1
   testable: 0
   isDirectDependency: 1
-  version: 3.0.15
+  version: 4.0.1
   source: 1
-  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.ide.rider@3.0.15
+  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.formats.fbx@4.0.1
+  assetPath: Packages/com.unity.formats.fbx
+  name: com.unity.formats.fbx
+  displayName: FBX Exporter
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: "The Unity FBX Exporter package makes it easy to send geometry and
+    animation to any application that supports the FBX format and send them back
+    to Unity with minimal effort.\n\nIn particular, this round-trip workflow enables
+    you to export Unity Scenes to FBX files, import them into Autodesk\xAE Maya\xAE,
+    Autodesk\xAE Maya LT\u2122, or Autodesk\xAE 3ds Max\xAE using an artist-friendly
+    interface, export Unity-ready FBX geometry and animation, and safely merge your
+    changes back into those Assets to continue your work in Unity."
+  status: 4
+  errors: []
+  versions:
+    all:
+    - 2.0.1-preview.2
+    - 2.0.1-preview.3
+    - 2.0.1-preview.4
+    - 2.0.1-preview.5
+    - 2.0.1-preview.11
+    - 2.0.2-preview.1
+    - 2.0.3-preview.3
+    - 3.0.0-preview.2
+    - 3.0.1-preview.2
+    - 3.1.0-preview.1
+    - 3.2.0-preview.2
+    - 3.2.1-preview.2
+    - 4.0.0-pre.1
+    - 4.0.0-pre.4
+    - 4.0.1
+    - 4.1.0-pre.2
+    - 4.1.0
+    - 4.1.1
+    - 4.1.2
+    - 4.1.3
+    - 4.2.0-pre.1
+    - 4.2.0
+    - 4.2.1
+    - 5.0.0-pre.1
+    compatible:
+    - 4.0.1
+    - 4.1.0-pre.2
+    - 4.1.0
+    - 4.1.1
+    - 4.1.2
+    - 4.1.3
+    - 4.2.0-pre.1
+    - 4.2.0
+    - 4.2.1
+    - 5.0.0-pre.1
+    verified: 4.0.1
+  dependencies:
+  - name: com.unity.timeline
+    version: 1.0.0
+  - name: com.autodesk.fbx
+    version: 4.0.1
+  resolvedDependencies:
+  - name: com.unity.timeline
+    version: 1.7.1
+  - name: com.unity.modules.director
+    version: 1.0.0
+  - name: com.unity.modules.audio
+    version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.modules.particlesystem
+    version: 1.0.0
+  - name: com.autodesk.fbx
+    version: 4.0.1
+  keywords:
+  - fbx
+  - animation
+  - modeling
+  - maya
+  - max
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hasRegistry: 1
+  hideInEditor: 0
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637510995250000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: git+https://github.com/Unity-Technologies/com.unity.formats.fbx.git
+    revision: 453f9888c14cc98664b7c296cf297f2956ca573e
+    path: 
+  unityLifecycle:
+    version: 4.0.1
+    nextVersion: 
+- packageId: com.unity.ide.rider@3.0.18
+  testable: 0
+  isDirectDependency: 1
+  version: 3.0.18
+  source: 1
+  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.ide.rider@3.0.18
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -206,7 +319,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: The JetBrains Rider Editor package provides an integration for using
     the JetBrains Rider IDE as a code editor for Unity. It adds support for generating
     .csproj files for code completion and auto-discovery of installations.
@@ -245,6 +358,9 @@ m_ResolvedPackages:
     - 3.0.13
     - 3.0.14
     - 3.0.15
+    - 3.0.16
+    - 3.0.17
+    - 3.0.18
     compatible:
     - 3.0.7
     - 3.0.9
@@ -253,7 +369,10 @@ m_ResolvedPackages:
     - 3.0.13
     - 3.0.14
     - 3.0.15
-    verified: 3.0.15
+    - 3.0.16
+    - 3.0.17
+    - 3.0.18
+    verified: 3.0.18
   dependencies:
   - name: com.unity.ext.nunit
     version: 1.0.6
@@ -269,27 +388,27 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637914298700000000
-  documentationUrl: 
+  datePublishedTicks: 638088746970000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.rider@3.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: b61ff0378932fdf03b5891e09c91728337de674c
+    revision: b40b39e6834c2915637f431d002d1f3dd8ec9ce5
     path: 
   unityLifecycle:
     version: 3.0.7
     nextVersion: 
-- packageId: com.unity.ide.visualstudio@2.0.16
+- packageId: com.unity.ide.visualstudio@2.0.17
   testable: 0
   isDirectDependency: 1
-  version: 2.0.16
+  version: 2.0.17
   source: 1
-  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.ide.visualstudio@2.0.16
+  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.ide.visualstudio@2.0.17
   assetPath: Packages/com.unity.ide.visualstudio
   name: com.unity.ide.visualstudio
   displayName: Visual Studio Editor
@@ -298,7 +417,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: Code editor integration for supporting Visual Studio as code editor
     for unity. Adds support for generating csproj files for intellisense purposes,
     auto discovery of installations, etc.
@@ -325,6 +444,7 @@ m_ResolvedPackages:
     - 2.0.14
     - 2.0.15
     - 2.0.16
+    - 2.0.17
     compatible:
     - 2.0.9
     - 2.0.11
@@ -332,13 +452,14 @@ m_ResolvedPackages:
     - 2.0.14
     - 2.0.15
     - 2.0.16
-    verified: 2.0.16
+    - 2.0.17
+    verified: 2.0.17
   dependencies:
   - name: com.unity.test-framework
     version: 1.1.9
   resolvedDependencies:
   - name: com.unity.test-framework
-    version: 1.1.31
+    version: 1.1.33
   - name: com.unity.ext.nunit
     version: 1.0.6
   - name: com.unity.modules.imgui
@@ -354,17 +475,17 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637914298680000000
-  documentationUrl: 
+  datePublishedTicks: 638059987360000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.visualstudio@2.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.visualstudio.git
-    revision: c01855ef6461b821ab0226135e96a4ee86de96be
+    revision: 1f126893bfb18ea9661fb15771613e841467073c
     path: 
   unityLifecycle:
     version: 2.0.9
@@ -383,7 +504,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: Code editor integration for supporting Visual Studio Code as code
     editor for unity. Adds support for generating csproj files for intellisense purposes,
     auto discovery of installations, etc.
@@ -420,7 +541,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
@@ -435,12 +556,189 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.2.3
     nextVersion: 
-- packageId: com.unity.test-framework@1.1.31
+- packageId: com.unity.postprocessing@3.1.1
   testable: 0
   isDirectDependency: 1
-  version: 1.1.31
+  version: 3.1.1
   source: 1
-  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.test-framework@1.1.31
+  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.postprocessing@3.1.1
+  assetPath: Packages/com.unity.postprocessing
+  name: com.unity.postprocessing
+  displayName: Post Processing
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: The post-processing stack (v2) comes with a collection of effects
+    and image filters you can apply to your cameras to improve the visuals of your
+    games.
+  status: 4
+  errors: []
+  versions:
+    all:
+    - 0.1.7
+    - 0.1.8
+    - 2.0.0-beta
+    - 2.0.1-beta
+    - 2.0.2-preview
+    - 2.0.3-preview
+    - 2.0.5-preview
+    - 2.0.7-preview
+    - 2.0.8-preview
+    - 2.0.9-preview
+    - 2.0.10-preview
+    - 2.0.11-preview
+    - 2.0.12-preview
+    - 2.0.13-preview
+    - 2.0.14-preview
+    - 2.0.15-preview
+    - 2.0.16-preview
+    - 2.0.17-preview
+    - 2.1.0
+    - 2.1.1
+    - 2.1.2
+    - 2.1.3
+    - 2.1.4
+    - 2.1.5
+    - 2.1.6
+    - 2.1.7
+    - 2.2.1
+    - 2.2.2
+    - 2.3.0
+    - 3.0.1
+    - 3.0.3
+    - 3.1.0
+    - 3.1.1
+    - 3.2.0
+    - 3.2.1
+    - 3.2.2
+    compatible:
+    - 3.1.1
+    - 3.2.0
+    - 3.2.1
+    - 3.2.2
+    verified: 3.1.1
+  dependencies:
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hasRegistry: 1
+  hideInEditor: 0
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637576678760000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: git+https://github.com/Unity-Technologies/Graphics.git
+    revision: 075b452f2c4bf910a168632b3cedbd6835477ddd
+    path: 
+  unityLifecycle:
+    version: 3.1.1
+    nextVersion: 
+- packageId: com.unity.terrain-tools@3.0.2-preview.3
+  testable: 0
+  isDirectDependency: 1
+  version: 3.0.2-preview.3
+  source: 1
+  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.terrain-tools@3.0.2-preview.3
+  assetPath: Packages/com.unity.terrain-tools
+  name: com.unity.terrain-tools
+  displayName: Terrain Tools
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: The Terrain Tools package adds additonal terrain sculpting brushes
+    and tools to your project to help create stunning terrain assets and ease the
+    workflows.
+  status: 4
+  errors: []
+  versions:
+    all:
+    - 1.1.2-preview
+    - 1.1.4-preview
+    - 2.0.0-preview
+    - 2.0.1-preview
+    - 2.0.2-preview
+    - 3.0.0-preview
+    - 3.0.1-preview
+    - 3.0.2-preview.2
+    - 3.0.2-preview.3
+    - 4.0.0-pre.2
+    - 4.0.0
+    - 4.0.3
+    - 5.0.0-pre.2
+    - 5.0.0-pre.3
+    - 5.0.0-pre.4
+    - 5.0.1
+    - 5.0.2
+    - 5.1.0-pre.1
+    compatible:
+    - 1.1.2-preview
+    - 1.1.4-preview
+    - 2.0.0-preview
+    - 2.0.1-preview
+    - 2.0.2-preview
+    - 3.0.0-preview
+    - 3.0.1-preview
+    - 3.0.2-preview.2
+    - 3.0.2-preview.3
+    verified: 
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - Terrain
+  - Brush
+  - Toolbox
+  - Mask
+  - Filter
+  - Noise
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hasRegistry: 1
+  hideInEditor: 0
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637405549500000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: git+https://github.com/Unity-Technologies/TerrainTools.git
+    revision: 76c6077597a43827f933b02c7db9ca819c74588e
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
+- packageId: com.unity.test-framework@1.1.33
+  testable: 0
+  isDirectDependency: 1
+  version: 1.1.33
+  source: 1
+  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.unity.test-framework@1.1.33
   assetPath: Packages/com.unity.test-framework
   name: com.unity.test-framework
   displayName: Test Framework
@@ -449,7 +747,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Unity Test Framework
-  type: 
+  type: asset
   description: Test framework for running Edit mode and Play mode tests in Unity.
   status: 4
   errors: []
@@ -489,7 +787,11 @@ m_ResolvedPackages:
     - 1.1.30
     - 1.1.31
     - 1.1.33
+    - 1.3.0
+    - 1.3.1
+    - 1.3.2
     - 2.0.1-exp.1
+    - 2.0.1-exp.2
     - 2.0.1-pre.12
     - 2.0.1-pre.18
     compatible:
@@ -498,7 +800,11 @@ m_ResolvedPackages:
     - 1.1.30
     - 1.1.31
     - 1.1.33
+    - 1.3.0
+    - 1.3.1
+    - 1.3.2
     - 2.0.1-exp.1
+    - 2.0.1-exp.2
     - 2.0.1-pre.12
     - 2.0.1-pre.18
     verified: 1.1.33
@@ -527,17 +833,17 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637804266210000000
+  datePublishedTicks: 637938212700000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/com.unity.test-framework.git
-    revision: 438b0defc147c9be5c969ca79ff03a722b4590ed
+    revision: 34a4d423d64926635eb36d3bb86276179cc186e1
     path: 
   unityLifecycle:
     version: 1.1.27
@@ -556,7 +862,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Text Rendering
-  type: 
+  type: asset
   description: 'TextMeshPro is the ultimate text solution for Unity. It''s the perfect
     replacement for Unity''s UI Text and the legacy Text Mesh.
 
@@ -664,12 +970,14 @@ m_ResolvedPackages:
     - 3.2.0-pre.1
     - 3.2.0-pre.2
     - 3.2.0-pre.3
+    - 3.2.0-pre.4
     - 4.0.0-pre.1
     compatible:
     - 3.0.6
     - 3.2.0-pre.1
     - 3.2.0-pre.2
     - 3.2.0-pre.3
+    - 3.2.0-pre.4
     verified: 3.0.6
   dependencies:
   - name: com.unity.ugui
@@ -695,7 +1003,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
@@ -724,7 +1032,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: Use Unity Timeline to create cinematic content, game-play sequences,
     audio sequences, and complex particle effects.
   status: 4
@@ -803,6 +1111,8 @@ m_ResolvedPackages:
     - 1.7.0-pre.2
     - 1.7.0
     - 1.7.1
+    - 1.7.2
+    - 1.8.0
     compatible:
     - 1.5.6
     - 1.5.7
@@ -818,6 +1128,8 @@ m_ResolvedPackages:
     - 1.7.0-pre.2
     - 1.7.0
     - 1.7.1
+    - 1.7.2
+    - 1.8.0
     verified: 1.5.7
   dependencies:
   - name: com.unity.modules.director
@@ -851,7 +1163,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
@@ -2784,7 +3096,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Libraries
-  type: 
+  type: asset
   description: Custom version of the nunit package build to work with Unity. Used
     by the Unity Test Framework.
   status: 4
@@ -2818,7 +3130,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0
@@ -2832,6 +3144,90 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 1.0.6
+    nextVersion: 
+- packageId: com.autodesk.fbx@4.0.1
+  testable: 0
+  isDirectDependency: 0
+  version: 4.0.1
+  source: 1
+  resolvedPath: C:\Users\Mike\Documents\GitHub\Mikes\The Pass\Library\PackageCache\com.autodesk.fbx@4.0.1
+  assetPath: Packages/com.autodesk.fbx
+  name: com.autodesk.fbx
+  displayName: Autodesk FBX SDK for Unity
+  author:
+    name: Unity
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: "This package provides Unity C# bindings to the Autodesk\xAE FBX\xAE
+    SDK."
+  status: 4
+  errors: []
+  versions:
+    all:
+    - 2.0.0-preview
+    - 2.0.0-preview.4
+    - 2.0.0-preview.5
+    - 2.0.0-preview.6
+    - 2.0.0-preview.7
+    - 2.0.1-preview.1
+    - 3.0.0-preview.1
+    - 3.0.1-preview.1
+    - 3.1.0-preview.1
+    - 3.1.0-preview.2
+    - 4.0.0-pre.1
+    - 4.0.0-pre.2
+    - 4.0.1
+    - 4.1.0-pre.1
+    - 4.1.0
+    - 4.1.1
+    - 4.1.2
+    - 4.2.0-pre.1
+    - 4.2.0
+    - 4.2.1
+    - 5.0.0-pre.1
+    compatible:
+    - 4.0.1
+    - 4.1.0-pre.1
+    - 4.1.0
+    - 4.1.1
+    - 4.1.2
+    - 4.2.0-pre.1
+    - 4.2.0
+    - 4.2.1
+    - 5.0.0-pre.1
+    verified: 4.0.1
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - fbx
+  - animation
+  - modeling
+  - maya
+  - max
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hasRegistry: 1
+  hideInEditor: 0
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637510995090000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: git+https://github.com/Unity-Technologies/com.autodesk.fbx.git
+    revision: 3b923c5eaa7b71ef28f6b879559339c84e6f1b10
+    path: 
+  unityLifecycle:
+    version: 4.0.1
     nextVersion: 
 - packageId: com.unity.services.core@1.0.1
   testable: 0
@@ -2847,7 +3243,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: 'This package defines common components used by multiple Game Service
     packages.
 
@@ -2871,6 +3267,10 @@ m_ResolvedPackages:
     - 1.4.0
     - 1.4.1
     - 1.4.2
+    - 1.4.3
+    - 1.5.2
+    - 1.6.0
+    - 1.7.0
     compatible:
     - 1.0.1
     - 1.1.0-pre.7
@@ -2886,6 +3286,10 @@ m_ResolvedPackages:
     - 1.4.0
     - 1.4.1
     - 1.4.2
+    - 1.4.3
+    - 1.5.2
+    - 1.6.0
+    - 1.7.0
     verified: 1.0.1
   dependencies:
   - name: com.unity.modules.unitywebrequest
@@ -2902,7 +3306,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
   hasRegistry: 1
-  hideInEditor: 1
+  hideInEditor: 0
   entitlements:
     isAllowed: 1
   isAssetStorePackage: 0

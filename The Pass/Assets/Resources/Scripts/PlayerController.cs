@@ -4,12 +4,16 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerController : MonoBehaviour, IDataPresistence
 {
     //czy gracz jest w trakcie ruchu
     bool isMoving;
     //czy gracz jest w trakcie obrotu
     bool isRotating;
+
+    FootstepSwapper fs;
+
     //współżędne 3D pozycji aktualnej i docelowej.
     private Vector3 origPos, targetPos;
     //czas wykonania jednego kroku
@@ -22,6 +26,9 @@ public class PlayerController : MonoBehaviour, IDataPresistence
     public float shiftSpeed = 0.2f;
 
 
+
+    [SerializeField] private List<AudioClip> FootstepSounds = new List<AudioClip>();
+    AudioSource PlayerSoundSource;
     CameraController cc;
 
 
@@ -31,6 +38,8 @@ public class PlayerController : MonoBehaviour, IDataPresistence
     }
     void Start()
     {
+        fs = GetComponent<FootstepSwapper>();
+        PlayerSoundSource = GetComponent<AudioSource>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
     }
     //Instrukcia wykonywana co kaltkę 
@@ -74,10 +83,43 @@ public class PlayerController : MonoBehaviour, IDataPresistence
             if (Input.GetKey("q"))
             {
                 StartCoroutine(RotateM(Vector3.up * -90, 0.8f));
+
             }
         }
-    }
 
+
+        PlayFootStepAudio();
+    }
+    public void SwapFootsteps(FootstepCollection collection)
+    {
+        FootstepSounds.Clear();
+        for(int i=0; i < collection.footstepSounds.Count;i++)
+        {
+            FootstepSounds.Add(collection.footstepSounds[i]);
+        }
+
+    }
+    private void PlayFootStepAudio()
+    {
+
+        fs.CheckLayers();
+        if((!isMoving&&!isRotating) || PlayerSoundSource.isPlaying)
+        {
+            return;
+        }
+        //Niebierzeby indexu 0pod uwagę, ponieważ niżej urzywamy go by nie powtarzać dźwięków 
+        int n = Random.Range(1, FootstepSounds.Count);
+        PlayerSoundSource.clip = FootstepSounds[n];
+
+        //lewa prawa stopa *-1 
+        PlayerSoundSource.panStereo = PlayerSoundSource.panStereo * -1;
+
+        PlayerSoundSource.PlayOneShot(PlayerSoundSource.clip);
+
+        FootstepSounds[n] = FootstepSounds[0];
+        FootstepSounds[0] = PlayerSoundSource.clip;
+
+    }
     public void SaveData(ref GameData data)
     {
  
