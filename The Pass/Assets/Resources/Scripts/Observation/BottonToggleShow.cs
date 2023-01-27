@@ -92,8 +92,15 @@ public class BottonToggleShow : MonoBehaviour
 
 
         //Jesli obiekt jest ju¿ na scenie, to nie tworzymy nowego 
-      
-        if (!GameObject.Find(dropdown.options[dropdown.value].text))
+
+
+        if (dropdown.options.Count <= 0)
+        {
+            Debug.LogWarning("ObservationArray = 0");
+            return;
+        }
+
+            if (!GameObject.Find(dropdown.options[dropdown.value].text))
         {
             //tworzymy obiekt z folderu resources 
             GameObject.Instantiate((UnityEngine.Object)Resources.Load("Observations/" + dropdown.options[dropdown.value].text));

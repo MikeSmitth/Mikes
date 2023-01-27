@@ -14,7 +14,6 @@ public class ObservationButton : MonoBehaviour
     //tworzymy zminn¹, która ma przechowywaæ s³ownik/dane z obserwacjami o nazwie ObservationStorage
     ObservationStorage os;
 
-
     DialogueMenager dm;
 
     Observation ob;
@@ -49,10 +48,10 @@ public class ObservationButton : MonoBehaviour
         // Debug.Log(name+" arrow: " + arrows.Length);
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         ob = transform.root.GetComponent<Observation>();  
-        dm = GameObject.Find("Managers").GetComponent<DialogueMenager>();
+        dm = GameObject.Find("Managers").GetComponent<DialogueMenager>();      
 
         //Zabezpiecznie przed wyœwietlaniem w nieistniej¹cym kafelku
-        if(timeText)
+        if (timeText)
         {
             timeText.text = timeNeeded.ToString();
         }
@@ -86,7 +85,7 @@ public class ObservationButton : MonoBehaviour
 
         //pobieramy obserwacje PATRZ!!! FUNKCJA observationDownload SKRYPT ObservationStorage z funkcji boolowskiej powyrzej !!! nazwa kafelka odpowiada indeksowi dlatego zmianiamy ja na wartoœæ INT 
         //ten if jest potrzebny gdy¿ po klikniêciu na obserwacje pierwszy kafelek jest domyœlnie pokazany na ekranie(ale jeszcze nie odkryty, nie ustawiony na TRUE), a reszta zakryta
-        if ((observationFromWhat() == false) && (Convert.ToInt32(name)) != 1)
+        if ((observationFromWhat() == false) && (Convert.ToInt32(name)) != 1 && !os.observationEQShowDownload((Convert.ToInt32(name)), transform.root.name) == true)
         {
             //Debug.Log(" Ale zadzia³a³o dla: " +(Convert.ToInt32(name)) + " <- dowód z obserwacji ->(wy³¹czony) " + transform.root.name + " Poniewa¿ false==" + observationFromWhat() );
             //nie wy³¹czamy dowodów(za drugim wejœciu w badanie obserwacji, bo w innym przypadku znikaj¹) jeœli jest przegl¹dane z EQ 
@@ -105,7 +104,7 @@ public class ObservationButton : MonoBehaviour
             //Debug.Log(ob.fromScript + " <-- From script ");
             GetComponent<Button>().onClick.Invoke();
             //ob.fromScript = false;
-            GetComponent<Image>().color = new Color32(212, 212, 212, 255);
+            //GetComponent<Image>().color = new Color32(212, 212, 212, 255);
 
             //Funkcja pokazuj¹ca przypisane strza³ki. Poni¿ej 
 
@@ -132,6 +131,7 @@ public class ObservationButton : MonoBehaviour
     public void setButton()
     {
 
+        //Debug.Log("if");
         if (!fromEQ())
         {
             os.observationEQShowUpdate((Convert.ToInt32(name)), transform.root.name);
@@ -151,6 +151,7 @@ public class ObservationButton : MonoBehaviour
                 {
                     if (os.observationDownload(observationOrDialogueIndexes[i], name) == true)
                     {
+                        Debug.Log("os.observationDownload: " + name + " o indexie " + i + " :  " + os.observationDownload(observationOrDialogueIndexes[i], name) + " == true");
                         gameObject.SetActive(true);
                     }
                     //Debug.Log("os.observationDownload: "+ name+" o indexie "+i+" :  " + os.observationDownload(observationOrDialogueIndexes[i], name)+ " == false");

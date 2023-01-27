@@ -17,6 +17,7 @@ public class FileDataHandler
 
     public GameData Load()
     {
+        //Debug.Log("works");
         //Urzywamy Path.Combine poniewa¿ ró¿ne OS'y maj¹ ró¿ne separatory œcie¿ek "/"
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         GameData loadedData = null;

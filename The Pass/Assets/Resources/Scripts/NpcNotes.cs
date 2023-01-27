@@ -105,13 +105,15 @@ public class NpcNotes : MonoBehaviour
 
     }
 
-    //pokazuje dowód z pamiêci ekwipunku, nie masz mo¿liwoœci edyzji 
+    //pokazuje dowód z pamiêci ekwipunku, nie masz mo¿liwoœci edycji 
     public void showNPCNotes()
-    {       
+    {
+        //Debug.Log("1");
         var dropdownName = transform.GetComponent<Dropdown>();
         //var dropdownNotes = GameObject.Find("DropdownNPCNotes").transform.GetComponent<TMP_Dropdown>();
         bool[] dialogueLineBoolArray;
         List<string> items = new List<string>();
+       // Debug.Log("2");
         currentStory = new Story(currentNPCNotesJSON.text);
 
         string tagKey = "";
@@ -127,9 +129,21 @@ public class NpcNotes : MonoBehaviour
 
 
         int i= 1;
-            //Debug.Log(dialogue.Key);
-        dialogueLineBoolArray = dm.DialogueLineArrayDownload(dropdownName.options[dropdownName.value].text);
-       // Debug.Log("D³ugoœæ dialogueLineBoolArray: " + dialogueLineBoolArray.Length);
+        //Debug.Log(dialogue.Key);
+       
+       
+        //Debug.Log("3");
+        if ( dropdownName.options.Count > 0 &&dm.npcDialogueLine.ContainsKey(dropdownName.options[dropdownName.value].text))
+        {
+            //Debug.Log("4");
+            dialogueLineBoolArray = dm.DialogueLineArrayDownload(dropdownName.options[dropdownName.value].text);
+        }
+        else
+        {
+            Debug.LogWarning("DialogueLineArray = 0");
+            return;
+        }
+       // Debug.Log("5");
         foreach (bool dialogueLineBool in dialogueLineBoolArray)
             {
 

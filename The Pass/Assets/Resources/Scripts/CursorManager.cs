@@ -22,7 +22,7 @@ public class CursorManager : MonoBehaviour
     {
        if (cc.hitTag().tag == "MonologueTrigger" || cc.hitTag().tag == "Interactive" || cc.hitTag().tag == "NPC")
         {
-            Debug.Log("Interactive");
+            //Debug.Log("Interactive");
             Cursor.SetCursor(cursorTexturesInteractive, Vector2.zero, CursorMode.ForceSoftware);
         }
        else

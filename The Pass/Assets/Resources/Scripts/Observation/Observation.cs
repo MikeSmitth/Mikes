@@ -14,9 +14,15 @@ public class Observation : MonoBehaviour
     [Header("Observation Panel")]
     [SerializeField] GameObject ObservationImagePanel;
 
+    [Header("Pin Sound")]
+    [SerializeField] public AudioClip PinSound;
 
+    [Header("Observation UI")]
     public GameObject canvas;
     public GameObject panel;
+    //pobiera on model samego dowodu by móc nim manipulowaæ 
+    public GameObject Item;
+
     GameObject GameUI;
     //public Animator scopesAnimator;
     int whatScope;
@@ -25,8 +31,7 @@ public class Observation : MonoBehaviour
     CameraController cc;
     BottonToggleShow bt;
     GlobalManager gm;
-
-
+    [Header("Observation Settings")]
     //Wa¿ne!!! Zmiena sprawdzaj¹ca czy badamy dowód z ekwipunku, jeœli tak to z regu³y nie mo¿emy edytowaæ. Jest ona sprawdzana w skrypcie ObservationButtons i edytowana w Observation.
     public bool fromEQ = false;
     //Zmiena plikuj¹ca przyblizanie siê dowodu do kamery, by nie by³a sytuacji w której szybko klikamy interakcje i z niej wychodzimy, a animacja siê blokuje 
@@ -44,8 +49,7 @@ public class Observation : MonoBehaviour
 
     // chyba nei potrzebne
     //public GameObject pickableObservation;
-    //pobiera on model samego dowodu by móc nim manipulowaæ 
-    public GameObject Item;
+    
 
 
 
@@ -71,6 +75,7 @@ public class Observation : MonoBehaviour
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();       
         bt = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();
+        gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
         gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
     }
 

@@ -10,7 +10,13 @@ public class SoundsManager : MonoBehaviour
     {
         EQSoundSource = GetComponent<AudioSource>();
     }
-
+    public void PlaySoundClip(AudioClip audioClip)
+    {
+        if (!EQSoundSource.isPlaying)
+        {
+            EQSoundSource.PlayOneShot(audioClip);
+        }
+    }
     public void PlayEQSound()
     {
         //Debug.Log("Sema");

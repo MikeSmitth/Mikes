@@ -41,7 +41,7 @@ VAR indx=0
          ->END
         -else:
          ~indx=indx+1
-         {CheckDialogueLine(bob,indx,1)}
+         {CheckBobDialogueLine(indx,1)}
          }
 
 }

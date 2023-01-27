@@ -48,7 +48,7 @@ public class FootstepSwapper : MonoBehaviour
                 pc.SwapFootsteps(collection);
             }
         }
-        Debug.Log("Terrain: " + currentLayer);
+        //Debug.Log("Terrain: " + currentLayer);
     }
     // Update is called once per frame
     void Update()

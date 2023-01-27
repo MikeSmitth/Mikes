@@ -13,7 +13,7 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
     [SerializeField] string[] observationList;
     [SerializeField] int observationsSize=20;
     DialogueMenager dm;
-
+    ButtonManager bm;
 
     //Tworzymy s³ownik z dowodami/obserwacjami byœmy mogli je na bierz¹co dodawaæ i zmieniaæ je za poœrednictwem ich nazw. S³ownik sk³ada siê z nazwy dowodu i przypisanej do nazwy tablicy bool, która mówi nam czy kafelek jest odkryty czy nie.
     public Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
@@ -27,6 +27,7 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
     private void Awake()
     {
         dm = GameObject.Find("Managers").GetComponent<DialogueMenager>();
+        bm = GameObject.Find("Managers").GetComponent<ButtonManager>();
         //ustalamy ile wyborów mo¿e mieæ dany dowód. 20 u nas
         //dodajemy dowód/obserwacje
         foreach (string observationName in observationList)
@@ -67,16 +68,18 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
     //Wczytywanko dancyh z pliku do dictionary
     public void LoadData(GameData data)
     {
+        //Debug.Log("works");
         foreach (string observationName in observationList)
         {
             
             GameObject obserationToDestroy = GameObject.Find(observationName);
             for (int i = 1; i <= observationsSize; i++)
             {
-                //Debug.Log("observationToSave Kay: " + i.ToString() + ":" + observationName + " observation in Data: "+data.observationToSave[i.ToString() + ":" + observationName]);
-                if (data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + observationName) && data.observationToSave[i.ToString() + ":" + observationName]==true)
+                //Debug.Log("observationToSave Kay> " + i.ToString() + ":" + observationName + " observation in Data> "+data.observationToSave[i.ToString() + ":" + observationName]);
+                //Debug.Log("Noup or Yez: " + data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + observationName) + " > "+ i.ToString() + ":" + observationName);
+                if (data.observationToSave.ContainsKey(i.ToString() + ":" + observationName) && data.observationToSave[i.ToString() + ":" + observationName]==true)
                 {
-                    //Debug.Log("Update: " + observationName + " Index: " + i);
+                    //Debug.Log("Update observationToSave: " + observationName + " Index: " + i);
                     observationUpdate(i, observationName);
                     
 
@@ -87,8 +90,9 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
                     }
                 }
 
-                if( data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + observationName) && data.observationEQShowToSave[i.ToString() + ":" + observationName] == true)
+                if( data.observationEQShowToSave.ContainsKey(i.ToString() + ":" + observationName) && data.observationEQShowToSave[i.ToString() + ":" + observationName] == true)
                 {
+                   // Debug.Log("Update observationEQShowToSave: " + observationName + " Index: " + i);
                     observationEQShowUpdate(i, observationName);
                 }
             }
@@ -146,9 +150,10 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
         observation[s] = observationArrayBufor;
 
 
-        //Aktualizujemy tablice dziennik dialogue line za posrednictwen observacji, jeœli oczywiœcie funkcja coœ takigo wykryje 
+        //Aktualizujemy tablice dziennik dialogue line za posrednictwen observacji I wydajemy dŸwiêki odkrytego przycisku w innej obserwacji, jeœli oczywiœcie funkcja coœ takigo wykryje 
         //Jest wywo³ywana observation storage za ka¿dym razem gdy observacje s¹ aktualizowane KOLEJNOŒÆ WA¯NA, PO AKTUALIZACJI OBSERWACJI
         dm.DialogueLineUpdateFromObservation();
+        bm.UpdateButtonSound(s,i);
 
 
         //Debug.Log("Set: " + shoePrint[i-1]);
@@ -260,8 +265,6 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
         observationArrayBufor[i - 1] = true;
 
         observationEQShow[s] = observationArrayBufor;
-
-
 
         dm.DialogueLineUpdateFromObservation();
 

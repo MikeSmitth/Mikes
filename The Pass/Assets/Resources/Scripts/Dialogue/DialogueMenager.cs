@@ -11,6 +11,9 @@ using UnityEngine.EventSystems;
 
 public class DialogueMenager : MonoBehaviour, IDataPresistence
 {
+    [Header("Menu")]
+    [SerializeField] GameObject menu;
+
     [Header("Dialogue UI")]
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI dialogueText;
@@ -46,6 +49,8 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     ObservationStorage os;
     BottonToggleShow bts;
     CameraController cc;
+    ButtonManager bm;
+
 
     [Header("Observation Updating Story Line")]
     [Header("Observation Name")]
@@ -78,6 +83,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
         instance = this;
 
         //gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
+        bm = GameObject.Find("Managers").GetComponent<ButtonManager>();
         gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         bts = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();
@@ -180,6 +186,8 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
         //zastêpujemy poprzedni¹ tablice dowodu zmienionym buforem
         npcDialogueLine[s] = observationArrayBufor;
 
+        //Wydajemy dŸwiêki odkrytego przycisku w innej obserwacji, jeœli oczywiœcie funkcja coœ takigo wykryje 
+        bm.UpdateButtonSound(s,i);
     }
 
     //analogicznie dzia³anie co powyrzej, tylko zwracamy wartoœc a nie nadpisujemy
@@ -225,6 +233,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     //Start is called before the first frame update
     void Start()
     {
+        //GameObject.Find("Menu").SetActive(false);
         layoutAnimator = dialoguePanel.GetComponent<Animator>();
 
         dialoguePlaying = false;
@@ -257,8 +266,11 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
     public void EnterDialogueMode(TextAsset inkJSON, string speaker)
     {
- 
+
+
         //blokujemy i nie, rozgl¹danei siê i aktywujemy box collider który plokuje interakcje z oroczeniem
+
+        menu.SetActive(false);
         cc.isLook = true;
         cc.boxCollider(true);
 
@@ -282,6 +294,8 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     void ExitDilogueMode()
     {
         //blokujemy i nie, rozgl¹danei siê 
+        menu.SetActive(true);
+
         cc.isLook = false;
         cc.boxCollider(false);
 
