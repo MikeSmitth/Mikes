@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundsManager : MonoBehaviour
 {
     [SerializeField] AudioClip EQSound;
+    [SerializeField] AudioClip ButtonSound;
     AudioSource EQSoundSource;
     void Start()
     {
@@ -12,14 +13,22 @@ public class SoundsManager : MonoBehaviour
     }
     public void PlaySoundClip(AudioClip audioClip)
     {
-        if (!EQSoundSource.isPlaying)
-        {
+       // if (!EQSoundSource.isPlaying)
+       /// {
             EQSoundSource.PlayOneShot(audioClip);
-        }
+       /// }
     }
     public void PlayEQSound()
     {
         //Debug.Log("Sema");
+        //Nie ma zabezpieczenia, bo i tak wyœwietlany jest wwarnning w razie braku dŸwiêku
         EQSoundSource.PlayOneShot(EQSound);
+    }
+    public void PlayButtonSound()
+    {
+
+        //Debug.Log("Sema");
+        //Nie ma zabezpieczenia, bo i tak wyœwietlany jest wwarnning w razie braku dŸwiêku
+            EQSoundSource.PlayOneShot(ButtonSound);      
     }
 }

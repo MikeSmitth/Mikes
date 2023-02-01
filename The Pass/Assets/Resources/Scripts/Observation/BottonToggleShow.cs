@@ -103,7 +103,7 @@ public class BottonToggleShow : MonoBehaviour
             if (!GameObject.Find(dropdown.options[dropdown.value].text))
         {
             //tworzymy obiekt z folderu resources 
-            GameObject.Instantiate((UnityEngine.Object)Resources.Load("Observations/" + dropdown.options[dropdown.value].text));
+            GameObject.Instantiate((UnityEngine.Object)Resources.Load("Prefabs/Observations/" + dropdown.options[dropdown.value].text));
             //GameObject.Find(dropdown.options[dropdown.value].text).transform.SetPositionAndRotation = new Vector3();
             // GameObject.Find(dropdown.options[dropdown.value].text).transform.SetPositionAndRotation(cc.transform.position + cc.transform.forward * 2f, cc.transform.rotation);
             

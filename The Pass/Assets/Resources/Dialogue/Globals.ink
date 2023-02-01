@@ -17,8 +17,8 @@ VAR time = 0
 VAR changeDialogueLine = "false"
 
 
-VAR bob = 0
-VAR mike = 0
+VAR Bob = 0
+VAR Mike = 0
 VAR john = 0
 
 
@@ -33,14 +33,14 @@ VAR indexBufor = 0
 
 ~changeDialogueLine = "false"
 
-~mike = index 
+~Mike = index 
 
 #skip:BUFOR1
 BUFOR1 
 #skip:BUFOR2
 BUFOR2 
 
-{dialogueLineEdit(mike,line)}
+{dialogueLineEdit(Mike,line)}
 
 
 
@@ -50,14 +50,14 @@ BUFOR2
 
 ~changeDialogueLine = "false"
 
-~bob = index 
+~Bob = index 
 
 #skip:BUFOR1
 BUFOR1 
 #skip:BUFOR2
 BUFOR2 
 
-{dialogueLineEdit(bob,line)}
+{dialogueLineEdit(Bob,line)}
 
 
 
@@ -95,11 +95,11 @@ NIC SIĘ NIE STAŁO, ZŁY NR ZNIENNEJ dialogueline #skip:bufor
 ~changeDialogueLine = "false"
 
 {name:
--bob: 
-~bob = index 
+-Bob: 
+~Bob = index 
 
--mike: 
-~mike = index 
+-Mike: 
+~Mike = index 
 
 -john:
 ~john = index 
@@ -118,11 +118,11 @@ BUFOR2
 
 
 {name:
--bob: 
-~indexBufor = bob 
+-Bob: 
+~indexBufor = Bob 
 
--mike: 
-~indexBufor = mike
+-Mike: 
+~indexBufor = Mike
 
 -john:
 ~indexBufor = john 
@@ -167,13 +167,13 @@ NIC SIĘ NIE STAŁO, ZŁY NR ZNIENNEJ dialogueline #skip:bufor
 === function ChangeBobDialogueLine(index) ===
 
 ~changeDialogueLine = "true"
-~bob = index
+~Bob = index
 
 //BOB
 === function ChangeMikeDialogueLine(index) ===
 
 ~changeDialogueLine = "true"
-~mike = index
+~Mike = index
 
 //Mike
 

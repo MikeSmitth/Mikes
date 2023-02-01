@@ -15,6 +15,18 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
     DialogueMenager dm;
     ButtonManager bm;
 
+
+    //Zmienne do odtwarzania dŸwiêku
+    bool allowToPlay;
+    bool fromLoad;
+
+
+
+
+
+
+
+
     //Tworzymy s³ownik z dowodami/obserwacjami byœmy mogli je na bierz¹co dodawaæ i zmieniaæ je za poœrednictwem ich nazw. S³ownik sk³ada siê z nazwy dowodu i przypisanej do nazwy tablicy bool, która mówi nam czy kafelek jest odkryty czy nie.
     public Dictionary<string, bool[]> observation = new Dictionary<string, bool[]>();
 
@@ -79,10 +91,13 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
                 //Debug.Log("Noup or Yez: " + data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + observationName) + " > "+ i.ToString() + ":" + observationName);
                 if (data.observationToSave.ContainsKey(i.ToString() + ":" + observationName) && data.observationToSave[i.ToString() + ":" + observationName]==true)
                 {
+                    //zmianna monitoruj¹ca czy observationUpdate jest wywo³ywane z LoadData, by np nie wywo³ywac dŸwiêku pczy ³adowaniu danych 
+                    fromLoad = true;
+
                     //Debug.Log("Update observationToSave: " + observationName + " Index: " + i);
                     observationUpdate(i, observationName);
-                    
 
+                   
                     //niszczonko podnaszalnych obiektów
                     if(i==1 && obserationToDestroy && obserationToDestroy.GetComponent<Observation>().pickable)
                     {
@@ -129,6 +144,14 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
     //zminiamy dane dowody/obserwacje, czyli czy dany kafelek zosta³ przez nas odkryty
     public void observationUpdate(int i, string s)
     {
+        //zmienna wykrywaj¹ca czy obserwacja uleg³a zmianie 
+        if (observationDownload(i, s) == false && fromLoad == false)
+        {
+            allowToPlay = true;
+        }
+
+
+
         if (i <= 0)
         {
             Debug.LogError("Poda³eœ za ma³y index, minimum 1");
@@ -153,8 +176,14 @@ public class ObservationStorage : MonoBehaviour, IDataPresistence
         //Aktualizujemy tablice dziennik dialogue line za posrednictwen observacji I wydajemy dŸwiêki odkrytego przycisku w innej obserwacji, jeœli oczywiœcie funkcja coœ takigo wykryje 
         //Jest wywo³ywana observation storage za ka¿dym razem gdy observacje s¹ aktualizowane KOLEJNOŒÆ WA¯NA, PO AKTUALIZACJI OBSERWACJI
         dm.DialogueLineUpdateFromObservation();
-        bm.UpdateButtonSound(s,i);
 
+        //Wydajemy dŸwiêki odkrytego przycisku w innej obserwacji, jeœli oczywiœcie funkcja coœ takigo wykryje  if (allowToPlay), to poniewa¿ chcemy dŸwiek graæ tylko raz
+        if (allowToPlay)
+        {
+            bm.UpdateButtonSound(s, i);
+        }
+        allowToPlay = false;
+        fromLoad = false;
 
         //Debug.Log("Set: " + shoePrint[i-1]);
 

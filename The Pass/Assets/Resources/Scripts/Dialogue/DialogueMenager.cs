@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 // dzia³a tylko w edutorze unity itak œrednio jest tego urzywaæ w kodzie https://youtu.be/HP1EYVwAhRg?t=222
 //using Ink.UnityIntegration;
@@ -19,6 +20,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] TextMeshProUGUI displayNameText;
     [SerializeField] Animator portraitAnimator;
+    [SerializeField] Animator choicesAnimator;
     private Animator layoutAnimator;
     Story currentStory;
 
@@ -56,12 +58,21 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     [Header("Observation Name")]
     [SerializeField] string[] observationNames;
     [SerializeField] int[] observationIndexes;
+
     [Header("Updated Dialogue Name")]
     [SerializeField] string[] dialogueNames;
     [SerializeField] int[] dialogueIndexes;
 
 
+    //Zmienne do odtwarzania dŸwiêku
+    bool allowToPlay;
+    bool fromLoad;
+
+
+
     public Dictionary<string, bool[]> npcDialogueLine = new Dictionary<string, bool[]>();  
+
+
     //zmiena przechwywuj¹ca informacje czy zauktualizowaæ mo¿na npcDialogueLine
     public bool changeDialogueLine { get; private set; } = false;
 
@@ -127,7 +138,13 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
                 //Debug.Log("observationToSave Kay: " + i.ToString() + ":" + observationName + " observation in Data: "+data.observationToSave[i.ToString() + ":" + observationName]);
                 if (data.dialogueLineToSave.ContainsKey(i.ToString() + ":" + name) && data.dialogueLineToSave[i.ToString() + ":" + name] == true)
                 {
+                    //zmianna monitoruj¹ca czy observationUpdate jest wywo³ywane z LoadData, by np nie wywo³ywac dŸwiêku pczy ³adowaniu danych 
+                    fromLoad = true;
+
+
                     DialogueLineUpdate(i, name);
+            
+                    
                 }
             }
 
@@ -169,6 +186,15 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
     public void DialogueLineUpdate(int i, string s)
     {
+
+
+        //zmienna wykrywaj¹ca czy obserwacja uleg³a zmianie 
+        if (DialogueLineDownload(i, s) == false && fromLoad == false)
+        {
+            allowToPlay = true;
+        }
+
+
         if (i <= 0)
         {
             Debug.LogError("Poda³eœ za ma³y index, minimum 1");
@@ -186,8 +212,15 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
         //zastêpujemy poprzedni¹ tablice dowodu zmienionym buforem
         npcDialogueLine[s] = observationArrayBufor;
 
-        //Wydajemy dŸwiêki odkrytego przycisku w innej obserwacji, jeœli oczywiœcie funkcja coœ takigo wykryje 
-        bm.UpdateButtonSound(s,i);
+        //Wydajemy dŸwiêki odkrytego przycisku w innej obserwacji, jeœli oczywiœcie funkcja coœ takigo wykryje   if (allowToPlay), to poniewa¿ chcemy dŸwiek graæ tylko raz
+        if (allowToPlay)
+        {
+            bm.UpdateButtonSound(s, i);
+        }
+        allowToPlay = false;
+        fromLoad = false;
+
+
     }
 
     //analogicznie dzia³anie co powyrzej, tylko zwracamy wartoœc a nie nadpisujemy
@@ -215,7 +248,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
         // observationArrayBufor = new bool[20];
        if (!npcDialogueLine.ContainsKey(s))
         {
-            Debug.LogError("Nie ma takiego klucza w npcDialogueLine: " + s);            
+            Debug.LogError("Nie ma takiego klucza w npcDialogueLine: " + s);
         }
 
         bool[] observationArrayBufor = npcDialogueLine[s];
@@ -251,7 +284,9 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     // Update is called once per frame
     void Update()
     {
-        if(!dialoguePlaying)
+       // Debug.Log(" sellected: " + EventSystem.current.currentSelectedGameObject.transform.name);
+
+        if (!dialoguePlaying)
         {
             return;
         }
@@ -389,7 +424,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
                     //if (currentStory.canContinue)
                     //{
-                    Debug.LogWarning("SKIPED TEXT: " + currentStory.currentText + " dla tagu: " + tagValue);
+                    //Debug.LogWarning("SKIPED TEXT: " + currentStory.currentText + " dla tagu: " + tagValue);
                     ContinueStory();
 
                     //}
@@ -436,6 +471,8 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
         {
             choices[i].gameObject.SetActive(false);
         }
+
+        choicesAnimator.Play(choices[index].name);
         StartCoroutine(SelectFirstChoice());
     }
 
@@ -448,10 +485,45 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
     public void MakeChoice(int choiceIndex)
     {
-        //Debug.Log(choiceIndex);
+        Debug.Log(choiceIndex);
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
     }
+
+
+    //dokonujemy wyboty przyciskiem w  UI
+    public void MakeChoiceFromButton()
+    {
+        if (!choices[0].activeSelf)
+        {
+            //Debug.Log("1");
+            ContinueStory();
+            return;
+        }
+        MakeChoice(0);
+        /*
+       
+
+        foreach (GameObject choice in choices)
+        {
+            Debug.Log("2 choice: " + choice.name + " sellected: "+ EventSystem.current.currentSelectedGameObject.transform.name);
+            if (EventSystem.current.currentSelectedGameObject.transform.name == choice.name)
+            {              
+                choice.GetComponent<Button>().onClick.Invoke();
+                return;
+            }
+        }
+       
+
+            //Debug.Log("2: " + EventSystem.current.currentSelectedGameObject);
+
+        //Button selected;
+        //selected = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        //selected.onClick.Invoke();
+        */
+    }
+
+
     public Ink.Runtime.Object GetVariableState(string variableName)
     {
         Ink.Runtime.Object variableValue = null;

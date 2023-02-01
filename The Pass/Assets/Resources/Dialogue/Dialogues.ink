@@ -26,7 +26,7 @@ VAR indx=0
 
 === BobStart ===
 
-{bob:
+{Bob:
 -0:
 
 ->FirstMeetingBobMike 
@@ -51,7 +51,7 @@ VAR indx=0
 
 
 ===  FirstMeetingBobMike ===
-#speaker:Bob #portrait:neutral #layout:right
+#speaker:Bob #portrait:Oswald_Neutral #layout:right
 {CheckBobDialogueLine(2,1)}
 {CheckBobDialogueLine(9,2)}
 //{CheckDialogueLine(bob,11,3)} zmieniony jest w dialogu
@@ -79,9 +79,9 @@ Za to Oni przedstawiają się z nieprawdziwego imienia ukrywają tożsamość
 
 
 -else:
-Chyba Ci się nie śpieszy. #speaker:Mike #portrait:smile #layout:left
+Chyba Ci się nie śpieszy. #speaker:Mike #portrait:Edwin_Smile #layout:left
 Rozbijaj bo zamarzniesz. 
-Zaraz pomożemy, tylko chrustu na kolacje przygotujemy. #speaker:Bob #portrait:neutral #layout:right
+Zaraz pomożemy, tylko chrustu na kolacje przygotujemy. #speaker:Bob #portrait:Oswald_Neutral #layout:right
 ->END
 
  }
@@ -94,7 +94,7 @@ Zaraz pomożemy, tylko chrustu na kolacje przygotujemy. #speaker:Bob #portrait:n
   
   *{dialogueline3==11}  [3Dopytujesz skąd nowi znajomi są] Edwin wspomniał,
   że rodzinne sprawy pociągają go do szybkiego powrotu, do rodzinnego miasta
-  Oswald Wymijająco odpowiedział,że śpieszy mu się do Lamberku #speaker:Mike #portrait:smile #layout:left
+  Oswald Wymijająco odpowiedział,że śpieszy mu się do Lamberku #speaker:Mike #portrait:Edwin_Neutral #layout:left
   ->FirstMeetingBobMikeDialogue
 
 *[2Pytasz się dokąd zmierzają]
@@ -124,7 +124,7 @@ Odpowiadają, że nie ma problemu i zapraszaja obok do rozbicia się. Jest już 
 ->END
 
 *[5Jedziesz dalej sam, życzysz udanej podróży]
-Wzajemnie #speaker:Mike #portrait:smile #layout:left
+Wzajemnie #speaker:Mike #portrait:Edwin_Smile #layout:left
 {ChangeBobDialogueLine(10)}
 {ChangeMikeDialogueLine(10)}
 ->END
@@ -133,6 +133,6 @@ Wzajemnie #speaker:Mike #portrait:smile #layout:left
 
 //MIKE
 === MikeStart ===
-Hi? #time:1 #speaker:Mike #portrait:neutral #layout:right
+Hi? #time:1 #speaker:Mike #portrait:Edwin_Neutral #layout:right
 ->END
    

@@ -168,14 +168,14 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
                 //currentstory.variablesState["changeDialogueLine"] = "false";
 
 
-                Debug.Log("Po ZmianieJedenpo: " + name + " = " + dm.DialogueLineDownload(int.Parse(value.ToString()) + 1, name));
+                //Debug.Log("Po ZmianieJedenpo: " + name + " = " + dm.DialogueLineDownload(int.Parse(value.ToString()) + 1, name));
             }
 
             //Mamy tu dodatkowy warunek w psotaci && int.Parse(value.ToString())!=0 poniewa¿ po wyzerowaniu "currentstory.variablesState[name] = 0;" funkcja wywo³ywa³a by siê w nieskoñczonoœæ, gdy¿ wywo³uje siê po zmianie dowolnej zmiennej,
             //dm.DialogueLineDownload(int.Parse(value.ToString()), name)==false, a to moniewa¿ nei chcemy zerowaæ wartoœci jeœli ju¿ wczeœniej odpolowaliœmy ten dialogueline
             else if ( (dm.npcDialogueLine.ContainsKey(name) && int.Parse(value.ToString())!=0) && variables["changeDialogueLine"].ToString() == "false"&& dm.DialogueLineDownload(int.Parse(value.ToString()), name)==false)
             {            
-                Debug.Log(name + " indx: " + int.Parse(value.ToString()) + "-" + dm.DialogueLineDownload(int.Parse(value.ToString()), name) + ": Nie zosta³a odkrta, bo: "+  variables["changeDialogueLine"].ToString());
+                //Debug.Log(name + " indx: " + int.Parse(value.ToString()) + "-" + dm.DialogueLineDownload(int.Parse(value.ToString()), name) + ": Nie zosta³a odkrta, bo: "+  variables["changeDialogueLine"].ToString());
                 currentstory.variablesState[name] = 0;
                 //Debug.Log(name + ": "+ currentstory.variablesState[name] + " w currentstory : "+ currentstory.currentText);
                 //Debug.Log("1");

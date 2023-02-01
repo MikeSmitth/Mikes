@@ -39,14 +39,15 @@ public class ButtonManager : MonoBehaviour
         if (observationOrDialogueNames.Length == observationOrDialogueIndexes.Length)
         {
            
-            //Debug.Log("if");
+            //
             foreach (string name in observationOrDialogueNames)
             {
 
-
+               
                 if (os.observation.ContainsKey(name))
                 {
                     //&& updatedName == name && updatedIndex == observationOrDialogueIndexes[i] poniewaz chcemy udpalaæ dŸwiêk tylko raz gdy odpowiednia obserwacja jest odkrywana 
+                    //Debug.Log("os.observationDownload: " + name + " o indexie " + observationOrDialogueIndexes[i] + " :  " + os.observationDownload(observationOrDialogueIndexes[i], name) + " == true");
                     if (os.observationDownload(observationOrDialogueIndexes[i], name) == true && updatedName == name && updatedIndex == observationOrDialogueIndexes[i])
                     {
                         //Debug.Log("os.observationDownload: " + name + " o indexie " + observationOrDialogueIndexes[i] + " :  " + os.observationDownload(observationOrDialogueIndexes[i], name) + " == true");
