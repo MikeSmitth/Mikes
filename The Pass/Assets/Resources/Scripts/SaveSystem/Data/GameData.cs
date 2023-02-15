@@ -9,6 +9,9 @@ public class GameData
     public float inGameTimeToSave;
     public float tirednessToSave;
     public Vector3 playerPosition;
+    public string sceneToSave;
+    //by nie ³adowaæ sceny z zapisu gdy siê poruszami miêdzy nimi 
+    public bool justMoveToSave;
     public float rotationX;
     public float rotationY;
     public float rotationZ;
@@ -26,7 +29,7 @@ public class GameData
     public GameData()
     {
 
-        this.inGameTimeToSave = 0;
+        this.inGameTimeToSave = 90f;
         this.tirednessToSave = 0;
         playerPosition = new Vector3(500, 5, 478);
         rotationX = 0;
@@ -39,6 +42,9 @@ public class GameData
 
         dialogueLineToSave = new SerializabeleDictionary<string, bool>();
         //dialogueLineToSave.Add("", false);
+
+        justMoveToSave = false;
+        sceneToSave = "Scene1";
 
         //obseravationButtonActive = new SerializabeleDictionary<string, bool>();
 

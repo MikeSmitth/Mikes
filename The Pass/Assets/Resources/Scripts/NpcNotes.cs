@@ -219,21 +219,20 @@ public class NpcNotes : MonoBehaviour
 
     public void togglePanelShow()
     {
-
-
+       // Debug.Log("1");
         if (notesPanel.activeSelf)
         {
 
             cc.isLook = false;
             cc.boxCollider(false);
-            //Debug.Log("siemafalse");
+         //   Debug.Log("siemafalse");
             notesPanel.SetActive(false);
         }
         else
         {        
             cc.isLook = true;
             cc.boxCollider(true);
-            //Debug.Log("siemafalse");
+         //   Debug.Log("siemafalse");
             notesPanel.SetActive(true);
             // Debug.Log("0");
             //ScrollBackAnimation();

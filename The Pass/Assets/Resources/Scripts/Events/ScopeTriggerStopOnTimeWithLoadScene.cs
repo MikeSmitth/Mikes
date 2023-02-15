@@ -32,10 +32,12 @@ public class ScopeTriggerStopOnTimeWithLoadScene : MonoBehaviour
 
     CameraController cc;
     GlobalManager gm;
+    PlayerController pc;
     void Start()
     {
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
         gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
+        pc = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,7 +55,6 @@ public class ScopeTriggerStopOnTimeWithLoadScene : MonoBehaviour
     }
 
  
-
 
     private void OnTriggerStay(Collider other)
 {
@@ -98,15 +99,19 @@ public class ScopeTriggerStopOnTimeWithLoadScene : MonoBehaviour
             if (timeToStop <= gm.inGameTime)
             {
                 //cc.Scope(scope*(-1));
+                pc.JustMoveSet(true);
                 EventManager.current.SaveGame();
+                //DataPresistenceManager.sceneToSave = SceneName;
                 SceneManager.LoadScene(SceneName, LoadSceneMode.Single);
                 Destroy(this);
             }
         }
     }
+
     // Update is called once per frame
     void Update()
     {
        
+
     }
 }

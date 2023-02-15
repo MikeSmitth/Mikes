@@ -33,6 +33,7 @@ public class Observation : MonoBehaviour
     GlobalManager gm;
     [Header("Observation Settings")]
     //Wa¿ne!!! Zmiena sprawdzaj¹ca czy badamy dowód z ekwipunku, jeœli tak to z regu³y nie mo¿emy edytowaæ. Jest ona sprawdzana w skrypcie ObservationButtons i edytowana w Observation.
+
     public bool fromEQ = false;
     //Zmiena plikuj¹ca przyblizanie siê dowodu do kamery, by nie by³a sytuacji w której szybko klikamy interakcje i z niej wychodzimy, a animacja siê blokuje 
     bool brakeSoftRotateAt = false;
@@ -41,6 +42,8 @@ public class Observation : MonoBehaviour
     //obiekt jest "podnaszalny"
     public bool pickable = false;
 
+    //niszczymy obserwacje jeœli by³a wytworzona z otwarciem ekwipunku np w ButtonToggleShow
+    bool isSpawned = false;
 
     //urzywane do obrotu obiektu do pierwotnej pozycji, gdy go nie podnosimy
     private Quaternion startRot = Quaternion.Euler(0, 0, 0);
@@ -75,7 +78,6 @@ public class Observation : MonoBehaviour
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();       
         bt = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();
-        gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
         gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
     }
 
@@ -196,8 +198,8 @@ public class Observation : MonoBehaviour
         CameraController scopes = GameObject.Find("Main Camera").GetComponent<CameraController>();
         scopes.lookBack();
 
-        //niszczymy obiekt po wyœciu z obserwacji gdy jest do podniesienia. Canvas i sprawdzanie  pierwszego kafelka który w  ifie, poniewa¿  w podoszonych dowodach jest w³aœnie podniesieniem. Nie chcemy nisczyæ dowodu, na który nie patrzymy i niezbadaliœmy 
-        if (pickable && canvas.activeSelf && os.observationDownload(1, transform.root.name) == true)
+        //niszczymy obiekt po wyœciu z obserwacji gdy jest do podniesienia lub, jest on z ekwipunku otwary, Canvas i sprawdzanie  pierwszego kafelka który w  ifie, poniewa¿  w podoszonych dowodach jest w³aœnie podniesieniem. Nie chcemy nisczyæ dowodu, na który nie patrzymy i niezbadaliœmy 
+        if ((pickable && canvas.activeSelf && os.observationDownload(1, transform.root.name) == true) || isSpawned==true)
         {
             Destroy(this.gameObject);
         }
@@ -266,6 +268,7 @@ public class Observation : MonoBehaviour
         panel.SetActive(true);
 
         //wy³¹czamy UI gry gdy jest w³¹czone UI dowodu
+       // Debug.Log(GameUI.name);
         GameUI.SetActive(false);
 
         cc.isLook = true;
@@ -278,7 +281,11 @@ public class Observation : MonoBehaviour
         // nie pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy z ekwipunku
         fromEQ=true;
     }
-
+    public void setSpawned()
+    {
+        // nie pozwalamy na edycje, jeœli w tryb szukania dowodów weszliœmy z ekwipunku
+        isSpawned = true;
+    }
     /*
     IEnumerator waiterAnimator()
     {

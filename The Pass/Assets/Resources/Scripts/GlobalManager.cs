@@ -13,10 +13,7 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
 
     [Header("Tiredness (No More Than 100)")]
     public float tiredness = 0;
-
-   
-
-
+ 
     DialogueMenager dm;
 
     Story currentstory;
@@ -72,25 +69,40 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
     
     }
 
+
+
+
+
+
+    public void Sleep()
+    {
+       // inGameTime = Mathf.Round(inGameTime += 0.3f * 10f) ;
+        //inGameTime = Mathf.Round(inGameTime += 0.3f * 10f) ;
+        SetTimeFlat(inGameTime + 36.5f);
+        SettirednessFlat(tiredness - 50f);
+    }
+
     public void SetTime(float time)
     {
-       inGameTime += time;
+       // Debug.Log(time);
+       inGameTime = Mathf.Round((time + inGameTime) * 10.0f) * 0.1f;
+       // Debug.Log(inGameTime);
 
         if (tiredness < 100)
         {
-            tiredness += time;
+            tiredness = Mathf.Round((time + tiredness) * 10.0f) * 0.1f;
         }
         else
         {
             tiredness = 100;
         }
-       Debug.Log("InGameTime: " + inGameTime + " tiredness: " + tiredness);
+      // Debug.Log("InGameTime: " + inGameTime + " tiredness: " + tiredness);
     }
 
     public void SetTimeFlat(float timeSet)
     {
-        inGameTime = timeSet;
-        Debug.Log("InGameTime: " + inGameTime);
+        inGameTime = Mathf.Round(timeSet * 10.0f) * 0.1f;
+       // Debug.Log("InGameTime: " + inGameTime);
     }
 
     public void SettirednessFlat(float tirednessSet)
@@ -99,8 +111,8 @@ public class GlobalManager : MonoBehaviour, IDataPresistence
         {
             tirednessSet = 100;
         }
-        tiredness = tirednessSet;       
-        Debug.Log("Tiredness: " + tiredness);
+        tiredness = Mathf.Round(tirednessSet * 10.0f) * 0.1f;       
+       // Debug.Log("Tiredness: " + tiredness);
     }
 
     public void StartListening(Story story, string speaker)

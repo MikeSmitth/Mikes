@@ -12,15 +12,16 @@ using UnityEngine.UI;
 
 public class DialogueMenager : MonoBehaviour, IDataPresistence
 {
-    [Header("Menu")]
-    [SerializeField] GameObject menu;
-
+    
     [Header("Dialogue UI")]
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] TextMeshProUGUI displayNameText;
     [SerializeField] Animator portraitAnimator;
     [SerializeField] Animator choicesAnimator;
+    [SerializeField] Image tutorialImage1;
+    [SerializeField] Image tutorialImage2;
+
     private Animator layoutAnimator;
     Story currentStory;
 
@@ -46,13 +47,17 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
     const string TIME_Tag = "time";
     const string OBSERVATION_Tag = "observation";
     const string SKIP_Tag = "skip";
+    const string TUTORIAL_Tag = "tutorial";
+    const string IMG1_Tag = "tutorialImg1";
+    const string IMG2_Tag = "tutorialImg2";
 
     GlobalManager gm;
     ObservationStorage os;
     BottonToggleShow bts;
     CameraController cc;
     ButtonManager bm;
-
+    SoundsManager sm;
+    GameObject gameUI;
 
     [Header("Observation Updating Story Line")]
     [Header("Observation Name")]
@@ -95,10 +100,12 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
         //gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
         bm = GameObject.Find("Managers").GetComponent<ButtonManager>();
+        sm = GameObject.Find("Managers").GetComponent<SoundsManager>();
         gm = GameObject.Find("Managers").GetComponent<GlobalManager>();
         os = GameObject.Find("Managers").GetComponent<ObservationStorage>();
         bts = GameObject.Find("Dropdown").GetComponent<BottonToggleShow>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        gameUI = GameObject.FindGameObjectWithTag("GameUI");
         gm.GlobalManagerLoadGlobalJson(loadGloabalJSON);
     }
 
@@ -305,7 +312,7 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
         //blokujemy i nie, rozgl¹danei siê i aktywujemy box collider który plokuje interakcje z oroczeniem
 
-        menu.SetActive(false);
+        gameUI.SetActive(false);
         cc.isLook = true;
         cc.boxCollider(true);
 
@@ -328,8 +335,10 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
     void ExitDilogueMode()
     {
+        //na wypadek gdyby by³ uruchomiony tag tutorial
+        Time.timeScale = 1f;
         //blokujemy i nie, rozgl¹danei siê 
-        menu.SetActive(true);
+        gameUI.SetActive(true);
 
         cc.isLook = false;
         cc.boxCollider(false);
@@ -400,6 +409,18 @@ public class DialogueMenager : MonoBehaviour, IDataPresistence
 
             switch (tagKey)
             {
+                case TUTORIAL_Tag:
+                    layoutAnimator.Play(tagValue);
+                    //sm.StopPlayingAllAudio();
+                    Time.timeScale = 0f;
+                    break;
+                case IMG1_Tag:
+                    Debug.Log("Art/Tutorial/" + tagValue);
+                    tutorialImage1.sprite = Resources.Load<Sprite>("Art/Tutorial/" + tagValue);
+                    break;
+                case IMG2_Tag:
+                    tutorialImage2.sprite = Resources.Load<Sprite>("Art/Tutorial/" + tagValue);
+                    break;
                 case SPEAKER_Tag:
                     displayNameText.text = tagValue;
                     break;

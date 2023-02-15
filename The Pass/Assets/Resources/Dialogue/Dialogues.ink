@@ -51,7 +51,7 @@ VAR indx=0
 
 
 ===  FirstMeetingBobMike ===
-#speaker:Bob #portrait:Oswald_Neutral #layout:right
+#speaker:Bob #portrait:Oswald_Neutral #layout:right 
 {CheckBobDialogueLine(2,1)}
 {CheckBobDialogueLine(9,2)}
 //{CheckDialogueLine(bob,11,3)} zmieniony jest w dialogu
@@ -63,8 +63,8 @@ VAR indx=0
 {ChangeBobDialogueLine(2)}
 //~changeDialogueLine = "false"
 
-#observation:OswaldEdwinFirstMeeting-1 #observation:OswaldEdwinFirstMeeting-2 #observation:OswaldEdwinFirstMeeting-3 #observation:OswaldEdwinFirstMeeting-4 
-#observation:OswaldEdwinCamp-1 #observation:OswaldEdwinCamp-2 #observation:OswaldEdwinCamp-3 #observation:OswaldEdwinCamp-4 #observation:OswaldEdwinCamp-5 #observation:OswaldEdwinCamp-9
+#observation:The first meeting with men-1 #observation:The first meeting with men-2 #observation:The first meeting with men-3 #observation:The first meeting with men-4 
+#observation:Camp in the mountains-1 #observation:Camp in the mountains-2 #observation:Camp in the mountains-3 #observation:Camp in the mountains-4 #observation:Camp in the mountains-5 #observation:Camp in the mountains-9
 
 Krótkie przywitanie i przedstawienie się.  
 Przedstawiasz im się prawdziwym imieniem,  

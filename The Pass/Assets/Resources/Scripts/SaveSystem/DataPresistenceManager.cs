@@ -39,8 +39,27 @@ public class DataPresistenceManager : MonoBehaviour
     {
         this.gameData = new GameData();
         dataHandler.Save(gameData);
-    }   
-    
+    }
+
+    public void Exit()
+    {
+        foreach (IDataPresistence dataPersistenceObj in dataPresistenceObjects)
+        {
+            dataPersistenceObj.SaveData(ref gameData);
+        }
+
+
+#if UNITY_STANDALONE
+        dataHandler.Save(gameData);
+        Application.Quit();
+#endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+
+    }
+
     public void LoadGame()
     {
         this.gameData = dataHandler.Load();

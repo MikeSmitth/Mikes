@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BottonToggleShow : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BottonToggleShow : MonoBehaviour
     ObservationStorage os;
     CameraController cc;
 
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,7 @@ public class BottonToggleShow : MonoBehaviour
 
     public void ObservationButtonUpdate()
     {
-        var dropdown = transform.GetComponent<Dropdown>();
+        var dropdown = transform.GetComponent<TMP_Dropdown>();
         dropdown.options.Clear();
 
         List<string> items = new List<string>();
@@ -40,7 +42,7 @@ public class BottonToggleShow : MonoBehaviour
         foreach (var item in items)
         {
             //Debug.Log(item);
-            dropdown.options.Add(new Dropdown.OptionData() { text = item });
+            dropdown.options.Add(new TMP_Dropdown.OptionData() { text = item }); // Add(new Dropdown.OptionData() { text = item });
         }
         dropdown.RefreshShownValue();
     }
@@ -48,6 +50,7 @@ public class BottonToggleShow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+  
         
     }
     public void toggleBottonShow()
@@ -55,9 +58,13 @@ public class BottonToggleShow : MonoBehaviour
         if (gameObject.activeSelf)
         {
             gameObject.SetActive(false);
+
+
+
         }
         else
-        {     
+        {
+
             gameObject.SetActive(true);      
         }
         //consoleShowEvidence();
@@ -77,10 +84,10 @@ public class BottonToggleShow : MonoBehaviour
     //pokazuje dowód z pamiêci ekwipunku, nie masz mo¿liwoœci edyzji 
     public void consoleShowEvidenceNoEdit()
     {
-        
+        Observation ob;
 
 
-        var dropdown = transform.GetComponent<Dropdown>();
+        var dropdown = transform.GetComponent<TMP_Dropdown>();
 
 
         //os.showObservationArray(dropdown.options[dropdown.value].text);
@@ -100,8 +107,12 @@ public class BottonToggleShow : MonoBehaviour
             return;
         }
 
-            if (!GameObject.Find(dropdown.options[dropdown.value].text))
+       
+
+
+        if (!GameObject.Find(dropdown.options[dropdown.value].text))
         {
+                    
             //tworzymy obiekt z folderu resources 
             GameObject.Instantiate((UnityEngine.Object)Resources.Load("Prefabs/Observations/" + dropdown.options[dropdown.value].text));
             //GameObject.Find(dropdown.options[dropdown.value].text).transform.SetPositionAndRotation = new Vector3();
@@ -111,13 +122,19 @@ public class BottonToggleShow : MonoBehaviour
             GameObject.Find(dropdown.options[dropdown.value].text).transform.position = (cc.transform.position + cc.transform.forward * 1.5f);
             //obracamy sam model obiektu w kierunku kamery 
             GameObject.Find(dropdown.options[dropdown.value].text+ "/Item").transform.rotation = (cc.transform.rotation);
+
+            //zmeinna wykorzytywana do wy³¹czania obiektu gdy go ztowrzyliœmy tutaj. Przydatne po to by nie tworzyæ na mapie obserwacji które mog¹ przeszkadzaæ 
+            ob = GameObject.Find(dropdown.options[dropdown.value].text).GetComponent<Observation>();
+            ob.setSpawned();
         }
         //Instantiate(Resources.Load("Observations/V2Print.prefab"), transform.position + transform.forward * 2f, transform.rotation);
 
 
         //aktywujemy skrypt ob.observationStudy(); dla danego dowodu, wiemy którego poniewa¿ znamy jego nazwe dropdown.options[dropdown.value].text
-        Observation ob;
         ob = GameObject.Find(dropdown.options[dropdown.value].text).GetComponent<Observation>();
+        
+
+        //Debug.LogWarning(dropdown.options[dropdown.value].text);
 
         //jest to funkcja wy³¹czaj¹ca edycje dowodu z eq
         ob.setInteractive();

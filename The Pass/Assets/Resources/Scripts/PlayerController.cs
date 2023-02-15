@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour, IDataPresistence
     bool isMoving;
     //czy gracz jest w trakcie obrotu
     bool isRotating;
+    //by nie ładować sceny z zapisu gdy się poruszami między nimi 
+    bool justMove = false;
 
     FootstepSwapper fs;
 
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDataPresistence
     [SerializeField] private List<AudioClip> FootstepSounds = new List<AudioClip>();
     AudioSource PlayerSoundSource;
     CameraController cc;
-
+    SoundsManager sm;
 
 
     void Awake()
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour, IDataPresistence
     void Start()
     {
         fs = GetComponent<FootstepSwapper>();
+        sm = GameObject.Find("Managers").GetComponent<SoundsManager>();
         PlayerSoundSource = GetComponent<AudioSource>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
     }
@@ -97,13 +100,12 @@ public class PlayerController : MonoBehaviour, IDataPresistence
         {
             FootstepSounds.Add(collection.footstepSounds[i]);
         }
-
     }
     private void PlayFootStepAudio()
     {
 
         fs.CheckLayers();
-        if((!isMoving&&!isRotating) || PlayerSoundSource.isPlaying)
+        if((!isMoving&&!isRotating) || PlayerSoundSource.isPlaying || cc.isLook)
         {
             return;
         }
@@ -133,7 +135,10 @@ public class PlayerController : MonoBehaviour, IDataPresistence
         //Debug.Log("Ile?: " + i.ToString() + ":" + observationName);
             data.scenesPositionLoadedToSave.Add(SceneManager.GetActiveScene().name, transform.root.position);
             data.scenesRotationLoadedToSave.Add(SceneManager.GetActiveScene().name, transform.root.rotation);
-        
+            data.sceneToSave = (SceneManager.GetActiveScene().name);
+
+        //by nie ładować sceny z zapisu gdy się poruszami między nimi 
+        data.justMoveToSave = justMove;
 
 
         //data.playerPosition = this.transform.position;
@@ -143,6 +148,14 @@ public class PlayerController : MonoBehaviour, IDataPresistence
 
     public void LoadData(GameData data)
     {
+
+        //if By nie wczytywac w koło tej samej sceny
+
+        if (SceneManager.GetActiveScene().name != data.sceneToSave && !data.justMoveToSave)
+        {
+            SceneManager.LoadScene(data.sceneToSave, LoadSceneMode.Single);
+        }
+        
 
 
         //Debug.Log("Ile?: " data.observationToSave.ContainsKey(i.ToString() + ":" + observationName) +" : "+ data.observationToSave.ContainsValue(observationDownload(i, observationName);
@@ -249,5 +262,10 @@ public class PlayerController : MonoBehaviour, IDataPresistence
             transform.rotation = toAngle;
             isRotating = false;
         }
+    }
+
+    public void JustMoveSet(bool set)
+    {
+        justMove = set;
     }
 }
